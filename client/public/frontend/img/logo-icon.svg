@@ -1,0 +1,11 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Green Q icon -->
+  <g>
+    <!-- Leaf at top left of Q -->
+    <path d="M 23 11 L 27 5 L 29 9 Z" fill="#0081C9" />
+    <circle cx="25" cy="30" r="20" stroke="#0081C9" stroke-width="5" fill="none"/>
+    <text x="14" y="39" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="900" fill="#0081C9">Q</text>
+    <!-- Tail of Q -->
+    <line x1="37" y1="42" x2="48" y2="53" stroke="#0081C9" stroke-width="5" stroke-linecap="round"/>
+  </g>
+</svg>

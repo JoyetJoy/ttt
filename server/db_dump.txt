@@ -1,0 +1,64 @@
+MODEL: contacts | ID: 13 | FIELD: message
+VAL: Hello, 
+
+https://TeensTravel.com is available for sale, if you are interested please reply back for a special limited time offer
+
+Regards,
+Ihab Elsaeed
+Domain Name Expert
+egacs@egacs.com
+
+Qtoursandtravels Com 
+- -
+Discover Your Dream Journey with Q Tours & Travels
+
+MODEL: contacts | ID: 44 | FIELD: message
+VAL: Hello,
+
+https://NationVacation.com available for sale with special limited time offer, does that interest you?
+
+Best regards,
+Ihab Elsaeed
+Brand Strategist
+egacs@egacs.com
+
+Toll Free (U.S. and Canada): 1-855-646-1390 or 866-829-9361
+International: +1 781-373-6808 or +1 339-222-5145
+
+Qtoursandtravels Com 
+ -
+Contact Us - Q Tours &amp; Travels
+
+MODEL: orders | ID: 69 | FIELD: last_name
+VAL: Tours And Travels
+
+MODEL: settings | ID: 90 | FIELD: value
+VAL: Travel company,Tours and Travels,Travel company UK,Tours and Travels UK
+
+MODEL: users | ID: 1 | FIELD: lname
+VAL: Tours And Travels
+
+MODEL: widget_contents | ID: 35 | FIELD: widget_content
+VAL: {"about_main_title":"About Us","about_title":"Let\u2019s know About Our Journey For Q Tours & Travels.","about_img":{"img":"egens-KucJkPiEB2.webp"},"customer_img":{"img":"egens-M4VPO4y7uq.webp"},"customer_number":"345","btn_text":"More About","btn_url":"about-us","tabs":{"2":{"tabs_name":"Focus On Customer","tabs_icon":"bi bi-patch-check","tabs_descriptions":"Welcome to Q Tours & Travels  where every journey begins with a dream and ends with unforgettable memories. Our travel specialists have in-depth knowledge of destinations worldwide, ensuring you get the best recommendations. <br \/>\r\n\r\nWith a passion for exploration and a commitment to excellence, we specialize in crafting personalized travel experiences that cater to every traveler\u2019s needs. Whether you\u2019re seeking a relaxing beach getaway, an adventurous expedition, or a cultural immersion, our expert team is dedicated to making your dream trip a reality. We tailor every trip to match your preferences, interests, and budget.\r\nOur partnerships with top airlines, hotels, and tour operators allow us to offer unbeatable prices."}}}
+
+MODEL: widget_contents | ID: 39 | FIELD: widget_content
+VAL: {"features_main_title":"Our Success","features_sub_title":"Why Choose Q Tours & Travels","features":{"1":{"name":"Worldwide Coverage","img":"egens-5gXCKxE8F6.svg","descriptions":"Cras facilisis fermentum ex seda ullamcorper odio rutrum accoun Phasellus auctor"},"2":{"name":"Competitive Pricing","img":"egens-rZHBTP2JBW.svg","descriptions":"Burabitur convallis enim atnora ullamcorper sagittis. Morbi nug scelerisque for thana."},"3":{"name":"Fast Booking","img":"egens-X45h4EkAFF.svg","descriptions":"Fermentum eitorx quis maximum Etiam luctus erat vulputate urnan posuere convallis."},"4":{"name":"Guided Tours","img":"egens-hK4Tnu6cfs.svg","descriptions":"Pellentesque venenatis egestasoi diam Proin velgorat elit porttitor metus convallis."},"5":{"name":"Best Support 24\/7","img":"egens-N4L9WD67Ek.svg","descriptions":"Sed venenatis mauris nec nulla euismod, accounv varius lectus viverra oncen."},"6":{"name":"Ultimate flexibility","img":"egens-kC5v5z9Wd1.svg","descriptions":"Duis leo sapien, lacinia utorrent efficitur utom suscipit quis nulla Sed auctor eu"}}}
+
+MODEL: widget_contents | ID: 46 | FIELD: widget_content
+VAL: {"slider":{"1":{"title":"Let's go with Q Tours & Travels  and discover a place","button_text":"Book Your Trip","button_url":"\/tours","img":"egens-cga8ycs7me.webp","location":"Switzerland","rating_logo":"egens-tZn0XZNU2u.webp","rating":"5","description":"Explore breathtaking destinations, curated experiences, and unforgettable journeys tailored just for you.  Showcasing iconic landmarks, scenic landscapes, and travelers enjoying their experiences."},"2":{"title":"Explore Your Holiday Trip With Q Tours & Travels","button_text":"Book Your Trip","button_url":"\/tours","img":"egens-GwxliwfgJ4.webp","location":"Spain","rating_logo":"egens-95TbYkV8aa.webp","rating":"5","description":"Travel the world with Q Tours & Travels and tailor-made experiences and unforgettable journeys, curated just for you. Think crystal-clear beaches, scenic mountains, or bustling cityscapes."},"3":{"title":"Explore Japan Tourism With Q Tours & Travels","button_text":"Book Your Trip","button_url":"\/tours","img":"egens-fuD60wAN4P.webp","location":"Japan","rating_logo":"egens-JDeat4Ze3K.webp","rating":"5","description":"Travel with a passion for exploration and a commitment to excellence, we specialize in crafting personalized travel experiences that cater to every traveler\u2019s needs."}}}
+
+MODEL: widget_contents | ID: 70 | FIELD: widget_content
+VAL: {"about_main_title":"About Q Tours & Travels","about_title":"Let\u2019s know About Our Journey For Q Tours & Travels .","about_img":{"img":"egens-jxR7RYJXcl.webp"},"customer_img":{"img":"egens-LvtsX6tAeT.webp"},"customer_number":"200","btn_text":"Explore Tours","btn_url":"\/tours","tabs":{"1":{"tabs_name":"Mission & Vision","tabs_icon":"bi bi-bullseye","tabs_descriptions":"Welcome to Q Tours & Travels  where every journey begins with a dream and ends with unforgettable memories. Our travel specialists have in-depth knowledge of destinations worldwide, ensuring you get the best recommendations. <br \/>\r\n\r\n\r\nWith a passion for exploration and a commitment to excellence, we specialize in crafting personalized travel experiences that cater to every traveler\u2019s needs. Whether you\u2019re seeking a relaxing beach getaway, an adventurous expedition, or a cultural immersion, our expert team is dedicated to making your dream trip a reality. We tailor every trip to match your preferences, interests, and budget. <br \/>\r\n\r\n\r\nOur partnerships with top airlines, hotels, and tour operators allow us to offer unbeatable prices.  Travel with peace of mind knowing our support team is always here for you. At TripRex we believe travel is more than just visiting new places\u2014it\u2019s about creating stories, building connections, and discovering the world in a way that\u2019s unique to you."}}}
+
+MODEL: widget_contents | ID: 72 | FIELD: widget_content
+VAL: {"features_main_title":"Our Success","features_sub_title":"Why Choose Q Tours & Travels","features":{"1":{"name":"Worldwide Coverage","img":"egens-GABXZlEPCq.svg","descriptions":"Cras facilisis fermentum ex seda ullamcorper odio rutrum accoun Phasellus auctor"},"2":{"name":"Competitive Pricing","img":"egens-X5f2nj6Ip5.svg","descriptions":"Burabitur convallis enim atnora ullamcorper sagittis. Morbi nug scelerisque for thana."},"3":{"name":"Fast Booking","img":"egens-sTNY4LylWW.svg","descriptions":"Fermentum eitorx quis maximum Etiam luctus erat vulputate urnan posuere convallis."},"4":{"name":"Guided Tours","img":"egens-eGjcQZz8Q9.svg","descriptions":"Pellentesque venenatis egestasoi diam Proin velgorat elit porttitor metus convallis."},"5":{"name":"Best Support 24\/7","img":"egens-W0eEs5w0Ku.svg","descriptions":"Sed venenatis mauris nec nulla euismod, accounv varius lectus viverra oncen."},"6":{"name":"Ultimate flexibility","img":"egens-CEaZTE2n84.svg","descriptions":"Duis leo sapien, lacinia utorrent efficitur utom suscipit quis nulla Sed auctor eu"}}}
+
+MODEL: widget_contents | ID: 147 | FIELD: widget_content
+VAL: [{"title":"Let's go with Q Tours & Travels  and discover a place","buttonText":"Book Your Trip","buttonUrl":"/tours","location":"Switzerlan","rating":"5","description":" Explore breathtaking destinations, curated experiences, and unforgettable journeys tailored just for you.  Showcasing iconic landmarks, scenic landscapes, and travelers enjoying their experiences.  ","image":"https://eayizypplocare.idr01.zata.ai/widgets/1785303671939-699195448.webp","ratingLogo":"https://eayizypplocare.idr01.zata.ai/widgets/1785303673051-355030353.webp"},{"title":"Explore Your Holiday Trip With Q Tours & Travels","buttonText":"Book Your Trip","buttonUrl":"/tours","location":"Spain","rating":"4","description":" Travel the world with Q Tours & Travels and tailor-made experiences and unforgettable journeys, curated just for you. Think crystal-clear beaches, scenic mountains, or bustling cityscapes. ","image":"https://eayizypplocare.idr01.zata.ai/widgets/1785303673359-604703837.webp","ratingLogo":"https://eayizypplocare.idr01.zata.ai/widgets/1785303674431-278640572.webp"},{"title":"Explore Japan Tourism With Q Tours & Travels","buttonText":"Book Your Trip","buttonUrl":"/tours","location":"Japan","rating":"3","description":" Travel with a passion for exploration and a commitment to excellence, we specialize in crafting personalized travel experiences that cater to every traveler’s needs.  ","image":"https://eayizypplocare.idr01.zata.ai/widgets/1785303668348-616120239.webp","ratingLogo":"https://eayizypplocare.idr01.zata.ai/widgets/1785303675059-275853110.webp"}]
+
+MODEL: widget_contents | ID: 149 | FIELD: widget_content
+VAL: {"widget_title":"About Us","title":"Let’s know About Our Journey For Q Tours & Travels.","image":"https://eayizypplocare.idr01.zata.ai/widgets/1785304220319-549942798.webp","customer_image":"https://eayizypplocare.idr01.zata.ai/widgets/1785304221820-967345386.webp","number_of_customers":"345","button_text":"More About","button_url":"about-us","tabs":[{"name":"Focus On Customer","class_icon":"bi bi-patch-check","description":" Welcome to Q Tours & Travels  where every journey begins with a dream and ends with unforgettable memories. Our travel specialists have in-depth knowledge of destinations worldwide, ensuring you get the best recommendations. <br />\n\nWith a passion for exploration and a commitment to excellence, we specialize in crafting personalized travel experiences that cater to every traveler’s needs. Whether you’re seeking a relaxing beach getaway, an adventurous expedition, or a cultural immersion, our expert team is dedicated to making your dream trip a reality. We tailor every trip to match your preferences, interests, and budget.\nOur partnerships with top airlines, hotels, and tour operators allow us to offer unbeatable prices.  "}]}
+
+MODEL: widget_contents | ID: 153 | FIELD: widget_content
+VAL: {"items":[{"name":"Worldwide Coverage","icon":"https://eayizypplocare.idr01.zata.ai/widgets/why-choose-us/1785305164635-250689296.svg","short_description":" Cras facilisis fermentum ex seda ullamcorper odio rutrum accoun Phasellus auctor  "},{"name":"Competitive Pricing","icon":"https://eayizypplocare.idr01.zata.ai/widgets/why-choose-us/1785305183740-220206089.svg","short_description":" Burabitur convallis enim atnora ullamcorper sagittis. Morbi nug scelerisque for thana.  "},{"name":"Fast Booking","icon":"https://eayizypplocare.idr01.zata.ai/widgets/why-choose-us/1785305222945-918327400.svg","short_description":" Fermentum eitorx quis maximum Etiam luctus erat vulputate urnan posuere convallis.  "},{"name":"Guided Tours","icon":"https://eayizypplocare.idr01.zata.ai/widgets/why-choose-us/1785305239652-693626927.svg","short_description":" Pellentesque venenatis egestasoi diam Proin velgorat elit porttitor metus convallis.  "},{"name":"Best Support 24/7","icon":"https://eayizypplocare.idr01.zata.ai/widgets/why-choose-us/1785305275697-611019585.svg","short_description":" Sed venenatis mauris nec nulla euismod, accounv varius lectus viverra oncen.  "},{"name":"Ultimate flexibility","icon":"https://eayizypplocare.idr01.zata.ai/widgets/why-choose-us/1785305287258-899172520.svg","short_description":" Duis leo sapien, lacinia utorrent efficitur utom suscipit quis nulla Sed auctor eu  "}],"sub_title":"Why Choose Q Tours & Travels","title":"Our Success"}
+

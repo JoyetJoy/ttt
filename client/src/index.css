@@ -1,0 +1,33 @@
+@import "tailwindcss/theme";
+@import "tailwindcss/utilities";
+
+/* Custom thin dark scrollbar */
+.scrollbar-dark {
+  scrollbar-width: thin;
+  scrollbar-color: #4b5563 transparent;
+}
+
+.scrollbar-dark::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollbar-dark::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-dark::-webkit-scrollbar-thumb {
+  background-color: #4b5563;
+  border-radius: 10px;
+}
+
+.scrollbar-dark::-webkit-scrollbar-thumb:hover {
+  background-color: #6b7280;
+}
+
+/* Force Header Navbar Hover and Active to Blue */
+header .main-menu ul li a.active,
+header .main-menu ul li a:hover,
+.header-area .main-menu .menu-list > li > a.active,
+.header-area .main-menu .menu-list > li > a:hover {
+  color: #0081C9 !important;
+}
