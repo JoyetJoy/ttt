@@ -94,7 +94,7 @@ function CustomDropdown({ name, placeholder, options, value, onChange }) {
 
 export default function SearchBox({ config, initialTab }) {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState(initialTab || 'tour');
+  const [activeTab, setActiveTab] = useState(initialTab || 'transport');
   const [searchValues, setSearchValues] = useState({});
 
   const setField = (field, val) => setSearchValues(prev => ({ ...prev, [field]: val }));
@@ -233,6 +233,27 @@ export default function SearchBox({ config, initialTab }) {
             <ul className="nav nav-pills d-flex align-items-end" role="tablist" style={{ borderBottom: 'none', margin: 0, padding: 0, gap: '2px' }}>
               <li className="nav-item" role="presentation">
                 <button
+                  className={`nav-link ${activeTab === 'transport' ? 'active' : ''}`}
+                  onClick={() => handleTabClick('transport')}
+                  type="button"
+                  style={{
+                    background: activeTab === 'transport' ? '#0081C9' : '#f5faeb',
+                    color: activeTab === 'transport' ? '#fff' : '#111',
+                    borderRadius: '8px 8px 0 0',
+                    border: 'none',
+                    padding: '12px 25px',
+                    fontWeight: '700',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}
+                >
+                  <i className="bx bx-car" style={{ fontSize: '20px' }}></i>
+                  Transport
+                </button>
+              </li>
+              <li className="nav-item" role="presentation">
+                <button
                   className={`nav-link ${activeTab === 'tour' ? 'active' : ''}`}
                   onClick={() => handleTabClick('tour')}
                   type="button"
@@ -292,27 +313,6 @@ export default function SearchBox({ config, initialTab }) {
                 >
                   <i className="bx bx-id-card" style={{ fontSize: '20px' }}></i>
                   Visa
-                </button>
-              </li>
-              <li className="nav-item" role="presentation">
-                <button
-                  className={`nav-link ${activeTab === 'transport' ? 'active' : ''}`}
-                  onClick={() => handleTabClick('transport')}
-                  type="button"
-                  style={{
-                    background: activeTab === 'transport' ? '#0081C9' : '#f5faeb',
-                    color: activeTab === 'transport' ? '#fff' : '#111',
-                    borderRadius: '8px 8px 0 0',
-                    border: 'none',
-                    padding: '12px 25px',
-                    fontWeight: '700',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px'
-                  }}
-                >
-                  <i className="bx bx-car" style={{ fontSize: '20px' }}></i>
-                  Transport
                 </button>
               </li>
             </ul>
