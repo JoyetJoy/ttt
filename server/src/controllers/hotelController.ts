@@ -15,7 +15,9 @@ const serializeHotel = (hotel: any) => ({
 
 export const getHotels = async (req: Request, res: Response) => {
   try {
-    const hotels = await prisma.hotels.findMany();
+    const hotels = await prisma.hotels.findMany({
+      orderBy: { id: 'desc' }
+    });
     res.json(hotels.map(serializeHotel));
   } catch (error) {
     console.error(error);

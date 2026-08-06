@@ -10,6 +10,7 @@ export const getVisas = async (req: Request, res: Response) => {
   try {
     const visas = await prisma.visas.findMany({
       where: { status: 1 },
+      orderBy: { id: 'desc' },
       include: {
         visa_categories: true,
         locations: true,

@@ -27,6 +27,7 @@ const serializeActivity = (activity: any) => {
 export const getActivities = async (req: Request, res: Response) => {
   try {
     const activities = await prisma.activities.findMany({
+      orderBy: { id: 'desc' },
       include: {
         activities_galleries: true
       }

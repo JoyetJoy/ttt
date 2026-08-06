@@ -39,6 +39,7 @@ export const getTransports = async (req: Request, res: Response) => {
   try {
     const transports = await prisma.transports.findMany({
       where: { status: 1 },
+      orderBy: { id: 'desc' },
       include: {
         locations_transports_city_idTolocations: { select: { name: true } },
         locations_transports_country_idTolocations: { select: { name: true } }

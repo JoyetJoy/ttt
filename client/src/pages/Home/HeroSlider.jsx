@@ -39,48 +39,46 @@ export default function HeroSlider({ sliders = [] }) {
     };
   }, [sliders]);
 
-  if (!sliders || sliders.length === 0) {
-    // Fallback sliders for transport
-    sliders = [
-      {
-        id: 1,
-        title: "Premium City Transport with GATEWAY",
-        description: "Experience safe, comfortable, and reliable rides across the city. Our premium fleet ensures you arrive at your destination in style and on time.",
-        location: "City Transport",
-        img_url: "https://images.unsplash.com/photo-1610647752706-3bb12232b3ab?q=80&w=1925&auto=format&fit=crop",
-        button_text: "Book a Ride",
-        button_url: "/transports"
-      },
-      {
-        id: 2,
-        title: "Luxury Airport Transfers",
-        description: "Start or end your journey seamlessly. We provide punctual and luxurious airport transfer services tailored to your schedule.",
-        location: "Airport Transfer",
-        img_url: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070&auto=format&fit=crop",
-        button_text: "Book Transfer",
-        button_url: "/transports"
-      },
-      {
-        id: 3,
-        title: "Explore the City in Comfort",
-        description: "Discover local attractions with our customized sightseeing tours. Travel with passionate drivers committed to excellence.",
-        location: "City Tours",
-        img_url: "https://images.unsplash.com/photo-1511216113906-8f56bbce1587?q=80&w=2070&auto=format&fit=crop",
-        button_text: "Explore Now",
-        button_url: "/tours"
-      }
-    ];
-  }
+  // Override DB content with hardcoded transport sliders
+  sliders = [
+    {
+      id: 1,
+      title: "Premium City Transport with GATEWAY",
+      description: "Experience safe, comfortable, and reliable rides across the city. Our premium fleet ensures you arrive at your destination in style and on time.",
+      location: "City Transport",
+      img_url: "https://images.unsplash.com/photo-1610647752706-3bb12232b3ab?q=80&w=1925&auto=format&fit=crop",
+      button_text: "Book Now",
+      button_url: "/transports"
+    },
+    {
+      id: 2,
+      title: "Luxury Airport Transfers",
+      description: "Start or end your journey seamlessly. We provide punctual and luxurious airport transfer services tailored to your schedule.",
+      location: "Airport Transfer",
+      img_url: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070&auto=format&fit=crop",
+      button_text: "Book Now",
+      button_url: "/transports"
+    },
+    {
+      id: 3,
+      title: "Explore the City in Comfort",
+      description: "Discover local attractions with our customized sightseeing tours. Travel with passionate drivers committed to excellence.",
+      location: "City Tours",
+      img_url: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2066&auto=format&fit=crop",
+      button_text: "Book Now",
+      button_url: "/transports"
+    }
+  ];
 
   return (
-    <div className="home1-banner-area">
-      <div className="container-fluid">
+    <div className="home1-banner-area !p-0 !m-0">
+      <div className="container-fluid !p-0">
         <div className="swiper home1-banner-slider">
           <div className="swiper-wrapper">
             {sliders.map((item, index) => (
               <div key={index} className="swiper-slide">
                 <div
-                  className="home1-banner-wrapper"
+                  className="home1-banner-wrapper !rounded-none"
                   style={{
                     backgroundImage: `linear-gradient(180deg, rgba(16, 12, 8, 0.4) 0%, rgba(16, 12, 8, 0.4) 100%), url(${item.img_url || `/uploads/sliders/${item.img}`})`
                   }}
