@@ -7,7 +7,7 @@ export default function AffordableVacations() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/tours')
+    fetch(`${import.meta.env.VITE_API_URL}/tours`)
       .then(res => res.json())
       .then(toursData => {
         console.log(toursData);
@@ -32,7 +32,7 @@ export default function AffordableVacations() {
   }, []);
 
   return (
-    <div className="package-card-section mt-16 lg:mt-28 pt-10 lg:pt-20 px-26">
+    <div className="package-card-section mt-8 lg:mt-28 pt-10 lg:pt-20 px-3 lg:px-26">
       <img src="/frontend/img/home1/section-vector1.png" alt="" className="section-vector1" />
       <img src="/frontend/img/home1/section-vector3.png" alt="" className="section-vector3" />
       <div className="container">

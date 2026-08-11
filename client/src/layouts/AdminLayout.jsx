@@ -49,7 +49,7 @@ export default function AdminLayout() {
       {/* Sidebar */}
       <aside className="w-64 bg-gray-900 text-white flex flex-col">
         <div className="px-4 py-3 bg-gray-800 text-center font-bold text-xl tracking-wider">
-          GATEWAY Admin
+          Trivandrum Top Taxi Admin
         </div>
         <nav className="flex-1 overflow-y-auto py-1 scrollbar-dark">
           <ul className="space-y-1 text-[15px] tracking-wide">

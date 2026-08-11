@@ -8,7 +8,7 @@ export default function VisaProcessing({ config = {} }) {
   useEffect(() => {
     const fetchVisas = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/visas`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/visas`);
         // Fetch up to the configured display number (default 3)
         const displayCount = config.display ? parseInt(config.display) : 3;
         setVisas(response.data.slice(0, displayCount));
@@ -56,7 +56,7 @@ export default function VisaProcessing({ config = {} }) {
   if (loading) return null;
 
   return (
-    <div className="home1-destination-section mt-8 lg:mt-14 px-26">
+    <div className="home1-destination-section mt-8 lg:mt-14 px-3 lg:px-26">
       <img src="/frontend/img/home1/section-vector2.png" alt="visa-bg" className="section-vector2 mt-2" />
       <div className="container">
         <div className="row mb-10 align-items-end">

@@ -42,7 +42,7 @@ export default function BlogForm() {
 
   const fetchCategories = async () => {
     try {
-      const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/blog-categories`, {
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/admin/blog-categories`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setCategories(data);
@@ -53,7 +53,7 @@ export default function BlogForm() {
 
   const fetchBlogDetails = async () => {
     try {
-      const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/blogs/${id}`, {
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/admin/blogs/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setFormData({
@@ -113,7 +113,7 @@ export default function BlogForm() {
       }
 
       if (isEditMode) {
-        await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/admin/blogs/${id}`, data, {
+        await axios.put(`${import.meta.env.VITE_API_URL}/admin/blogs/${id}`, data, {
           headers: { 
             'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${token}`
@@ -121,7 +121,7 @@ export default function BlogForm() {
         });
         alert('Blog updated successfully');
       } else {
-        await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/admin/blogs`, data, {
+        await axios.post(`${import.meta.env.VITE_API_URL}/admin/blogs`, data, {
           headers: { 
             'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${token}`

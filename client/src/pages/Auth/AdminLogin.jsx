@@ -16,7 +16,7 @@ export default function AdminLogin() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/auth/login`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -83,7 +83,7 @@ export default function AdminLogin() {
 
             <h1 className="flex items-baseline justify-center gap-1.5 text-center font-['Poppins',sans-serif] sm:whitespace-nowrap">
               <span className="text-[20px] sm:text-[22px] font-semibold text-[#1E293B]">Wellcome To</span>
-              <span className="text-[22px] sm:text-[26px] font-bold text-[#6D28D9]">{"GATEWAY Tours &amp; Travels"}</span>
+              <span className="text-[22px] sm:text-[26px] font-bold text-[#6D28D9]">{"Trivandrum Top Taxi"}</span>
             </h1>
             <p className="text-gray-400 text-xs sm:text-sm font-medium mt-2">
               Admin &amp; Merchant Login

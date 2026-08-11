@@ -416,7 +416,7 @@ function WhyChooseUsEditor({ config, setConfig }) {
     formData.append('folder', 'widgets/why-choose-us');
     try {
       const token = localStorage.getItem('token') || (document.cookie.match(/token=([^;]+)/) || [])[1] || '';
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/upload`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/upload`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` },
         body: formData
@@ -536,7 +536,7 @@ function TabActivitiesEditor({ config, setConfig }) {
     formData.append('folder', 'widgets/tab-activities');
     try {
       const token = localStorage.getItem('token') || (document.cookie.match(/token=([^;]+)/) || [])[1] || '';
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/upload`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/upload`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` },
         body: formData
@@ -1348,7 +1348,7 @@ export default function WidgetEditorModal({ isOpen, onClose, widget, onSave }) {
         formData.append(fieldName, file);
       }
 
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/widget-content/${widget.unique_id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/widget-content/${widget.unique_id}`, {
         method: 'PUT',
         headers: { Authorization: `Bearer ${token}` },
         body: formData

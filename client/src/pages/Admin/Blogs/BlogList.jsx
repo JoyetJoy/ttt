@@ -20,7 +20,7 @@ export default function BlogList() {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/blogs`, {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/admin/blogs`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setBlogs(res.data);
@@ -45,7 +45,7 @@ export default function BlogList() {
       const formData = new FormData();
       formData.append('status', newStatus.toString());
 
-      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/admin/blogs/${blogId}`, formData, {
+      await axios.put(`${import.meta.env.VITE_API_URL}/admin/blogs/${blogId}`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
     } catch (err) {
@@ -58,7 +58,7 @@ export default function BlogList() {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this blog?')) return;
     try {
-      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/admin/blogs/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/admin/blogs/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setBlogs(blogs.filter(b => b.id !== id));

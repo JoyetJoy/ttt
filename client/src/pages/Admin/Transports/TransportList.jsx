@@ -23,7 +23,7 @@ export default function AdminTransportList() {
   }, []);
 
   const fetchTransports = () => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/transports`, {
+    fetch(`${import.meta.env.VITE_API_URL}/admin/transports`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())
@@ -41,7 +41,7 @@ export default function AdminTransportList() {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this transport?')) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/transports/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/transports/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });

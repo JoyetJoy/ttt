@@ -82,21 +82,21 @@ export default function AdminTransportForm() {
   });
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/countries`).then(res => res.json()).then(setCountries).catch(console.error);
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/destinations`).then(res => res.json()).then(setDestinations).catch(console.error);
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/transport-attributes`, { headers: { Authorization: `Bearer ${token}` } })
+    fetch(`${import.meta.env.VITE_API_URL}/locations/countries`).then(res => res.json()).then(setCountries).catch(console.error);
+    fetch(`${import.meta.env.VITE_API_URL}/destinations`).then(res => res.json()).then(setDestinations).catch(console.error);
+    fetch(`${import.meta.env.VITE_API_URL}/admin/transport-attributes`, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => res.json())
       .then(setTransportAttributes)
       .catch(console.error);
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/vehicles/types`, { headers: { Authorization: `Bearer ${token}` } })
+    fetch(`${import.meta.env.VITE_API_URL}/admin/vehicles/types`, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => res.json()).then(setVehicleTypes).catch(console.error);
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/vehicles/list`, { headers: { Authorization: `Bearer ${token}` } })
+    fetch(`${import.meta.env.VITE_API_URL}/admin/vehicles/list`, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => res.json()).then(setAllVehicles).catch(console.error);
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/transport-locations`, { headers: { Authorization: `Bearer ${token}` } })
+    fetch(`${import.meta.env.VITE_API_URL}/admin/transport-locations`, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => res.json()).then(setTransportLocations).catch(console.error);
 
     if (isEdit) {
-      fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/transports/${id}`, { headers: { Authorization: `Bearer ${token}` } })
+      fetch(`${import.meta.env.VITE_API_URL}/admin/transports/${id}`, { headers: { Authorization: `Bearer ${token}` } })
         .then(res => res.json())
         .then(data => {
           const parseArray = (val) => {
@@ -140,7 +140,7 @@ export default function AdminTransportForm() {
 
   useEffect(() => {
     if (formData.country_id) {
-      fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/states/${formData.country_id}`)
+      fetch(`${import.meta.env.VITE_API_URL}/locations/states/${formData.country_id}`)
         .then(res => res.json()).then(setStates).catch(console.error);
     } else {
       setStates([]);
@@ -149,7 +149,7 @@ export default function AdminTransportForm() {
 
   useEffect(() => {
     if (formData.state_id) {
-      fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/cities/${formData.state_id}`)
+      fetch(`${import.meta.env.VITE_API_URL}/locations/cities/${formData.state_id}`)
         .then(res => res.json()).then(setCities).catch(console.error);
     } else {
       setCities([]);
@@ -236,7 +236,7 @@ export default function AdminTransportForm() {
       if (metaImageFile) submitData.append('meta_img', metaImageFile);
       newGalleryFiles.forEach(file => submitData.append('gallery_images', file));
 
-      const res = await fetch(isEdit ? `${import.meta.env.VITE_API_BASE_URL}/api/admin/transports/${id}` : `${import.meta.env.VITE_API_BASE_URL}/api/admin/transports`, {
+      const res = await fetch(isEdit ? `${import.meta.env.VITE_API_URL}/admin/transports/${id}` : `${import.meta.env.VITE_API_URL}/admin/transports`, {
         method: isEdit ? 'PUT' : 'POST',
         headers: { Authorization: `Bearer ${token}` },
         body: submitData
@@ -261,7 +261,7 @@ export default function AdminTransportForm() {
   const handleAddType = async () => {
     if (!newTypeName) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/vehicles/types`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/vehicles/types`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ name: newTypeName })
@@ -277,7 +277,7 @@ export default function AdminTransportForm() {
   const handleUpdateType = async () => {
     if (!editTypeName || !editTypeId) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/vehicles/types/${editTypeId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/vehicles/types/${editTypeId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ name: editTypeName })
@@ -294,7 +294,7 @@ export default function AdminTransportForm() {
   const handleDeleteType = async (id) => {
     if (!window.confirm("Are you sure you want to delete this vehicle type?")) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/vehicles/types/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/vehicles/types/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -309,7 +309,7 @@ export default function AdminTransportForm() {
   const handleAddVehicle = async () => {
     if (!newVehicleName || !selectedTypeForVehicle) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/vehicles/list`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/vehicles/list`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ name: newVehicleName, type_id: selectedTypeForVehicle })
@@ -326,7 +326,7 @@ export default function AdminTransportForm() {
   const handleAddLocation = async () => {
     if (!newLocationName) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/transport-locations`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/transport-locations`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ name: newLocationName })
@@ -342,7 +342,7 @@ export default function AdminTransportForm() {
   const handleUpdateLocation = async () => {
     if (!editLocationName || !editLocationId) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/transport-locations/${editLocationId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/transport-locations/${editLocationId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ name: editLocationName })
@@ -359,7 +359,7 @@ export default function AdminTransportForm() {
   const handleDeleteLocation = async (id) => {
     if (!window.confirm('Are you sure you want to delete this location?')) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/transport-locations/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/transport-locations/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -399,7 +399,7 @@ export default function AdminTransportForm() {
     setLocationModalSaving(true);
     try {
       const isEdit = !!locationModalEditId;
-      const url = isEdit ? `${import.meta.env.VITE_API_BASE_URL}/api/locations/${locationModalEditId}` : `${import.meta.env.VITE_API_BASE_URL}/api/locations`;
+      const url = isEdit ? `${import.meta.env.VITE_API_URL}/locations/${locationModalEditId}` : `${import.meta.env.VITE_API_URL}/locations`;
       const method = isEdit ? 'PUT' : 'POST';
       
       const payload = { name: locationModalInput.trim() };
@@ -445,7 +445,7 @@ export default function AdminTransportForm() {
     e.stopPropagation();
     if (!window.confirm('Are you sure you want to delete this location?')) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/locations/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });

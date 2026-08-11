@@ -9,7 +9,7 @@ export default function DestinationsSection({ config = {} }) {
   useEffect(() => {
     const fetchDestinations = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/destinations`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/destinations`);
         // Get the latest 5 destinations
         setDestinations(response.data.destinations.slice(0, 5));
       } catch (error) {
@@ -25,7 +25,7 @@ export default function DestinationsSection({ config = {} }) {
   if (loading) return null;
 
   return (
-    <div className="home1-destination-section mt-28 px-26">
+    <div className="home1-destination-section mt-8 lg:mt-28 px-3 lg:px-26">
       <img src="/frontend/img/home1/section-vector2.png" alt="destinations" className="section-vector2" />
       <div className="container">
         <div className="row">

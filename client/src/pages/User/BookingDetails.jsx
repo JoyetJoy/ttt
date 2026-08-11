@@ -11,7 +11,7 @@ export default function BookingDetails() {
 
   useEffect(() => {
     if (token && id) {
-      axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/users/bookings/${id}`, {
+      axios.get(`${import.meta.env.VITE_API_URL}/users/bookings/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => {

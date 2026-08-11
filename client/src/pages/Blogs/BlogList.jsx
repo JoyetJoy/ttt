@@ -19,7 +19,7 @@ export default function BlogList() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/blogs`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/blogs`);
         const fetchedBlogs = (response.data.blogs || response.data).map(blog => ({
           id: blog.id,
           title: blog.title,

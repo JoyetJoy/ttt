@@ -25,7 +25,7 @@ export default function BookingList() {
   const fetchBookings = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/orders/admin`, {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/orders/admin`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setBookings(response.data.orders);

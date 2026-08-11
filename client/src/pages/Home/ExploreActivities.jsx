@@ -9,7 +9,7 @@ export default function ExploreActivities() {
   useEffect(() => {
     const fetchActivities = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/activities`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/activities`);
         const activities = (response.data.activities || response.data).slice(0, 6);
 
         const mappedTabs = activities.map((act, index) => ({
@@ -46,7 +46,7 @@ export default function ExploreActivities() {
   if (tabs.length === 0) return null;
 
   return (
-    <div className="verticle-tab-section mt-28 px-26 pt-24">
+    <div className="verticle-tab-section mt-8 lg:mt-28 px-3 lg:px-26 pt-8 lg:pt-24">
       <img src="/frontend/img/home1/section-vector1.png" alt="" className="section-vector1" />
       <div className="container">
         <div className="row">

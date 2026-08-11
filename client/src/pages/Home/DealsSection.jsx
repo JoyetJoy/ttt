@@ -40,7 +40,7 @@ export default function DealsSection() {
   ];
 
   return (
-    <div className="banner2-section mt-16 lg:mt-28 px-26">
+    <div className="banner2-section mt-8 lg:mt-28 px-3 lg:px-26">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">

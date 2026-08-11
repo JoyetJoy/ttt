@@ -79,7 +79,7 @@ function ScrollToTop() {
 function App() {
   useEffect(() => {
     // Fetch and apply dynamic primary color globally
-    fetch('/api/settings/theme')
+    fetch(`${import.meta.env.VITE_API_URL}/settings/theme`)
       .then(res => res.json())
       .then(data => {
         if (data && data.color) {

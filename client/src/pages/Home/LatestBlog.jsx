@@ -9,7 +9,7 @@ export default function LatestBlog() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/blogs`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/blogs`);
         const fetchedBlogs = (response.data.blogs || response.data).slice(0, 4).map(blog => ({
           id: blog.id,
           title: blog.title,
@@ -38,7 +38,7 @@ export default function LatestBlog() {
   if (blogs.length === 0) return null;
 
   return (
-    <div className="blog-section mt-16 lg:mt-28 pt-12 lg:pt-24 px-26">
+    <div className="blog-section mt-8 lg:mt-28 pt-6 lg:pt-24 px-3 lg:px-26">
       <img src="/frontend/img/home1/section-vector1.png" alt="" className="section-vector1" />
       <div className="container">
         <div className="row">

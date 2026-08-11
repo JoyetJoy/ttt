@@ -6,7 +6,7 @@ export default function DestinationList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/destinations`)
+    fetch(`${import.meta.env.VITE_API_URL}/destinations`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) {

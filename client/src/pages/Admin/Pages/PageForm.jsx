@@ -76,14 +76,14 @@ export default function PageForm() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const wRes = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/widgets`, { headers: { Authorization: `Bearer ${token}` } });
+        const wRes = await fetch(`${import.meta.env.VITE_API_URL}/admin/widgets`, { headers: { Authorization: `Bearer ${token}` } });
         if (wRes.ok) {
           const wData = await wRes.json();
           setAvailableWidgets(wData);
         }
 
         if (isEdit) {
-          const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/pages/${id}`, { headers: { Authorization: `Bearer ${token}` } });
+          const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/pages/${id}`, { headers: { Authorization: `Bearer ${token}` } });
           if (!res.ok) throw new Error('Failed to fetch page');
           const data = await res.json();
           
@@ -204,8 +204,8 @@ export default function PageForm() {
     setSaving(true);
     try {
       const url = isEdit 
-        ? `${import.meta.env.VITE_API_BASE_URL}/api/admin/pages/${id}`
-        : `${import.meta.env.VITE_API_BASE_URL}/api/admin/pages`;
+        ? `${import.meta.env.VITE_API_URL}/admin/pages/${id}`
+        : `${import.meta.env.VITE_API_URL}/admin/pages`;
       const method = isEdit ? 'PUT' : 'POST';
 
       const res = await fetch(url, {

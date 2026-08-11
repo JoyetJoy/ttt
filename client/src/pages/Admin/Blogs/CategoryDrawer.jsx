@@ -10,7 +10,7 @@ export default function CategoryDrawer({ isOpen, onClose, onCategoryAdded }) {
 
   const fetchCategories = async () => {
     try {
-      const { data } = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/blog-categories`, {
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/admin/blog-categories`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setCategories(data);
@@ -31,7 +31,7 @@ export default function CategoryDrawer({ isOpen, onClose, onCategoryAdded }) {
 
     try {
       setLoading(true);
-      const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/admin/blog-categories`, { name: newCategory }, {
+      const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/admin/blog-categories`, { name: newCategory }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setCategories([data, ...categories]);
@@ -49,7 +49,7 @@ export default function CategoryDrawer({ isOpen, onClose, onCategoryAdded }) {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this category?')) return;
     try {
-      await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/admin/blog-categories/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/admin/blog-categories/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setCategories(categories.filter(c => c.id !== id));

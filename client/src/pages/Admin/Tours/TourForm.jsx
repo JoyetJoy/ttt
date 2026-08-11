@@ -116,7 +116,7 @@ export default function AdminTourForm() {
       formData.append('folder', 'tours/content');
 
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/upload`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/upload`, {
           method: 'POST',
           headers: { Authorization: `Bearer ${token}` },
           body: formData
@@ -270,7 +270,7 @@ export default function AdminTourForm() {
     fetchDestinations();
     fetchMasterAttributes();
     
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/countries`)
+    fetch(`${import.meta.env.VITE_API_URL}/locations/countries`)
       .then(res => res.json())
       .then(data => setCountries(data || []))
       .catch(console.error);
@@ -278,7 +278,7 @@ export default function AdminTourForm() {
 
   useEffect(() => {
     if (formData.country_id) {
-      fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/states/${formData.country_id}`)
+      fetch(`${import.meta.env.VITE_API_URL}/locations/states/${formData.country_id}`)
         .then(res => res.json())
         .then(data => setStates(data || []))
         .catch(console.error);
@@ -289,7 +289,7 @@ export default function AdminTourForm() {
 
   useEffect(() => {
     if (formData.state_id) {
-      fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/cities/${formData.state_id}`)
+      fetch(`${import.meta.env.VITE_API_URL}/locations/cities/${formData.state_id}`)
         .then(res => res.json())
         .then(data => setCities(data || []))
         .catch(console.error);
@@ -329,7 +329,7 @@ export default function AdminTourForm() {
 
   useEffect(() => {
     if (isEdit) {
-      fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/tours/${id}`, {
+      fetch(`${import.meta.env.VITE_API_URL}/admin/tours/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(res => res.json())
@@ -411,14 +411,14 @@ export default function AdminTourForm() {
   }, [id, isEdit, token]);
 
   const fetchDestinations = async () => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/destinations`, { headers: { Authorization: `Bearer ${token}` } })
+    fetch(`${import.meta.env.VITE_API_URL}/admin/destinations`, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => res.json())
       .then(data => setDestinations(data.destinations || []))
       .catch(console.error);
   };
 
   const fetchCategories = async () => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/tour-categories`, { headers: { Authorization: `Bearer ${token}` } })
+    fetch(`${import.meta.env.VITE_API_URL}/admin/tour-categories`, { headers: { Authorization: `Bearer ${token}` } })
       .then(res => res.json())
       .then(data => setCategories(data || []))
       .catch(console.error);
@@ -426,7 +426,7 @@ export default function AdminTourForm() {
 
   const fetchMasterAttributes = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/tour-attributes`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/tour-attributes`);
       if (res.ok) {
         const data = await res.json();
         setMasterAttributes(data);
@@ -507,8 +507,8 @@ export default function AdminTourForm() {
     setAttributeSaving(true);
     try {
       const url = attributeModalData.id 
-        ? `${import.meta.env.VITE_API_BASE_URL}/api/tour-attributes/${attributeModalData.id}` 
-        : `${import.meta.env.VITE_API_BASE_URL}/api/tour-attributes`;
+        ? `${import.meta.env.VITE_API_URL}/tour-attributes/${attributeModalData.id}` 
+        : `${import.meta.env.VITE_API_URL}/tour-attributes`;
       const method = attributeModalData.id ? 'PUT' : 'POST';
       const termsArray = attributeModalData.termsString.split(',').map(t => t.trim()).filter(Boolean);
       
@@ -531,7 +531,7 @@ export default function AdminTourForm() {
   const handleDeleteAttribute = async (id) => {
     if(!window.confirm('Delete this attribute?')) return;
     try {
-      await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/tour-attributes/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/tour-attributes/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -613,7 +613,7 @@ export default function AdminTourForm() {
       if (deletedGalleries.length > 0) submitData.append('deletedGalleries', JSON.stringify(deletedGalleries));
 
       const method = isEdit ? 'PUT' : 'POST';
-      const url = isEdit ? `${import.meta.env.VITE_API_BASE_URL}/api/admin/tours/${id}` : `${import.meta.env.VITE_API_BASE_URL}/api/admin/tours`;
+      const url = isEdit ? `${import.meta.env.VITE_API_URL}/admin/tours/${id}` : `${import.meta.env.VITE_API_URL}/admin/tours`;
 
       const res = await fetch(url, { method, headers: { Authorization: `Bearer ${token}` }, body: submitData });
       if (!res.ok) {
@@ -640,7 +640,7 @@ export default function AdminTourForm() {
     setCategorySaving(true);
     try {
       if (categoryEditId) {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/tour-categories/${categoryEditId}`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/tour-categories/${categoryEditId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -655,7 +655,7 @@ export default function AdminTourForm() {
           setCategoryEditId(null);
         }
       } else {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/tour-categories`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/tour-categories`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -684,7 +684,7 @@ export default function AdminTourForm() {
   const handleDeleteCategory = async (catId) => {
     if (!window.confirm('Are you sure you want to delete this category?')) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/tour-categories/${catId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/tour-categories/${catId}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -720,7 +720,7 @@ export default function AdminTourForm() {
   const handleDeleteLocation = async (id) => {
     if (!window.confirm(`Are you sure you want to delete this ${locationModalType}?`)) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/locations/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -747,7 +747,7 @@ export default function AdminTourForm() {
     setLocationModalSaving(true);
     try {
       const isEdit = !!locationModalEditId;
-      const url = isEdit ? `${import.meta.env.VITE_API_BASE_URL}/api/locations/${locationModalEditId}` : `${import.meta.env.VITE_API_BASE_URL}/api/locations`;
+      const url = isEdit ? `${import.meta.env.VITE_API_URL}/locations/${locationModalEditId}` : `${import.meta.env.VITE_API_URL}/locations`;
       const method = isEdit ? 'PUT' : 'POST';
       
       const payload = { name: locationModalInput.trim() };
@@ -813,7 +813,7 @@ export default function AdminTourForm() {
     setDestModalSaving(true);
     try {
       const isEdit = !!destModalEditId;
-      const url = isEdit ? `${import.meta.env.VITE_API_BASE_URL}/api/admin/destinations/${destModalEditId}` : `${import.meta.env.VITE_API_BASE_URL}/api/admin/destinations`;
+      const url = isEdit ? `${import.meta.env.VITE_API_URL}/admin/destinations/${destModalEditId}` : `${import.meta.env.VITE_API_URL}/admin/destinations`;
       const method = isEdit ? 'PUT' : 'POST';
       
       const payload = new FormData();
@@ -849,7 +849,7 @@ export default function AdminTourForm() {
   const handleDeleteDest = async (id) => {
     if (!window.confirm('Are you sure you want to delete this destination?')) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/destinations/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/destinations/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });

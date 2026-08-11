@@ -6501,7 +6501,7 @@ header.style-3.four .nav-right .icon-list li:first-child svg {
   border-radius: 15px 15px 0px 0px;
   background: #EDF2DE;
   display: inline-flex;
-  border-bottom: 1px solid #DBE1CD;
+  border-bottom: none;
 }
 
 @media (max-width: 576px) {
@@ -6551,7 +6551,7 @@ header.style-3.four .nav-right .icon-list li:first-child svg {
   line-height: 1;
   padding: 15px 40px;
   border-radius: unset;
-  border-left: 1px solid #DBE1CD;
+  border-left: none;
   width: 100%;
 }
 

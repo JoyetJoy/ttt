@@ -27,7 +27,7 @@ export default function ActivityDetails() {
   useEffect(() => {
     const fetchActivity = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/activities/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/activities/${id}`);
         setActivity(response.data);
       } catch (error) {
         console.error('Failed to fetch activity details:', error);

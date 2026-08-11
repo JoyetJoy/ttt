@@ -168,10 +168,10 @@ function TransportCard({ item }) {
 
 /* ─── API Config ─── */
 const API_MAP = {
-  tour:       { url: `${import.meta.env.VITE_API_BASE_URL}/api/tours`,       label: 'Tour',       plural: 'Tours',       browseUrl: '/tours' },
-  activities: { url: `${import.meta.env.VITE_API_BASE_URL}/api/activities`,  label: 'Activity',   plural: 'Activities',  browseUrl: '/activities' },
-  visa:       { url: `${import.meta.env.VITE_API_BASE_URL}/api/visas`,       label: 'Visa',       plural: 'Visas',       browseUrl: '/visas' },
-  transport:  { url: `${import.meta.env.VITE_API_BASE_URL}/api/transports`,  label: 'Transport',  plural: 'Transports',  browseUrl: '/transports' },
+  tour:       { url: `${import.meta.env.VITE_API_URL}/tours`,       label: 'Tour',       plural: 'Tours',       browseUrl: '/tours' },
+  activities: { url: `${import.meta.env.VITE_API_URL}/activities`,  label: 'Activity',   plural: 'Activities',  browseUrl: '/activities' },
+  visa:       { url: `${import.meta.env.VITE_API_URL}/visas`,       label: 'Visa',       plural: 'Visas',       browseUrl: '/visas' },
+  transport:  { url: `${import.meta.env.VITE_API_URL}/transports`,  label: 'Transport',  plural: 'Transports',  browseUrl: '/transports' },
 };
 
 export default function SearchResults() {

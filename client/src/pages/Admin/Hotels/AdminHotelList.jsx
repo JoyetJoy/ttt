@@ -20,7 +20,7 @@ export default function AdminHotelList() {
   useEffect(() => {
     const fetchHotels = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/hotels`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/hotels`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (!res.ok) throw new Error('Failed to fetch data');

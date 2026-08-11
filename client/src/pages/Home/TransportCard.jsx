@@ -1,62 +1,106 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { User, Signpost } from 'lucide-react'; // Using lucide-react for icons similar to the screenshot
 
-export default function TransportCard({ item: transport }) {
+export default function TransportCard({ item }) {
+  const navigate = useNavigate();
+
   return (
-    <div className="bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] overflow-hidden flex flex-col group border border-gray-100 hover:-translate-y-1 transition-all duration-300 h-full">
-
-      {/* Image Area */}
-      <div className="relative h-[260px] overflow-hidden">
-        <img src={transport.feature_img || 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&h=400&fit=crop'} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" alt={transport.title} />
-
-        {/* Badges */}
-        <div className="absolute top-4 left-4 flex flex-col items-start z-10 shadow-sm">
-          <div className="bg-black text-white text-[10px] font-bold tracking-widest px-3 py-2 uppercase rounded-t-sm border border-black">
-            {transport.car_type || 'Vehicle'}
+    <div 
+      className="card border-0 shadow-sm cursor-pointer"
+      style={{ borderRadius: '16px', overflow: 'hidden', height: '100%' }}
+      onClick={(e) => {
+        if (e.target.closest('a') || e.target.closest('button')) return;
+        navigate(`/transports/${item.id}`);
+      }}
+    >
+      {/* Image Area with Badges */}
+      <div className="position-relative" style={{ height: '220px' }}>
+        <Link to={`/transports/${item.id}`}>
+          {item.feature_img ? (
+            <img 
+              src={item.feature_img} 
+              alt={item.title} 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+            />
+          ) : (
+            <img 
+              src="/uploads/placeholder.jpg" 
+              alt={item.title} 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+            />
+          )}
+        </Link>
+        
+        {/* Top-Left Badges */}
+        <div className="position-absolute" style={{ top: '20px', left: '20px', display: 'flex', flexDirection: 'column' }}>
+          <div 
+            className="bg-black text-white text-uppercase fw-bold px-3 py-2"
+            style={{ fontSize: '11px', letterSpacing: '1px' }}
+          >
+            {item.vehicle_type || 'PREMIUM CAR'}
           </div>
-          <div className="bg-white text-gray-800 text-[10px] font-bold tracking-widest px-3 py-2 uppercase flex items-center gap-1.5 rounded-b-sm border-l border-r border-b border-gray-100">
-            <i className="bi bi-geo-alt text-[#0081C9]"></i> {transport.address || 'LOCATION'}
+          <div 
+            className="bg-white text-dark text-uppercase fw-bold px-3 py-2 d-flex align-items-center gap-2 shadow-sm"
+            style={{ fontSize: '11px', letterSpacing: '0.5px', marginTop: '1px' }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 18 18" fill="none">
+              <path d="M8.99939 0C5.40484 0 2.48047 2.92437 2.48047 6.51888C2.48047 10.9798 8.31426 17.5287 8.56264 17.8053C8.79594 18.0651 9.20326 18.0646 9.43613 17.8053C9.68451 17.5287 15.5183 10.9798 15.5183 6.51888C15.5182 2.92437 12.5939 0 8.99939 0ZM8.99939 9.79871C7.19088 9.79871 5.71959 8.32739 5.71959 6.51888C5.71959 4.71037 7.19091 3.23909 8.99939 3.23909C10.8079 3.23909 12.2791 4.71041 12.2791 6.51892C12.2791 8.32743 10.8079 9.79871 8.99939 9.79871Z" fill="#0081C9"></path>
+            </svg>
+            {item.location || 'MIRPUR DOHS'}
           </div>
         </div>
       </div>
 
       {/* Content Area */}
-      <div className="p-6 flex-1 flex flex-col">
-        <h3 className="text-[20px] font-extrabold leading-snug cursor-pointer line-clamp-2 mb-2">
-          <Link to={`/transports/${transport.id}`} className="!text-gray-900 hover:!text-[#0081C9] transition-colors">{transport.title}</Link>
-        </h3>
+      <div className="card-body p-4 bg-white" style={{ display: 'flex', flexDirection: 'column' }}>
+        <h4 className="fw-bolder mb-4">
+          <Link to={`/transports/${item.id}`} className="text-dark hover:!text-[#0081C9] transition-colors text-decoration-none">
+            {item.title}
+          </Link>
+        </h4>
 
-        {(transport.transport_from || transport.transport_to) && (
-          <div className="flex items-center gap-2 text-sm text-gray-500 mb-4 font-medium">
-            <i className="bi bi-geo-alt text-[#0081C9]"></i>
-            <span>{transport.transport_from} {transport.transport_to ? `→ ${transport.transport_to}` : ''}</span>
-          </div>
-        )}
-
-        {/* Info Details */}
-        <div className={`text-[10px] !text-gray-500 font-bold uppercase tracking-widest flex items-center flex-wrap gap-4 ${(transport.transport_from || transport.transport_to) ? 'mb-6' : 'mb-6 mt-2'}`}>
-          <span className="flex items-center gap-1.5">
-            <i className="bi bi-person-fill text-[#0081C9] text-sm"></i>
-            {transport.car_person || '1'} PERSONS
-          </span>
-          {transport.distance_km && (
-            <span className="flex items-center gap-1.5 border-l border-gray-200 pl-4">
-              <i className="bi bi-signpost-split text-[#0081C9] text-sm"></i> {transport.distance_km} KM
+        {/* Info Icons */}
+        <div className="d-flex align-items-center mb-4">
+          <div className="d-flex align-items-center gap-2" style={{ paddingRight: '20px', borderRight: '1px solid #eaeaea' }}>
+            <User size={18} color="#0081C9" />
+            <span className="text-muted fw-bold text-uppercase" style={{ fontSize: '12px' }}>
+              {item.passengers || '5'} PERSONS
             </span>
-          )}
+          </div>
+          <div className="d-flex align-items-center gap-2" style={{ paddingLeft: '20px' }}>
+            <Signpost size={18} color="#0081C9" />
+            <span className="text-muted fw-bold text-uppercase" style={{ fontSize: '12px' }}>
+              {item.distance || '500'} KM
+            </span>
+          </div>
         </div>
 
-        {/* Footer */}
-        <div className="mt-auto border-t border-gray-100 flex items-center justify-between gap-2 pt-4">
+        {/* Divider */}
+        <hr className="m-0 mb-4" style={{ borderColor: '#f0f0f0' }} />
+
+        {/* Footer (Price & Button) */}
+        <div className="d-flex align-items-end justify-content-between mt-auto">
           <div>
-            <div className="text-[11px] text-gray-500 font-bold uppercase tracking-wider mb-1">Starting From:</div>
-            <div className="flex items-center gap-2">
-              <span className="text-[20px] font-extrabold text-[#0081C9]">₹{transport.car_sale_price > 0 ? transport.car_sale_price : (transport.car_price || 0)}</span>
-              {transport.car_sale_price > 0 && <span className="text-[13px] font-bold text-gray-400 line-through">₹{transport.car_price}</span>}
+            <span className="text-muted text-uppercase fw-bold d-block mb-1" style={{ fontSize: '11px', letterSpacing: '0.5px' }}>
+              STARTING FROM:
+            </span>
+            <div className="d-flex align-items-baseline gap-2">
+              <span className="fw-bolder" style={{ color: '#0081C9', fontSize: '24px' }}>
+                ₹{item.sale_price || item.price}
+              </span>
+              {item.sale_price > 0 && item.sale_price < item.price && (
+                <del className="text-muted fw-bold" style={{ fontSize: '16px' }}>₹{item.price}</del>
+              )}
             </div>
           </div>
-          <Link to={`/transports/${transport.id}`} className="bg-[#0081C9] !text-white px-4 py-2.5 rounded-lg text-[13px] font-bold flex items-center gap-1.5 whitespace-nowrap hover:bg-[#006096] transition-colors hover:shadow-lg hover:shadow-[#0081C9]/30">
-            Book Now <i className="bi bi-chevron-right text-base leading-none"></i>
+          <Link 
+            to={`/transports/${item.id}`} 
+            className="btn px-4 py-2 text-white fw-bold d-flex align-items-center gap-2 shadow-sm"
+            style={{ background: '#0081C9', borderRadius: '8px' }}
+          >
+            Book Now 
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
           </Link>
         </div>
       </div>

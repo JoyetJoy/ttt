@@ -76,14 +76,14 @@ export default function AdminActivityForm() {
 
   const fetchLocations = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/countries`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/locations/countries`);
       setCountries(await res.json());
     } catch (err) { console.error(err); }
   };
 
   useEffect(() => {
     if (formData.country_id) {
-      fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/states/${formData.country_id}`)
+      fetch(`${import.meta.env.VITE_API_URL}/locations/states/${formData.country_id}`)
         .then(res => res.json())
         .then(data => setStates(data))
         .catch(console.error);
@@ -92,7 +92,7 @@ export default function AdminActivityForm() {
 
   useEffect(() => {
     if (formData.state_id) {
-      fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/cities/${formData.state_id}`)
+      fetch(`${import.meta.env.VITE_API_URL}/locations/cities/${formData.state_id}`)
         .then(res => res.json())
         .then(data => setCities(data))
         .catch(console.error);
@@ -101,7 +101,7 @@ export default function AdminActivityForm() {
 
   const fetchActivity = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/activities/${id}`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/activities/${id}`);
       const data = await res.json();
       const parseJSON = (str) => {
         try { return str ? JSON.parse(str) : []; } 
@@ -145,7 +145,7 @@ export default function AdminActivityForm() {
 
   const fetchMasterAttributes = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/activity-attributes`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/activity-attributes`);
       if (res.ok) {
         const data = await res.json();
         setMasterAttributes(data);
@@ -255,7 +255,7 @@ export default function AdminActivityForm() {
     setLocationModalSaving(true);
     try {
       const isEdit = !!locationModalEditId;
-      const url = isEdit ? `${import.meta.env.VITE_API_BASE_URL}/api/locations/${locationModalEditId}` : `${import.meta.env.VITE_API_BASE_URL}/api/locations`;
+      const url = isEdit ? `${import.meta.env.VITE_API_URL}/locations/${locationModalEditId}` : `${import.meta.env.VITE_API_URL}/locations`;
       const method = isEdit ? 'PUT' : 'POST';
       
       const payload = { name: locationModalInput.trim() };
@@ -318,8 +318,8 @@ export default function AdminActivityForm() {
     setAttributeSaving(true);
     try {
       const url = attributeModalData.id 
-        ? `${import.meta.env.VITE_API_BASE_URL}/api/activity-attributes/${attributeModalData.id}` 
-        : `${import.meta.env.VITE_API_BASE_URL}/api/activity-attributes`;
+        ? `${import.meta.env.VITE_API_URL}/activity-attributes/${attributeModalData.id}` 
+        : `${import.meta.env.VITE_API_URL}/activity-attributes`;
       const method = attributeModalData.id ? 'PUT' : 'POST';
       
       const termsArray = attributeModalData.termsString.split(',').map(t => t.trim()).filter(Boolean);
@@ -342,7 +342,7 @@ export default function AdminActivityForm() {
   const handleDeleteAttribute = async (id) => {
     if(!window.confirm('Delete this attribute?')) return;
     try {
-      await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/activity-attributes/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/activity-attributes/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -394,7 +394,7 @@ export default function AdminActivityForm() {
       newGalleryFiles.forEach(file => submitData.append('gallery_images', file));
       if (deletedGalleries.length > 0) submitData.append('deletedGalleries', JSON.stringify(deletedGalleries));
 
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/activities${isEdit ? `/${id}` : ''}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/activities${isEdit ? `/${id}` : ''}`, {
         method: isEdit ? 'PUT' : 'POST',
         headers: { Authorization: `Bearer ${token}` },
         body: submitData
@@ -882,7 +882,7 @@ export default function AdminActivityForm() {
                             <button 
                               onClick={async () => {
                                 if(!window.confirm('Delete this location?')) return;
-                                const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/${loc.id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` }});
+                                const res = await fetch(`${import.meta.env.VITE_API_URL}/locations/${loc.id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` }});
                                 if (res.ok) {
                                   if (locationModalType === 'country') setCountries(prev => prev.filter(c => c.id !== loc.id));
                                   if (locationModalType === 'state') setStates(prev => prev.filter(s => s.id !== loc.id));

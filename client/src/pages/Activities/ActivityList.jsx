@@ -11,7 +11,7 @@ export default function ActivityList() {
   const [priceRange, setPriceRange] = useState(900);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/activities`)
+    fetch(`${import.meta.env.VITE_API_URL}/activities`)
       .then(res => res.json())
       .then(data => {
         setActivities(data);

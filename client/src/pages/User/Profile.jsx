@@ -24,7 +24,7 @@ export default function Profile() {
     setMessage('');
 
     try {
-      const res = await fetch('/api/users/profile', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/users/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

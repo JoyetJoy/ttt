@@ -34,7 +34,7 @@ export default function InquiryFormWidget({ itemType, itemId, title = "Reserve Y
       const headers = { 'Content-Type': 'application/json' };
       if (token) headers.Authorization = `Bearer ${token}`;
 
-      await axios.post('/api/inquiries', {
+      await axios.post(`${import.meta.env.VITE_API_URL}/inquiries`, {
         type: itemType,
         product_id: itemId,
         ...inquiryForm

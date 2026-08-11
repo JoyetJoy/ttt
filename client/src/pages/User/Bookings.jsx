@@ -10,7 +10,7 @@ export default function Bookings() {
 
   useEffect(() => {
     if (token) {
-      axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/users/bookings`, {
+      axios.get(`${import.meta.env.VITE_API_URL}/users/bookings`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => {

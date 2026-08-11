@@ -47,7 +47,7 @@ export default function DestinationForm() {
     if (isEdit) {
       const fetchDestination = async () => {
         try {
-          const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/destinations/${id}`, {
+          const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/destinations/${id}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           if (!res.ok) throw new Error('Failed to fetch destination');
@@ -148,8 +148,8 @@ export default function DestinationForm() {
 
       const method = isEdit ? 'PUT' : 'POST';
       const url = isEdit 
-        ? `${import.meta.env.VITE_API_BASE_URL}/api/admin/destinations/${id}`
-        : `${import.meta.env.VITE_API_BASE_URL}/api/admin/destinations`;
+        ? `${import.meta.env.VITE_API_URL}/admin/destinations/${id}`
+        : `${import.meta.env.VITE_API_URL}/admin/destinations`;
 
       const res = await fetch(url, {
         method,

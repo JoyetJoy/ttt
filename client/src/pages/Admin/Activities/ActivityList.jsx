@@ -14,7 +14,7 @@ export default function AdminActivityList() {
   }, []);
 
   const fetchActivities = () => {
-    fetch('/api/activities')
+    fetch(`${import.meta.env.VITE_API_URL}/activities`)
       .then(res => res.json())
       .then(data => {
         setActivities(Array.isArray(data) ? data : []);
@@ -30,7 +30,7 @@ export default function AdminActivityList() {
     if (!window.confirm('Are you sure you want to delete this activity?')) return;
 
     try {
-      const res = await fetch(`/api/activities/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/activities/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });

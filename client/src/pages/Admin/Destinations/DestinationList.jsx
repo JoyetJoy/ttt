@@ -11,7 +11,7 @@ export default function AdminDestinationList() {
 
   const fetchDestinations = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/destinations`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/destinations`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (!res.ok) throw new Error('Failed to fetch data');
@@ -44,7 +44,7 @@ export default function AdminDestinationList() {
       const formData = new FormData();
       formData.append('status', newStatus.toString());
 
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/destinations/${destId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/destinations/${destId}`, {
         method: 'PUT',
         headers: { Authorization: `Bearer ${token}` },
         body: formData
@@ -65,7 +65,7 @@ export default function AdminDestinationList() {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this destination?')) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/destinations/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/destinations/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });

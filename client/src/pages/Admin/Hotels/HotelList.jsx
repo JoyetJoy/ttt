@@ -19,7 +19,7 @@ export default function AdminHotelList() {
 
   const fetchHotels = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/hotels`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/hotels`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (!res.ok) throw new Error('Failed to fetch data');
@@ -52,7 +52,7 @@ export default function AdminHotelList() {
       const formData = new FormData();
       formData.append('status', newStatus.toString());
 
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/hotels/${hotelId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/hotels/${hotelId}`, {
         method: 'PUT',
         headers: { Authorization: `Bearer ${token}` },
         body: formData

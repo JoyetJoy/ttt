@@ -28,8 +28,8 @@ export default function InquiriesList() {
   const fetchInquiries = async () => {
     try {
       const [inqRes, statsRes] = await Promise.all([
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/inquiries`, { headers: { Authorization: `Bearer ${token}` } }),
-        axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/dashboard`, { headers: { Authorization: `Bearer ${token}` } })
+        axios.get(`${import.meta.env.VITE_API_URL}/admin/inquiries`, { headers: { Authorization: `Bearer ${token}` } }),
+        axios.get(`${import.meta.env.VITE_API_URL}/admin/dashboard`, { headers: { Authorization: `Bearer ${token}` } })
       ]);
       setInquiries(inqRes.data);
       setStats(statsRes.data?.stats);
@@ -42,7 +42,7 @@ export default function InquiriesList() {
 
   const handleStatusChange = async (inquiryId, newStatus) => {
     try {
-      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/admin/inquiries/${inquiryId}/status`, { status: newStatus }, {
+      await axios.put(`${import.meta.env.VITE_API_URL}/admin/inquiries/${inquiryId}/status`, { status: newStatus }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setInquiries(inquiries.map(inq => 

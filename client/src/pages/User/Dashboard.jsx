@@ -10,7 +10,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (token) {
-      fetch('/api/users/dashboard', {
+      fetch(`${import.meta.env.VITE_API_URL}/users/dashboard`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => res.json())

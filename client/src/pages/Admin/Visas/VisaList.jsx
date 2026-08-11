@@ -23,7 +23,7 @@ export default function AdminVisaList() {
 
   const fetchVisas = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/visas`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/visas`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (!res.ok) throw new Error('Failed to fetch data');
@@ -39,7 +39,7 @@ export default function AdminVisaList() {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this visa?')) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/visas/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/visas/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });

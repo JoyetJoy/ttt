@@ -31,7 +31,7 @@ export default function TourDetails() {
   useEffect(() => {
     const fetchTour = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/tours/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/tours/${id}`);
         setTour(response.data);
       } catch (error) {
         console.error('Failed to fetch tour details:', error);
@@ -41,13 +41,13 @@ export default function TourDetails() {
     };
     fetchTour();
     // Fetch all attribute terms for dynamic display
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/tours/attribute-terms`)
+    fetch(`${import.meta.env.VITE_API_URL}/tours/attribute-terms`)
       .then(r => r.json())
       .then(data => { if (Array.isArray(data)) setAllAttrTerms(data); })
       .catch(err => console.error('Failed to fetch attribute terms:', err));
 
     // Fetch all destinations for dynamic display
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/destinations`)
+    fetch(`${import.meta.env.VITE_API_URL}/destinations`)
       .then(r => r.json())
       .then(data => {
         if (Array.isArray(data)) setAllDestinations(data);

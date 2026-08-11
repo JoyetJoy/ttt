@@ -10,7 +10,7 @@ export default function TransportList() {
   const [priceRange, setPriceRange] = useState(900);
 
   useEffect(() => {
-    fetch('/api/transports')
+    fetch(`${import.meta.env.VITE_API_URL}/transports`)
       .then(res => res.json())
       .then(data => {
         setTransports(data);

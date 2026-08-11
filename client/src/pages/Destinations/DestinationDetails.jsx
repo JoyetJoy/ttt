@@ -17,11 +17,11 @@ export default function DestinationDetails() {
   useEffect(() => {
     const fetchDestinationData = async () => {
       try {
-        const destResponse = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/destinations/${id}`);
+        const destResponse = await axios.get(`${import.meta.env.VITE_API_URL}/destinations/${id}`);
         setDestination(destResponse.data);
 
         // Fetch all tours and filter by destination_id
-        const toursResponse = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/tours`);
+        const toursResponse = await axios.get(`${import.meta.env.VITE_API_URL}/tours`);
         const allTours = toursResponse.data;
         const destTours = allTours.filter(t => t.destination_id === parseInt(id) || (t.destinations_array && t.destinations_array.includes(`"${id}"`)));
         setTours(destTours);

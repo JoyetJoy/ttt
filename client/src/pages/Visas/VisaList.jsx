@@ -6,7 +6,7 @@ export default function VisaList() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/visas`)
+    fetch(`${import.meta.env.VITE_API_URL}/visas`)
       .then(res => res.json())
       .then(data => {
         setVisas(data);

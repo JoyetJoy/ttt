@@ -65,14 +65,14 @@ export default function AdminVisaForm() {
   });
 
   const fetchCategories = () => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/visa-categories`)
+    fetch(`${import.meta.env.VITE_API_URL}/visa-categories`)
       .then(res => res.json())
       .then(data => setCategories(data))
       .catch(console.error);
   };
 
   const fetchCountries = () => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/countries`)
+    fetch(`${import.meta.env.VITE_API_URL}/locations/countries`)
       .then(res => res.json())
       .then(data => setCountries(data))
       .catch(console.error);
@@ -83,7 +83,7 @@ export default function AdminVisaForm() {
     fetchCountries();
 
     if (isEdit) {
-      fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/visas/${id}`, {
+      fetch(`${import.meta.env.VITE_API_URL}/admin/visas/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => res.json())
@@ -164,7 +164,7 @@ export default function AdminVisaForm() {
     
     setSaving(true);
     try {
-      const url = isEdit ? `${import.meta.env.VITE_API_BASE_URL}/api/admin/visas/${id}` : `${import.meta.env.VITE_API_BASE_URL}/api/admin/visas`;
+      const url = isEdit ? `${import.meta.env.VITE_API_URL}/admin/visas/${id}` : `${import.meta.env.VITE_API_URL}/admin/visas`;
       const method = isEdit ? 'PUT' : 'POST';
       
       const payload = new FormData();
@@ -203,8 +203,8 @@ export default function AdminVisaForm() {
     setSavingCategory(true);
     try {
       const url = categoryForm.id 
-        ? `${import.meta.env.VITE_API_BASE_URL}/api/visa-categories/${categoryForm.id}`
-        : `${import.meta.env.VITE_API_BASE_URL}/api/visa-categories`;
+        ? `${import.meta.env.VITE_API_URL}/visa-categories/${categoryForm.id}`
+        : `${import.meta.env.VITE_API_URL}/visa-categories`;
       const method = categoryForm.id ? 'PUT' : 'POST';
 
       const res = await fetch(url, {
@@ -231,7 +231,7 @@ export default function AdminVisaForm() {
   const handleDeleteCategory = async (catId) => {
     if (!window.confirm('Are you sure you want to delete this category?')) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/visa-categories/${catId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/visa-categories/${catId}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -250,8 +250,8 @@ export default function AdminVisaForm() {
     setSavingCountry(true);
     try {
       const url = countryForm.id 
-        ? `${import.meta.env.VITE_API_BASE_URL}/api/locations/${countryForm.id}`
-        : `${import.meta.env.VITE_API_BASE_URL}/api/locations`;
+        ? `${import.meta.env.VITE_API_URL}/locations/${countryForm.id}`
+        : `${import.meta.env.VITE_API_URL}/locations`;
       const method = countryForm.id ? 'PUT' : 'POST';
 
       const res = await fetch(url, {
@@ -278,7 +278,7 @@ export default function AdminVisaForm() {
   const handleDeleteCountry = async (id) => {
     if (!window.confirm('Are you sure you want to delete this country?')) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/locations/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });

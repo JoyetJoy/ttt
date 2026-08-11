@@ -13,7 +13,7 @@ export default function AdminSettings() {
 
   const fetchColor = async () => {
     try {
-      const response = await fetch('/api/settings/theme');
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/settings/theme`);
       const data = await response.json();
       if (data && data.color) {
         setPrimaryColor(data.color);
@@ -34,7 +34,7 @@ export default function AdminSettings() {
       // Admin token is usually attached via context or localStorage
       const token = localStorage.getItem('token') || localStorage.getItem('adminToken');
       
-      const response = await fetch('/api/settings/theme', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/settings/theme`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

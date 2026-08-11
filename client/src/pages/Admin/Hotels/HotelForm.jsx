@@ -74,7 +74,7 @@ export default function AdminHotelForm() {
 
   useEffect(() => {
     if (isEdit) {
-      fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/hotels/${id}`, {
+      fetch(`${import.meta.env.VITE_API_URL}/admin/hotels/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(res => res.json())
@@ -116,7 +116,7 @@ export default function AdminHotelForm() {
 
   // Fetch countries & master attributes
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/countries`)
+    fetch(`${import.meta.env.VITE_API_URL}/locations/countries`)
       .then(res => res.json())
       .then(data => setCountries(data))
       .catch(console.error);
@@ -126,7 +126,7 @@ export default function AdminHotelForm() {
 
   const fetchMasterAttributes = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/hotel-attributes`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/hotel-attributes`);
       if (res.ok) {
         const data = await res.json();
         setMasterAttributes(data);
@@ -150,8 +150,8 @@ export default function AdminHotelForm() {
     setAttributeSaving(true);
     try {
       const url = attributeModalData.id 
-        ? `${import.meta.env.VITE_API_BASE_URL}/api/hotel-attributes/${attributeModalData.id}` 
-        : `${import.meta.env.VITE_API_BASE_URL}/api/hotel-attributes`;
+        ? `${import.meta.env.VITE_API_URL}/hotel-attributes/${attributeModalData.id}` 
+        : `${import.meta.env.VITE_API_URL}/hotel-attributes`;
       const method = attributeModalData.id ? 'PUT' : 'POST';
       const termsArray = attributeModalData.termsString.split(',').map(t => t.trim()).filter(Boolean);
       
@@ -174,7 +174,7 @@ export default function AdminHotelForm() {
   const handleDeleteAttribute = async (id) => {
     if(!window.confirm('Delete this attribute?')) return;
     try {
-      await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/hotel-attributes/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/hotel-attributes/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -187,7 +187,7 @@ export default function AdminHotelForm() {
   // Fetch states
   useEffect(() => {
     if (formData.country_id) {
-      fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/states/${formData.country_id}`)
+      fetch(`${import.meta.env.VITE_API_URL}/locations/states/${formData.country_id}`)
         .then(res => res.json())
         .then(data => setStates(data))
         .catch(console.error);
@@ -199,7 +199,7 @@ export default function AdminHotelForm() {
   // Fetch cities
   useEffect(() => {
     if (formData.state_id) {
-      fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/cities/${formData.state_id}`)
+      fetch(`${import.meta.env.VITE_API_URL}/locations/cities/${formData.state_id}`)
         .then(res => res.json())
         .then(data => setCities(data))
         .catch(console.error);
@@ -312,7 +312,7 @@ export default function AdminHotelForm() {
       }
 
       const method = isEdit ? 'PUT' : 'POST';
-      const url = isEdit ? `${import.meta.env.VITE_API_BASE_URL}/api/admin/hotels/${id}` : `${import.meta.env.VITE_API_BASE_URL}/api/admin/hotels`;
+      const url = isEdit ? `${import.meta.env.VITE_API_URL}/admin/hotels/${id}` : `${import.meta.env.VITE_API_URL}/admin/hotels`;
       
       const submitData = new FormData();
       Object.keys(payload).forEach(key => {
@@ -382,7 +382,7 @@ export default function AdminHotelForm() {
   const handleDeleteLocation = async (id) => {
     if (!window.confirm(`Are you sure you want to delete this ${modalType}?`)) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/locations/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/locations/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -412,7 +412,7 @@ export default function AdminHotelForm() {
     setModalSaving(true);
     try {
       const isEdit = !!modalEditId;
-      const url = isEdit ? `${import.meta.env.VITE_API_BASE_URL}/api/locations/${modalEditId}` : `${import.meta.env.VITE_API_BASE_URL}/api/locations`;
+      const url = isEdit ? `${import.meta.env.VITE_API_URL}/locations/${modalEditId}` : `${import.meta.env.VITE_API_URL}/locations`;
       const method = isEdit ? 'PUT' : 'POST';
       
       const payload = { name: modalInput.trim() };

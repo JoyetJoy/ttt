@@ -93,7 +93,7 @@ export default function Checkout() {
         headers.Authorization = `Bearer ${currentToken}`;
       }
 
-      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/orders`, orderPayload, { headers });
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/orders`, orderPayload, { headers });
       
       if (response.status === 201) {
         setSuccess(true);
@@ -120,7 +120,7 @@ export default function Checkout() {
           return;
         }
 
-        const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/check-phone`, { phone: formData.phone });
+        const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/check-phone`, { phone: formData.phone });
         if (res.data.exists) {
           setStep(2); // Ask for password
         } else {
@@ -133,7 +133,7 @@ export default function Checkout() {
       // Step 2: Login existing user with phone + password
       if (step === 2) {
         try {
-          const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/login-phone`, {
+          const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login-phone`, {
             phone: formData.phone,
             password: authData.password
           });
@@ -160,7 +160,7 @@ export default function Checkout() {
       // Step 4: Register new user with phone + new password
       if (step === 4) {
         try {
-          const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/register-phone`, {
+          const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/register-phone`, {
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,

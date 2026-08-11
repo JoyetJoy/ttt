@@ -42,7 +42,7 @@ export default function Testimonials({ config = {} }) {
   const currentTestimonials = testimonials[activeTab] ? Object.values(testimonials[activeTab]) : [];
 
   return (
-    <div className="testimonial-section bg-light mt-28 px-5" style={{ backgroundColor: '#f5efe8' }}>
+    <div className="testimonial-section bg-light mt-8 lg:mt-28 px-2 lg:px-5" style={{ backgroundColor: '#f5efe8' }}>
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -59,7 +59,7 @@ export default function Testimonials({ config = {} }) {
               <h2>{config.testimonial_title || 'Regards From Our Travelers'}</h2>
             </div>
 
-            <div style={{ background: '#fff', padding: '5px 30px', borderRadius: '10px', marginBottom: '40px', display: 'flex', gap: '20px', boxShadow: '0 2px 10px rgba(0,0,0,0.02)' }}>
+            <div style={{ background: '#fff', padding: '5px 15px', borderRadius: '10px', marginBottom: '40px', display: 'flex', gap: '12px', boxShadow: '0 2px 10px rgba(0,0,0,0.02)', overflowX: 'auto' }}>
               {tabs.map(tab => (
                 <button
                   key={tab}
@@ -144,8 +144,8 @@ export default function Testimonials({ config = {} }) {
                   ))}
                 </div>
               </div>
-              <div className="slider-btn testimonial-slider-prev" style={{ position: 'absolute', top: '40%', left: '-20px', zIndex: 10, cursor: 'pointer', width: '40px', height: '40px', background: 'transparent', border: '1px solid #00aa6c', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', transform: 'translateY(-50%)' }}><i className="bx bx-chevron-left" style={{ fontSize: '24px', color: '#00aa6c' }}></i></div>
-              <div className="slider-btn testimonial-slider-next" style={{ position: 'absolute', top: '40%', right: '-20px', zIndex: 10, cursor: 'pointer', width: '40px', height: '40px', background: 'transparent', border: '1px solid #00aa6c', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', transform: 'translateY(-50%)' }}><i className="bx bx-chevron-right" style={{ fontSize: '24px', color: '#00aa6c' }}></i></div>
+              <div className="slider-btn testimonial-slider-prev" style={{ position: 'absolute', top: '40%', left: '5px', zIndex: 10, cursor: 'pointer', width: '40px', height: '40px', background: 'white', border: '1px solid #00aa6c', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', transform: 'translateY(-50%)' }}><i className="bx bx-chevron-left" style={{ fontSize: '24px', color: '#00aa6c' }}></i></div>
+              <div className="slider-btn testimonial-slider-next" style={{ position: 'absolute', top: '40%', right: '5px', zIndex: 10, cursor: 'pointer', width: '40px', height: '40px', background: 'white', border: '1px solid #00aa6c', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', transform: 'translateY(-50%)' }}><i className="bx bx-chevron-right" style={{ fontSize: '24px', color: '#00aa6c' }}></i></div>
             </div>
           </div>
         </div>

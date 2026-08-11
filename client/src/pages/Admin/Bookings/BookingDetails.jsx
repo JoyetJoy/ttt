@@ -17,7 +17,7 @@ export default function BookingDetails() {
   const fetchBookingDetails = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/orders/admin/${id}`, {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/orders/admin/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setBooking(response.data);
@@ -32,7 +32,7 @@ export default function BookingDetails() {
     try {
       const token = localStorage.getItem('token');
       const payload = { [field]: value };
-      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/orders/admin/${id}`, payload, {
+      await axios.put(`${import.meta.env.VITE_API_URL}/orders/admin/${id}`, payload, {
         headers: { Authorization: `Bearer ${token}` }
       });
       

@@ -7,7 +7,7 @@ export default function Footer() {
       {/* ─── Newsletter Top Box (Floating) ─── */}
       <div className="container position-relative" style={{ zIndex: 10 }}>
         <div
-          className="newsletter-wrapper bg-white text-center shadow-lg mx-24 position-relative overflow-hidden"
+          className="newsletter-wrapper bg-white text-center shadow-lg mx-3 lg:mx-24 position-relative overflow-hidden"
           style={{
             borderRadius: '20px',
             padding: '60px 20px',
@@ -34,7 +34,7 @@ export default function Footer() {
               <div className="d-flex align-items-stretch" style={{ border: '1px solid #e0e0e0', borderRadius: '8px', overflow: 'hidden', background: '#fcfcfc' }}>
                 <input
                   type="email"
-                  className="form-control border-0 shadow-none px-4 py-3"
+                  className="form-control border-0 shadow-none px-3 py-3 w-100"
                   placeholder="Enter Your Email..."
                   style={{ background: 'transparent', fontSize: '15px' }}
                 />
@@ -50,7 +50,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <footer className="footer-section m-0 px-24" style={{ backgroundColor: '#1a231f', color: '#c4c8c5', paddingTop: '180px', borderRadius: '0' }}>
+      <footer className="footer-section m-0 px-4 lg:px-24" style={{ backgroundColor: '#1a231f', color: '#c4c8c5', paddingTop: '180px', borderRadius: '0' }}>
         <div className="container">
 
           <div className="footer-top pb-5">
@@ -63,8 +63,8 @@ export default function Footer() {
                     <Link to="/">
                       <img
                         src="/frontend/logo.png"
-                        alt="GATEWAY Tours Logo"
-                        style={{ width: '180px', borderRadius: '16px', padding: '4px', }}
+                        alt="Trivandrum Top Taxi Logo"
+                        style={{ width: '180px', borderRadius: '16px', padding: '4px' }}
                       />
                     </Link>
                   </div>
@@ -108,7 +108,7 @@ export default function Footer() {
                       <i className="bx bxs-send text-warning fs-5"></i>
                       <h5 className="text-white fw-bold mb-0" style={{ fontSize: '16px' }}>Send Mail</h5>
                     </div>
-                    <a href="mailto:info@gatewaytravels.com" className="text-decoration-none d-block ms-4 ps-1" style={{ color: '#c4c8c5' }}>info@gatewaytravels.com</a>
+                    <a href="mailto:info@trivandrumtoptaxi.com" className="text-decoration-none d-block ms-4 ps-1" style={{ color: '#c4c8c5' }}>info@trivandrumtoptaxi.com</a>
                   </div>
 
                   <div className="mb-4">
@@ -125,9 +125,9 @@ export default function Footer() {
               {/* Column 4: About & Payments */}
               <div className="col-lg-4 col-md-6">
                 <div className="footer-widget">
-                  <h5 className="text-white fw-bold mb-4">Find About GATEWAY</h5>
+                  <h5 className="text-white fw-bold mb-4">Find About Trivandrum Top Taxi</h5>
                   <p style={{ color: '#c4c8c5', lineHeight: '1.8' }} className="mb-4">
-                    Welcome to GATEWAY where every journey begins with a dream and ends with unforgettable memories. Our travel specialists have in-depth knowledge of destinations worldwide.
+                    Welcome to Trivandrum Top Taxi where every journey begins with a dream and ends with unforgettable memories. Our travel specialists have in-depth knowledge of destinations worldwide.
                   </p>
 
                   <div className="payment-partner mt-4">
@@ -184,7 +184,7 @@ export default function Footer() {
 
               <div className="col-lg-4 col-md-12 mb-3 mb-lg-0 text-center">
                 <p className="mb-0" style={{ fontSize: '14px' }}>
-                  Copyright 2025 GATEWAY | Design By Cybyc
+                  Copyright 2026 Trivandrum Top Taxi | Design By Cybyc
                 </p>
               </div>
 

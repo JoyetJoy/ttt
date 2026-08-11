@@ -15,7 +15,7 @@ export default function AdminCustomerList() {
 
   const fetchCustomers = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/customers`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/admin/customers`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await response.json();

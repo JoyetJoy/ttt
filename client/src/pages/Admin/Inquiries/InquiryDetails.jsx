@@ -14,7 +14,7 @@ export default function InquiryDetails() {
   useEffect(() => {
     const fetchInquiry = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/admin/inquiries/${id}`, {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/admin/inquiries/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setInquiry(response.data);

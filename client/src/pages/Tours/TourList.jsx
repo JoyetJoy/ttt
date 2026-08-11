@@ -18,7 +18,7 @@ export default function TourList() {
   };
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/tours`)
+    fetch(`${import.meta.env.VITE_API_URL}/tours`)
       .then(res => res.json())
       .then(data => {
         setTours(data);

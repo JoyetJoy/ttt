@@ -15,7 +15,7 @@ export default function AdminPageList() {
 
   const fetchPages = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/pages`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/pages`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (!res.ok) throw new Error('Failed to fetch data');
@@ -45,7 +45,7 @@ export default function AdminPageList() {
     });
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/pages/${pageId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/pages/${pageId}`, {
         method: 'PUT',
         headers: { 
           'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export default function AdminPageList() {
     
     setCreating(true);
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/pages`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/pages`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ export default function AdminPageList() {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this page?')) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/pages/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/pages/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });

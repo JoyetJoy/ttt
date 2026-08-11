@@ -19,7 +19,7 @@ export default function AdminTourList() {
 
   const fetchTours = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/tours`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/tours`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (!res.ok) throw new Error('Failed to fetch data');
@@ -39,7 +39,7 @@ export default function AdminTourList() {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this tour?')) return;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/tours/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/tours/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });

@@ -9,7 +9,7 @@ export default function VisaDetails() {
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/visas/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/visas/${id}`)
       .then(res => res.json())
       .then(data => {
         setVisa(data);

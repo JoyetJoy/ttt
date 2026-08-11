@@ -152,7 +152,7 @@ export default function DynamicPage({ isHome = false }) {
     setLoading(true);
     setError(null);
 
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/pages/slug/${slug}`)
+    fetch(`${import.meta.env.VITE_API_URL}/pages/slug/${slug}`)
       .then(res => {
         if (!res.ok) throw new Error(res.status === 404 ? 'not_found' : 'error');
         return res.json();
@@ -194,9 +194,24 @@ export default function DynamicPage({ isHome = false }) {
     <>
 
       {widgets.length === 0 ? (
-        <div className="flex items-center justify-center min-h-[50vh] text-slate-400">
-          <p>No content available for this page yet.</p>
-        </div>
+        isHome ? (
+          <>
+            <HeroSlider />
+            <SearchBox />
+            <DestinationsSection />
+            <AboutSection />
+            <AffordableVacations />
+            <ExploreActivities />
+            <DealsSection />
+            <VisaProcessing />
+            <UltimateTravelExperience />
+            <LatestBlog />
+          </>
+        ) : (
+          <div className="flex items-center justify-center min-h-[50vh] text-slate-400">
+            <p>No content available for this page yet.</p>
+          </div>
+        )
       ) : (
         widgets.map((widget, idx) => {
           const renderer = resolveRenderer(widget.widget_slug);
