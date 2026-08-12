@@ -98,37 +98,37 @@ export default function BlogList() {
       {/* 4 Stat Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {/* Total Blogs */}
-        <div className="relative overflow-hidden rounded-2xl bg-[#009efb] p-6 text-black shadow-sm">
+        <div className="relative overflow-hidden rounded-[20px] bg-white p-6 shadow-[0_2px_12px_rgb(0,0,0,0.04)] border border-slate-100 hover:translate-y-[-4px] transition-transform duration-300">
           <div className="relative z-10 flex flex-col h-full justify-between">
-            <h5 className="text-[15px] font-bold tracking-wide">Total Blogs</h5>
-            <h2 className="text-[32px] font-bold mt-2">{blogs.length}</h2>
+            <h5 className="text-[15px] font-medium text-slate-500 tracking-wide">Total Blogs</h5>
+            <h2 className="text-[32px] font-bold mt-3 text-slate-800">{blogs.length}</h2>
           </div>
           <CardBgSvg />
         </div>
 
         {/* Total Active */}
-        <div className="relative overflow-hidden rounded-2xl bg-[#00d284] p-6 text-black shadow-sm">
+        <div className="relative overflow-hidden rounded-[20px] bg-white p-6 shadow-[0_2px_12px_rgb(0,0,0,0.04)] border border-slate-100 hover:translate-y-[-4px] transition-transform duration-300">
           <div className="relative z-10 flex flex-col h-full justify-between">
-            <h5 className="text-[15px] font-bold tracking-wide">Total Active</h5>
-            <h2 className="text-[32px] font-bold mt-2">{activeCount}</h2>
+            <h5 className="text-[15px] font-medium text-slate-500 tracking-wide">Total Active</h5>
+            <h2 className="text-[32px] font-bold mt-3 text-slate-800">{activeCount}</h2>
           </div>
           <CardBgSvg />
         </div>
 
         {/* Total Categories */}
-        <div className="relative overflow-hidden rounded-2xl bg-[#9a55ff] p-6 text-black shadow-sm">
+        <div className="relative overflow-hidden rounded-[20px] bg-white p-6 shadow-[0_2px_12px_rgb(0,0,0,0.04)] border border-slate-100 hover:translate-y-[-4px] transition-transform duration-300">
           <div className="relative z-10 flex flex-col h-full justify-between">
-            <h5 className="text-[15px] font-bold tracking-wide">Total Categories</h5>
-            <h2 className="text-[32px] font-bold mt-2">{categoriesCount}</h2>
+            <h5 className="text-[15px] font-medium text-slate-500 tracking-wide">Total Categories</h5>
+            <h2 className="text-[32px] font-bold mt-3 text-slate-800">{categoriesCount}</h2>
           </div>
           <CardBgSvg />
         </div>
 
         {/* Total Comments / Extra */}
-        <div className="relative overflow-hidden rounded-2xl bg-[#ff9900] p-6 text-black shadow-sm">
+        <div className="relative overflow-hidden rounded-[20px] bg-white p-6 shadow-[0_2px_12px_rgb(0,0,0,0.04)] border border-slate-100 hover:translate-y-[-4px] transition-transform duration-300">
           <div className="relative z-10 flex flex-col h-full justify-between">
-            <h5 className="text-[15px] font-bold tracking-wide">Total Views</h5>
-            <h2 className="text-[32px] font-bold mt-2">0</h2>
+            <h5 className="text-[15px] font-medium text-slate-500 tracking-wide">Total Views</h5>
+            <h2 className="text-[32px] font-bold mt-3 text-slate-800">0</h2>
           </div>
           <CardBgSvg />
         </div>
