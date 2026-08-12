@@ -876,7 +876,7 @@ export default function AdminTourForm() {
             <p className="text-sm text-slate-500 mt-1">{isView ? 'Manage tour details, pricing, and locations.' : 'Enter the basic information. You can add pricing, media, and location details later.'}</p>
           </div>
         </div>
-        <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50">
+        <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 bg-[#0081C9] hover:bg-[#0069a6] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50">
           <Save size={16} /> {saving ? 'Saving...' : 'Save Changes'}
         </button>
       </div>
@@ -903,11 +903,11 @@ export default function AdminTourForm() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Title <span className="text-red-500">*</span></label>
-                    <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Name of the tour" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500" required />
+                    <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Name of the tour" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9]" required />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Label <span className="text-red-500">*</span></label>
-                    <input type="text" name="shoulder" value={formData.shoulder} onChange={handleChange} placeholder="Name of the Label" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500" required />
+                    <input type="text" name="shoulder" value={formData.shoulder} onChange={handleChange} placeholder="Name of the Label" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9]" required />
                   </div>
                 </div>
 
@@ -919,7 +919,7 @@ export default function AdminTourForm() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 pt-4 border-t border-slate-100">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">YouTube Video URL</label>
-                    <input type="text" name="youtube_video" value={formData.youtube_video} onChange={handleChange} placeholder="Paste the YouTube video URL here" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500" />
+                    <input type="text" name="youtube_video" value={formData.youtube_video} onChange={handleChange} placeholder="Paste the YouTube video URL here" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9]" />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">YouTube Video Thumbnail</label>
@@ -1213,7 +1213,7 @@ export default function AdminTourForm() {
                                   : prev.attribute_terms.filter(t => t !== val)
                               }));
                             }} 
-                            className="rounded text-indigo-600 focus:ring-indigo-500" 
+                            className="rounded text-indigo-600 focus:ring-[#0081C9]" 
                           /> {term.name}
                         </label>
                       ))}
@@ -1272,7 +1272,7 @@ export default function AdminTourForm() {
                               type="checkbox" 
                               checked={!!formData.open_hours[day]?.isOpen} 
                               onChange={e => handleOpenHourChange(day, 'isOpen', e.target.checked)}
-                              className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4 cursor-pointer" 
+                              className="rounded border-gray-300 text-indigo-600 focus:ring-[#0081C9] w-4 h-4 cursor-pointer" 
                             />
                             <span className={`text-sm font-semibold capitalize ${formData.open_hours[day]?.isOpen ? 'text-indigo-900' : 'text-slate-500'}`}>{day}</span>
                           </label>
@@ -1331,15 +1331,15 @@ export default function AdminTourForm() {
                     <div className="space-y-4">
                       <div>
                         <label className="block text-xs font-semibold text-slate-700 mb-1">Meta Title <span className="text-red-500">*</span></label>
-                        <input type="text" name="meta_title" value={formData.meta_title} onChange={handleChange} placeholder="Meta Title" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500" />
+                        <input type="text" name="meta_title" value={formData.meta_title} onChange={handleChange} placeholder="Meta Title" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9]" />
                       </div>
                       <div>
                         <label className="block text-xs font-semibold text-slate-700 mb-1">Meta Description</label>
-                        <textarea name="meta_desc" value={formData.meta_desc} onChange={handleChange} rows="3" placeholder="Meta Description" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500"></textarea>
+                        <textarea name="meta_desc" value={formData.meta_desc} onChange={handleChange} rows="3" placeholder="Meta Description" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9]"></textarea>
                       </div>
                       <div>
                         <label className="block text-xs font-semibold text-slate-700 mb-1">Meta Keyward</label>
-                        <input type="text" name="meta_keyward" value={formData.meta_keyward} onChange={handleChange} placeholder="Meta Keyward" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500" />
+                        <input type="text" name="meta_keyward" value={formData.meta_keyward} onChange={handleChange} placeholder="Meta Keyward" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9]" />
                       </div>
                     </div>
                   )}
@@ -1660,7 +1660,7 @@ export default function AdminTourForm() {
                         Cancel
                       </button>
                     )}
-                    <button type="submit" disabled={attributeSaving} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50">
+                    <button type="submit" disabled={attributeSaving} className="px-4 py-2 bg-[#0081C9] hover:bg-[#0069a6] text-white rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50">
                       {attributeSaving ? 'Saving...' : attributeModalData.id ? 'Update' : 'Add'}
                     </button>
                   </div>
@@ -1775,7 +1775,7 @@ const DynamicListSection = ({ title, commonTitleField, commonTitleValue, onCommo
   <div className="pt-6 mt-6 border-t border-slate-100">
     <div className="flex items-center justify-between mb-4">
       <h4 className="font-bold text-slate-800 text-[15px]">{title}</h4>
-      <input type="text" name={commonTitleField} value={commonTitleValue} onChange={onCommonTitleChange} placeholder={`Enter ${title} Title`} className="w-1/2 px-4 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none bg-white" />
+      <input type="text" name={commonTitleField} value={commonTitleValue} onChange={onCommonTitleChange} placeholder={`Enter ${title} Title`} className="w-1/2 px-4 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none bg-white" />
     </div>
     <div className="space-y-3 mb-4">
       {(Array.isArray(items) ? items : []).map((item, idx) => (

@@ -198,7 +198,7 @@ export default function DestinationForm() {
           <button 
             onClick={handleSave} 
             disabled={saving}
-            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50"
+            className="flex items-center gap-2 bg-[#0081C9] hover:bg-[#0069a6] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50"
           >
             <Save size={16} />
             {saving ? 'Saving...' : 'Save Changes'}
@@ -242,39 +242,39 @@ export default function DestinationForm() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Title <span className="text-red-500">*</span></label>
-                    <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Name of the tour" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" required />
+                    <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Name of the tour" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" required />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Destination</label>
-                    <input type="text" name="destination" value={formData.destination} onChange={handleChange} placeholder="Destination" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                    <input type="text" name="destination" value={formData.destination} onChange={handleChange} placeholder="Destination" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Capital City <span className="text-red-500">*</span></label>
-                    <input type="text" name="city" value={formData.city} onChange={handleChange} placeholder="City" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                    <input type="text" name="city" value={formData.city} onChange={handleChange} placeholder="City" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Population <span className="text-red-500">*</span></label>
-                    <input type="text" name="population" value={formData.population} onChange={handleChange} placeholder="Population" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                    <input type="text" name="population" value={formData.population} onChange={handleChange} placeholder="Population" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Language <span className="text-red-500">*</span></label>
-                    <input type="text" name="language" value={formData.language} onChange={handleChange} placeholder="Language" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                    <input type="text" name="language" value={formData.language} onChange={handleChange} placeholder="Language" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Currency <span className="text-red-500">*</span></label>
-                    <input type="text" name="currency" value={formData.currency} onChange={handleChange} placeholder="Currency" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                    <input type="text" name="currency" value={formData.currency} onChange={handleChange} placeholder="Currency" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Short Description</label>
-                  <textarea name="short_desc" value={formData.short_desc} onChange={handleChange} rows="3" placeholder="Short description" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+                  <textarea name="short_desc" value={formData.short_desc} onChange={handleChange} rows="3" placeholder="Short description" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none"></textarea>
                 </div>
 
                 <div>
@@ -338,7 +338,7 @@ export default function DestinationForm() {
                                 : formData.attribute_terms.filter(t => t !== term.name);
                               setFormData({...formData, attribute_terms: newTerms});
                             }}
-                            className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" 
+                            className="rounded border-gray-300 text-indigo-600 focus:ring-[#0081C9]" 
                           />
                           {term.name}
                         </label>
@@ -403,11 +403,11 @@ export default function DestinationForm() {
                     <div className="space-y-4">
                       <div>
                         <label className="block text-xs font-semibold text-slate-700 mb-1">Meta Title <span className="text-red-500">*</span></label>
-                        <input type="text" name="meta_title" value={formData.meta_title} onChange={handleChange} placeholder="Meta Title" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                        <input type="text" name="meta_title" value={formData.meta_title} onChange={handleChange} placeholder="Meta Title" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                       </div>
                       <div>
                         <label className="block text-xs font-semibold text-slate-700 mb-1">Meta Description</label>
-                        <textarea name="meta_desc" value={formData.meta_desc} onChange={handleChange} rows="3" placeholder="Meta Description" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+                        <textarea name="meta_desc" value={formData.meta_desc} onChange={handleChange} rows="3" placeholder="Meta Description" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none"></textarea>
                       </div>
                     </div>
                   )}
@@ -461,7 +461,7 @@ export default function DestinationForm() {
                     </DynamicListSection>
                   </div>
                   <div className="flex justify-end pt-2">
-                    <button type="submit" disabled={attributeSaving} className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50">
+                    <button type="submit" disabled={attributeSaving} className="bg-[#0081C9] hover:bg-[#0069a6] text-white px-5 py-2 rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50">
                       {attributeSaving ? 'Saving...' : 'Save Attribute'}
                     </button>
                   </div>
@@ -502,7 +502,7 @@ const DynamicListSection = ({ title, commonTitleField, commonTitleValue, onCommo
       <div className="flex items-center justify-between mb-4">
         <h4 className="font-bold text-slate-800 text-[15px]">{title}</h4>
         {showTitleInput && (
-          <input type="text" name={commonTitleField} value={commonTitleValue} onChange={onCommonTitleChange} placeholder={`Enter ${title} Title`} className="w-1/2 px-4 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none bg-white" />
+          <input type="text" name={commonTitleField} value={commonTitleValue} onChange={onCommonTitleChange} placeholder={`Enter ${title} Title`} className="w-1/2 px-4 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none bg-white" />
         )}
       </div>
       <div className="space-y-3 mb-4">

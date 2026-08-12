@@ -32,15 +32,15 @@ function SliderEditor({ items, setItems, handleFileUpload, uploading }) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">Title</label>
-              <input type="text" value={item.title || ''} onChange={e => handleChange(index, 'title', e.target.value)} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+              <input type="text" value={item.title || ''} onChange={e => handleChange(index, 'title', e.target.value)} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
             </div>
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">Button Text</label>
-              <input type="text" value={item.buttonText || ''} onChange={e => handleChange(index, 'buttonText', e.target.value)} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+              <input type="text" value={item.buttonText || ''} onChange={e => handleChange(index, 'buttonText', e.target.value)} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
             </div>
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">Button Url</label>
-              <input type="text" value={item.buttonUrl || ''} onChange={e => handleChange(index, 'buttonUrl', e.target.value)} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+              <input type="text" value={item.buttonUrl || ''} onChange={e => handleChange(index, 'buttonUrl', e.target.value)} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -53,7 +53,7 @@ function SliderEditor({ items, setItems, handleFileUpload, uploading }) {
             </div>
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">Location</label>
-              <input type="text" value={item.location || ''} onChange={e => handleChange(index, 'location', e.target.value)} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+              <input type="text" value={item.location || ''} onChange={e => handleChange(index, 'location', e.target.value)} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -66,12 +66,12 @@ function SliderEditor({ items, setItems, handleFileUpload, uploading }) {
             </div>
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">Rating (Out of 5)</label>
-              <input type="number" max="5" min="0" step="0.1" value={item.rating || ''} onChange={e => handleChange(index, 'rating', e.target.value)} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+              <input type="number" max="5" min="0" step="0.1" value={item.rating || ''} onChange={e => handleChange(index, 'rating', e.target.value)} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
             </div>
           </div>
           <div>
             <label className="block text-xs font-semibold text-slate-700 mb-1">Description</label>
-            <textarea rows="3" value={item.description || ''} onChange={e => handleChange(index, 'description', e.target.value)} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none resize-y"></textarea>
+            <textarea rows="3" value={item.description || ''} onChange={e => handleChange(index, 'description', e.target.value)} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none resize-y"></textarea>
           </div>
         </div>
       ))}
@@ -152,11 +152,11 @@ function AboutUsEditor({ config, setConfig, handleFileSelect }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block text-[13px] font-bold text-slate-700 mb-2">Widget Title</label>
-            <input type="text" value={config.widget_title || ''} onChange={e => handleConfigChange('widget_title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+            <input type="text" value={config.widget_title || ''} onChange={e => handleConfigChange('widget_title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
           </div>
           <div>
             <label className="block text-[13px] font-bold text-slate-700 mb-2">Title</label>
-            <input type="text" value={config.title || ''} onChange={e => handleConfigChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+            <input type="text" value={config.title || ''} onChange={e => handleConfigChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
           </div>
         </div>
         <div>
@@ -176,15 +176,15 @@ function AboutUsEditor({ config, setConfig, handleFileSelect }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <label className="block text-[13px] font-bold text-slate-700 mb-2">Number of Customers</label>
-            <input type="number" value={config.number_of_customers || ''} onChange={e => handleConfigChange('number_of_customers', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+            <input type="number" value={config.number_of_customers || ''} onChange={e => handleConfigChange('number_of_customers', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
           </div>
           <div>
             <label className="block text-[13px] font-bold text-slate-700 mb-2">Button Text</label>
-            <input type="text" value={config.button_text || ''} onChange={e => handleConfigChange('button_text', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+            <input type="text" value={config.button_text || ''} onChange={e => handleConfigChange('button_text', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
           </div>
           <div>
             <label className="block text-[13px] font-bold text-slate-700 mb-2">Button Url</label>
-            <input type="text" value={config.button_url || ''} onChange={e => handleConfigChange('button_url', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+            <input type="text" value={config.button_url || ''} onChange={e => handleConfigChange('button_url', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
           </div>
         </div>
       </div>
@@ -198,14 +198,14 @@ function AboutUsEditor({ config, setConfig, handleFileSelect }) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-[13px] font-bold text-slate-700 mb-2">Name</label>
-                  <input type="text" value={tab.name || ''} onChange={e => handleTabChange(index, 'name', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                  <input type="text" value={tab.name || ''} onChange={e => handleTabChange(index, 'name', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
                 </div>
                 <div className="flex gap-4 items-start">
                   <div className="flex-1">
                     <label className="block text-[13px] font-bold text-slate-700 mb-2">
                       Class Icon <span className="font-normal text-slate-400 ml-1">- <a href="https://icons.getbootstrap.com/" target="_blank" rel="noreferrer" className="text-blue-500 hover:underline">Bootstrap Icons</a></span>
                     </label>
-                    <input type="text" value={tab.class_icon || ''} onChange={e => handleTabChange(index, 'class_icon', e.target.value)} placeholder="bi bi-patch-check" className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                    <input type="text" value={tab.class_icon || ''} onChange={e => handleTabChange(index, 'class_icon', e.target.value)} placeholder="bi bi-patch-check" className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
                   </div>
                   <button onClick={() => handleRemoveTab(index)} className="mt-[28px] h-[42px] w-[42px] flex items-center justify-center bg-red-50/80 text-red-500 rounded-xl hover:bg-red-100 transition flex-shrink-0">
                     <Trash2 size={18} strokeWidth={2.5} />
@@ -214,7 +214,7 @@ function AboutUsEditor({ config, setConfig, handleFileSelect }) {
               </div>
               <div>
                 <label className="block text-[13px] font-bold text-slate-700 mb-2">Description</label>
-                <textarea rows="3" value={tab.description || ''} onChange={e => handleTabChange(index, 'description', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none resize-y transition-shadow shadow-sm"></textarea>
+                <textarea rows="3" value={tab.description || ''} onChange={e => handleTabChange(index, 'description', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none resize-y transition-shadow shadow-sm"></textarea>
               </div>
             </div>
           ))}
@@ -237,34 +237,34 @@ function DestinationEditor({ config, setConfig }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Shoulder</label>
-          <input type="text" value={config.shoulder || ''} onChange={e => handleChange('shoulder', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.shoulder || ''} onChange={e => handleChange('shoulder', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Title</label>
-          <input type="text" value={config.title || ''} onChange={e => handleChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.title || ''} onChange={e => handleChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Order By</label>
-          <select value={config.order_by || 'Descending'} onChange={e => handleChange('order_by', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm text-slate-700">
+          <select value={config.order_by || 'Descending'} onChange={e => handleChange('order_by', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm text-slate-700">
             <option value="Descending">Descending</option>
             <option value="Ascending">Ascending</option>
           </select>
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Offer Text</label>
-          <input type="text" value={config.offer_text || ''} onChange={e => handleChange('offer_text', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.offer_text || ''} onChange={e => handleChange('offer_text', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Offer Title</label>
-          <input type="text" value={config.offer_title || ''} onChange={e => handleChange('offer_title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.offer_title || ''} onChange={e => handleChange('offer_title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Button Text</label>
-          <input type="text" value={config.button_text || ''} onChange={e => handleChange('button_text', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.button_text || ''} onChange={e => handleChange('button_text', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Button Link</label>
-          <input type="text" value={config.button_link || ''} onChange={e => handleChange('button_link', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.button_link || ''} onChange={e => handleChange('button_link', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
       </div>
     </div>
@@ -293,11 +293,11 @@ function LatestProductEditor({ config, setConfig }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Shoulder</label>
-          <input type="text" value={config.shoulder || ''} onChange={e => handleChange('shoulder', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.shoulder || ''} onChange={e => handleChange('shoulder', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Title</label>
-          <input type="text" value={config.title || ''} onChange={e => handleChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.title || ''} onChange={e => handleChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
       </div>
 
@@ -319,11 +319,11 @@ function LatestProductEditor({ config, setConfig }) {
             </div>
             <div>
               <label className="block text-[13px] font-bold text-slate-700 mb-2">Total Display</label>
-              <input type="number" value={config[`${row.key}_display`] || ''} onChange={e => handleChange(`${row.key}_display`, e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+              <input type="number" value={config[`${row.key}_display`] || ''} onChange={e => handleChange(`${row.key}_display`, e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
             </div>
             <div>
               <label className="block text-[13px] font-bold text-slate-700 mb-2">Order By</label>
-              <select value={config[`${row.key}_order`] || 'Descending'} onChange={e => handleChange(`${row.key}_order`, e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm text-slate-700 appearance-none">
+              <select value={config[`${row.key}_order`] || 'Descending'} onChange={e => handleChange(`${row.key}_order`, e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm text-slate-700 appearance-none">
                 <option value="Descending">Descending</option>
                 <option value="Ascending">Ascending</option>
               </select>
@@ -345,30 +345,30 @@ function FeaturedTourEditor({ config, setConfig }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Shoulder</label>
-          <input type="text" value={config.shoulder || ''} onChange={e => handleChange('shoulder', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.shoulder || ''} onChange={e => handleChange('shoulder', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Title</label>
-          <input type="text" value={config.title || ''} onChange={e => handleChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.title || ''} onChange={e => handleChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Number of Display</label>
-          <input type="number" value={config.number_of_display || ''} onChange={e => handleChange('number_of_display', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="number" value={config.number_of_display || ''} onChange={e => handleChange('number_of_display', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Order By</label>
-          <select value={config.order_by || 'Descending'} onChange={e => handleChange('order_by', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm text-slate-700 appearance-none">
+          <select value={config.order_by || 'Descending'} onChange={e => handleChange('order_by', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm text-slate-700 appearance-none">
             <option value="Descending">Descending</option>
             <option value="Ascending">Ascending</option>
           </select>
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Button Text</label>
-          <input type="text" value={config.button_text || ''} onChange={e => handleChange('button_text', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.button_text || ''} onChange={e => handleChange('button_text', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Button Link</label>
-          <input type="text" value={config.button_link || ''} onChange={e => handleChange('button_link', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.button_link || ''} onChange={e => handleChange('button_link', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
       </div>
     </div>
@@ -438,11 +438,11 @@ function WhyChooseUsEditor({ config, setConfig }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-1.5">Title</label>
-          <input type="text" value={config.title || ''} onChange={e => handleConfigChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.title || ''} onChange={e => handleConfigChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-1.5">Sub Title</label>
-          <input type="text" value={config.sub_title || ''} onChange={e => handleConfigChange('sub_title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.sub_title || ''} onChange={e => handleConfigChange('sub_title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
       </div>
 
@@ -453,7 +453,7 @@ function WhyChooseUsEditor({ config, setConfig }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-[13px] font-bold text-slate-700 mb-1.5">Name</label>
-                <input type="text" value={item.name || ''} onChange={e => handleItemChange(index, 'name', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                <input type="text" value={item.name || ''} onChange={e => handleItemChange(index, 'name', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
               </div>
               <div className="flex gap-3 items-start">
                 <div className="flex-1">
@@ -470,7 +470,7 @@ function WhyChooseUsEditor({ config, setConfig }) {
             </div>
             <div>
               <label className="block text-[13px] font-bold text-slate-700 mb-1.5">Short Description</label>
-              <textarea rows="2" value={item.short_description || ''} onChange={e => handleItemChange(index, 'short_description', e.target.value)} className="w-full px-4 py-2 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none resize-y transition-shadow shadow-sm"></textarea>
+              <textarea rows="2" value={item.short_description || ''} onChange={e => handleItemChange(index, 'short_description', e.target.value)} className="w-full px-4 py-2 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none resize-y transition-shadow shadow-sm"></textarea>
             </div>
           </div>
         ))}
@@ -564,11 +564,11 @@ function TabActivitiesEditor({ config, setConfig }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Title</label>
-          <input type="text" value={config.title || ''} onChange={e => handleConfigChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.title || ''} onChange={e => handleConfigChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Shoulder</label>
-          <input type="text" value={config.shoulder || ''} onChange={e => handleConfigChange('shoulder', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.shoulder || ''} onChange={e => handleConfigChange('shoulder', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
       </div>
 
@@ -585,7 +585,7 @@ function TabActivitiesEditor({ config, setConfig }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-[13px] font-bold text-slate-700 mb-2">Tab Title</label>
-                <input type="text" value={tab.tab_title || ''} onChange={e => handleTabChange(index, 'tab_title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                <input type="text" value={tab.tab_title || ''} onChange={e => handleTabChange(index, 'tab_title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
               </div>
               <div>
                 <label className="block text-[13px] font-bold text-slate-700 mb-2">Tab Icon</label>
@@ -597,35 +597,35 @@ function TabActivitiesEditor({ config, setConfig }) {
               
               <div>
                 <label className="block text-[13px] font-bold text-slate-700 mb-2">Tab Label</label>
-                <input type="text" value={tab.tab_label || ''} onChange={e => handleTabChange(index, 'tab_label', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                <input type="text" value={tab.tab_label || ''} onChange={e => handleTabChange(index, 'tab_label', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
               </div>
               <div>
                 <label className="block text-[13px] font-bold text-slate-700 mb-2">Main Title</label>
-                <input type="text" value={tab.main_title || ''} onChange={e => handleTabChange(index, 'main_title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                <input type="text" value={tab.main_title || ''} onChange={e => handleTabChange(index, 'main_title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
               </div>
             </div>
 
             <div>
               <label className="block text-[13px] font-bold text-slate-700 mb-2">Description</label>
-              <textarea rows="3" value={tab.description || ''} onChange={e => handleTabChange(index, 'description', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none resize-y transition-shadow shadow-sm"></textarea>
+              <textarea rows="3" value={tab.description || ''} onChange={e => handleTabChange(index, 'description', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none resize-y transition-shadow shadow-sm"></textarea>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-[13px] font-bold text-slate-700 mb-2">Button Text</label>
-                <input type="text" value={tab.button_text || ''} onChange={e => handleTabChange(index, 'button_text', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                <input type="text" value={tab.button_text || ''} onChange={e => handleTabChange(index, 'button_text', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
               </div>
               <div>
                 <label className="block text-[13px] font-bold text-slate-700 mb-2">Button Link</label>
-                <input type="text" value={tab.button_link || ''} onChange={e => handleTabChange(index, 'button_link', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                <input type="text" value={tab.button_link || ''} onChange={e => handleTabChange(index, 'button_link', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
               </div>
               <div>
                 <label className="block text-[13px] font-bold text-slate-700 mb-2">Video Text</label>
-                <input type="text" value={tab.video_text || ''} onChange={e => handleTabChange(index, 'video_text', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                <input type="text" value={tab.video_text || ''} onChange={e => handleTabChange(index, 'video_text', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
               </div>
               <div>
                 <label className="block text-[13px] font-bold text-slate-700 mb-2">Video Link</label>
-                <input type="text" value={tab.video_link || ''} onChange={e => handleTabChange(index, 'video_link', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                <input type="text" value={tab.video_link || ''} onChange={e => handleTabChange(index, 'video_link', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
               </div>
               
               <div>
@@ -651,7 +651,7 @@ function TabActivitiesEditor({ config, setConfig }) {
                 <div className="space-y-3">
                   {(tab.includes || []).map((inc, iIdx) => (
                     <div key={iIdx} className="flex gap-2">
-                      <input type="text" value={inc} onChange={e => handleStringArrayChange(index, 'includes', iIdx, e.target.value)} className="flex-1 px-4 py-2 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                      <input type="text" value={inc} onChange={e => handleStringArrayChange(index, 'includes', iIdx, e.target.value)} className="flex-1 px-4 py-2 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
                       <button onClick={() => handleRemoveStringArrayItem(index, 'includes', iIdx)} className="h-[38px] w-[38px] flex items-center justify-center bg-slate-100 text-slate-400 rounded-xl hover:bg-red-50 hover:text-red-500 transition flex-shrink-0">
                         <X size={16} />
                       </button>
@@ -668,7 +668,7 @@ function TabActivitiesEditor({ config, setConfig }) {
                 <div className="space-y-3">
                   {(tab.excludes || []).map((exc, eIdx) => (
                     <div key={eIdx} className="flex gap-2">
-                      <input type="text" value={exc} onChange={e => handleStringArrayChange(index, 'excludes', eIdx, e.target.value)} className="flex-1 px-4 py-2 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                      <input type="text" value={exc} onChange={e => handleStringArrayChange(index, 'excludes', eIdx, e.target.value)} className="flex-1 px-4 py-2 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
                       <button onClick={() => handleRemoveStringArrayItem(index, 'excludes', eIdx)} className="h-[38px] w-[38px] flex items-center justify-center bg-slate-100 text-slate-400 rounded-xl hover:bg-red-50 hover:text-red-500 transition flex-shrink-0">
                         <X size={16} />
                       </button>
@@ -735,11 +735,11 @@ function OffersEditor({ config, setConfig, handleFileSelect }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Title</label>
-          <input type="text" value={config.title || ''} onChange={e => handleConfigChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.title || ''} onChange={e => handleConfigChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Shoulder</label>
-          <input type="text" value={config.shoulder || ''} onChange={e => handleConfigChange('shoulder', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.shoulder || ''} onChange={e => handleConfigChange('shoulder', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
       </div>
 
@@ -756,19 +756,19 @@ function OffersEditor({ config, setConfig, handleFileSelect }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-[13px] font-bold text-slate-700 mb-2">Title</label>
-                <input type="text" value={item.title || ''} onChange={e => handleItemChange(index, 'title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                <input type="text" value={item.title || ''} onChange={e => handleItemChange(index, 'title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
               </div>
               <div>
                 <label className="block text-[13px] font-bold text-slate-700 mb-2">Offer Discount</label>
-                <input type="text" value={item.offer_discount || ''} onChange={e => handleItemChange(index, 'offer_discount', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                <input type="text" value={item.offer_discount || ''} onChange={e => handleItemChange(index, 'offer_discount', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
               </div>
               <div>
                 <label className="block text-[13px] font-bold text-slate-700 mb-2">Offer Button Text</label>
-                <input type="text" value={item.button_text || ''} onChange={e => handleItemChange(index, 'button_text', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                <input type="text" value={item.button_text || ''} onChange={e => handleItemChange(index, 'button_text', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
               </div>
               <div>
                 <label className="block text-[13px] font-bold text-slate-700 mb-2">Offer Link</label>
-                <input type="text" value={item.offer_link || ''} onChange={e => handleItemChange(index, 'offer_link', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                <input type="text" value={item.offer_link || ''} onChange={e => handleItemChange(index, 'offer_link', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
               </div>
             </div>
 
@@ -806,19 +806,19 @@ function LatestBlogEditor({ config, setConfig }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Shoulder</label>
-          <input type="text" value={config.shoulder || ''} onChange={e => handleChange('shoulder', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.shoulder || ''} onChange={e => handleChange('shoulder', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Title</label>
-          <input type="text" value={config.title || ''} onChange={e => handleChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.title || ''} onChange={e => handleChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Total Display</label>
-          <input type="number" value={config.total_display || ''} onChange={e => handleChange('total_display', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="number" value={config.total_display || ''} onChange={e => handleChange('total_display', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Order By</label>
-          <select value={config.order_by || ''} onChange={e => handleChange('order_by', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm text-slate-700 appearance-none">
+          <select value={config.order_by || ''} onChange={e => handleChange('order_by', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm text-slate-700 appearance-none">
             <option value="">Select Option</option>
             <option value="Descending">Descending</option>
             <option value="Ascending">Ascending</option>
@@ -839,19 +839,19 @@ function VisaProcessingEditor({ config, setConfig }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Shoulder</label>
-          <input type="text" value={config.shoulder || ''} onChange={e => handleChange('shoulder', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.shoulder || ''} onChange={e => handleChange('shoulder', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Title</label>
-          <input type="text" value={config.title || ''} onChange={e => handleChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.title || ''} onChange={e => handleChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Number of Display</label>
-          <input type="number" value={config.number_of_display || ''} onChange={e => handleChange('number_of_display', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="number" value={config.number_of_display || ''} onChange={e => handleChange('number_of_display', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Order By</label>
-          <select value={config.order_by || ''} onChange={e => handleChange('order_by', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm text-slate-700 appearance-none">
+          <select value={config.order_by || ''} onChange={e => handleChange('order_by', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm text-slate-700 appearance-none">
             <option value="">Select Option</option>
             <option value="Descending">Descending</option>
             <option value="Ascending">Ascending</option>
@@ -903,12 +903,12 @@ function FunFactsEditor({ config, setConfig, handleFileSelect }) {
           
           <div className="flex-1 w-full">
             <label className="block text-[13px] font-bold text-slate-700 mb-1.5">Title</label>
-            <input type="text" value={item.title || ''} onChange={e => handleItemChange(index, 'title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+            <input type="text" value={item.title || ''} onChange={e => handleItemChange(index, 'title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
           </div>
           
           <div className="flex-1 w-full">
             <label className="block text-[13px] font-bold text-slate-700 mb-1.5">Number Count</label>
-            <input type="text" value={item.number_count || ''} onChange={e => handleItemChange(index, 'number_count', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+            <input type="text" value={item.number_count || ''} onChange={e => handleItemChange(index, 'number_count', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
           </div>
 
           <div className="flex-[1.2] w-full flex items-start gap-3">
@@ -970,7 +970,7 @@ function FaqEditor({ config, setConfig }) {
       {/* Top Config */}
       <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
         <label className="block text-[13px] font-bold text-slate-700 mb-2">Main Title</label>
-        <input type="text" value={config.title || ''} onChange={e => handleConfigChange('title', e.target.value)} placeholder="Main Title" className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+        <input type="text" value={config.title || ''} onChange={e => handleConfigChange('title', e.target.value)} placeholder="Main Title" className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
       </div>
 
       {/* FAQs */}
@@ -982,7 +982,7 @@ function FaqEditor({ config, setConfig }) {
             </button>
             <div>
               <label className="block text-[13px] font-bold text-slate-700 mb-2">Question</label>
-              <input type="text" placeholder="Enter Question" value={item.question || ''} onChange={e => handleItemChange(index, 'question', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+              <input type="text" placeholder="Enter Question" value={item.question || ''} onChange={e => handleItemChange(index, 'question', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
             </div>
             <div>
               <label className="block text-[13px] font-bold text-slate-700 mb-2">Answer</label>
@@ -1046,19 +1046,19 @@ function ContactUsEditor({ config, setConfig }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Main Title</label>
-          <input type="text" placeholder="Enter Main Title" value={config.main_title || ''} onChange={e => handleConfigChange('main_title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" placeholder="Enter Main Title" value={config.main_title || ''} onChange={e => handleConfigChange('main_title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Sub Title</label>
-          <input type="text" placeholder="Enter Sub Title" value={config.sub_title || ''} onChange={e => handleConfigChange('sub_title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" placeholder="Enter Sub Title" value={config.sub_title || ''} onChange={e => handleConfigChange('sub_title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Location</label>
-          <input type="text" placeholder="Enter Location" value={config.location || ''} onChange={e => handleConfigChange('location', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" placeholder="Enter Location" value={config.location || ''} onChange={e => handleConfigChange('location', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-2">Map Iframe Code</label>
-          <textarea rows="3" value={config.map_iframe_code || ''} onChange={e => handleConfigChange('map_iframe_code', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none resize-y transition-shadow shadow-sm"></textarea>
+          <textarea rows="3" value={config.map_iframe_code || ''} onChange={e => handleConfigChange('map_iframe_code', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none resize-y transition-shadow shadow-sm"></textarea>
         </div>
       </div>
 
@@ -1069,7 +1069,7 @@ function ContactUsEditor({ config, setConfig }) {
           <div className="flex-1 space-y-3">
             {(config.contact_numbers || []).map((num, i) => (
               <div key={i} className="flex items-center gap-3">
-                <input type="text" value={num} onChange={e => handleStringArrayChange('contact_numbers', i, e.target.value)} className="flex-1 px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                <input type="text" value={num} onChange={e => handleStringArrayChange('contact_numbers', i, e.target.value)} className="flex-1 px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
                 <button onClick={() => handleRemoveStringArrayItem('contact_numbers', i)} className="h-[40px] w-[40px] flex items-center justify-center bg-red-50/80 text-red-500 rounded-xl hover:bg-red-100 transition flex-shrink-0">
                   <Trash2 size={18} strokeWidth={2.5} />
                 </button>
@@ -1087,7 +1087,7 @@ function ContactUsEditor({ config, setConfig }) {
           <div className="flex-1 space-y-3">
             {(config.emails || []).map((email, i) => (
               <div key={i} className="flex items-center gap-3">
-                <input type="text" value={email} onChange={e => handleStringArrayChange('emails', i, e.target.value)} className="flex-1 px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                <input type="text" value={email} onChange={e => handleStringArrayChange('emails', i, e.target.value)} className="flex-1 px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
                 <button onClick={() => handleRemoveStringArrayItem('emails', i)} className="h-[40px] w-[40px] flex items-center justify-center bg-red-50/80 text-red-500 rounded-xl hover:bg-red-100 transition flex-shrink-0">
                   <Trash2 size={18} strokeWidth={2.5} />
                 </button>
@@ -1161,11 +1161,11 @@ function TestimonialEditor({ config, setConfig, handleFileSelect }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-1.5">Shoulder</label>
-          <input type="text" value={config.shoulder || ''} onChange={e => handleConfigChange('shoulder', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.shoulder || ''} onChange={e => handleConfigChange('shoulder', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
         <div>
           <label className="block text-[13px] font-bold text-slate-700 mb-1.5">Title</label>
-          <input type="text" value={config.title || ''} onChange={e => handleConfigChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+          <input type="text" value={config.title || ''} onChange={e => handleConfigChange('title', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
         </div>
       </div>
 
@@ -1182,22 +1182,22 @@ function TestimonialEditor({ config, setConfig, handleFileSelect }) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[13px] font-bold text-slate-700 mb-1.5">Name</label>
-                    <input type="text" value={review.name || ''} onChange={e => handleReviewChange(cat.key, index, 'name', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                    <input type="text" value={review.name || ''} onChange={e => handleReviewChange(cat.key, index, 'name', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
                   </div>
                   <div>
                     <label className="block text-[13px] font-bold text-slate-700 mb-1.5">Country</label>
-                    <input type="text" value={review.country || ''} onChange={e => handleReviewChange(cat.key, index, 'country', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                    <input type="text" value={review.country || ''} onChange={e => handleReviewChange(cat.key, index, 'country', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
                   <div className="md:col-span-3">
                     <label className="block text-[13px] font-bold text-slate-700 mb-1.5">Rating</label>
-                    <input type="number" min="1" max="5" value={review.rating || ''} onChange={e => handleReviewChange(cat.key, index, 'rating', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                    <input type="number" min="1" max="5" value={review.rating || ''} onChange={e => handleReviewChange(cat.key, index, 'rating', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
                   </div>
                   <div className="md:col-span-4">
                     <label className="block text-[13px] font-bold text-slate-700 mb-1.5">Time</label>
-                    <input type="text" placeholder="Enter Time" value={review.time || ''} onChange={e => handleReviewChange(cat.key, index, 'time', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none transition-shadow shadow-sm" />
+                    <input type="text" placeholder="Enter Time" value={review.time || ''} onChange={e => handleReviewChange(cat.key, index, 'time', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition-shadow shadow-sm" />
                   </div>
                   <div className="md:col-span-5 flex gap-3 items-start">
                     <div className="flex-1">
@@ -1215,7 +1215,7 @@ function TestimonialEditor({ config, setConfig, handleFileSelect }) {
 
                 <div>
                   <label className="block text-[13px] font-bold text-slate-700 mb-1.5">Review</label>
-                  <textarea rows="3" value={review.review || ''} onChange={e => handleReviewChange(cat.key, index, 'review', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none resize-y transition-shadow shadow-sm"></textarea>
+                  <textarea rows="3" value={review.review || ''} onChange={e => handleReviewChange(cat.key, index, 'review', e.target.value)} className="w-full px-4 py-2.5 text-sm bg-white rounded-xl border border-slate-200 focus:ring-2 focus:ring-[#0081C9] outline-none resize-y transition-shadow shadow-sm"></textarea>
                 </div>
               </div>
             ))}

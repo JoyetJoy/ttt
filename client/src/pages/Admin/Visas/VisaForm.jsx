@@ -306,7 +306,7 @@ export default function AdminVisaForm() {
             <p className="text-sm text-slate-500 mt-1">{isView ? 'Fill in the remaining details and policies.' : 'Enter the basic information. You can add pricing, media, and other details later.'}</p>
           </div>
         </div>
-        <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50">
+        <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 bg-[#0081C9] hover:bg-[#0069a6] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50">
           <Save size={16} /> {saving ? 'Saving...' : 'Save Visa'}
         </button>
       </div>
@@ -354,7 +354,7 @@ export default function AdminVisaForm() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div className="md:col-span-2">
                 <label className="block text-xs font-semibold text-slate-700 mb-1">Name of the visa <span className="text-red-500">*</span></label>
-                <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="e.g. Dubai Tourist Visa" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" required />
+                <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="e.g. Dubai Tourist Visa" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" required />
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center justify-between mb-2">
@@ -368,7 +368,7 @@ export default function AdminVisaForm() {
                     <Plus size={14} strokeWidth={2.5} />
                   </button>
                 </div>
-                <select name="category_id" value={formData.category_id} onChange={handleChange} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none bg-white">
+                <select name="category_id" value={formData.category_id} onChange={handleChange} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none bg-white">
                   <option value="">Select Category</option>
                   {categories
                     .filter(c => c.status === 1 || String(c.id) === String(formData.category_id))
@@ -387,7 +387,7 @@ export default function AdminVisaForm() {
                     <Plus size={14} strokeWidth={2.5} />
                   </button>
                 </div>
-                <select name="country_id" value={formData.country_id} onChange={handleChange} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none bg-white">
+                <select name="country_id" value={formData.country_id} onChange={handleChange} className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none bg-white">
                   <option value="">Select Country</option>
                   {countries.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                 </select>
@@ -548,7 +548,7 @@ export default function AdminVisaForm() {
                     id="catStatus" 
                     checked={categoryForm.status === 1}
                     onChange={e => setCategoryForm({...categoryForm, status: e.target.checked ? 1 : 0})}
-                    className="rounded text-indigo-600 focus:ring-indigo-500 border-slate-300"
+                    className="rounded text-indigo-600 focus:ring-[#0081C9] border-slate-300"
                   />
                   <label htmlFor="catStatus" className="text-xs font-medium text-slate-600">Active</label>
                 </div>
@@ -565,7 +565,7 @@ export default function AdminVisaForm() {
                   <button 
                     type="submit" 
                     disabled={savingCategory}
-                    className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50"
+                    className="px-4 py-2 bg-[#0081C9] hover:bg-[#0069a6] text-white rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50"
                   >
                     {savingCategory ? (categoryForm.id ? 'Updating...' : 'Adding...') : (categoryForm.id ? 'Update' : 'Add')}
                   </button>
@@ -670,7 +670,7 @@ export default function AdminVisaForm() {
                 <button 
                   type="submit" 
                   disabled={savingCountry}
-                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50"
+                  className="px-4 py-2 bg-[#0081C9] hover:bg-[#0069a6] text-white rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50"
                 >
                   {savingCountry ? (countryForm.id ? 'Updating...' : 'Adding...') : (countryForm.id ? 'Update' : 'Add')}
                 </button>

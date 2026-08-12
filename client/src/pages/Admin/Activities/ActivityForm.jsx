@@ -435,7 +435,7 @@ export default function AdminActivityForm() {
           <Link to="/admin/activities" className="px-5 py-2.5 text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 rounded-lg text-sm font-medium transition">
             Cancel
           </Link>
-          <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50">
+          <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 bg-[#0081C9] hover:bg-[#0069a6] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50">
             <Save size={16} /> {saving ? 'Saving...' : 'Save Activity'}
           </button>
         </div>
@@ -593,7 +593,7 @@ export default function AdminActivityForm() {
 
               <div className="mt-4">
                 <label className="flex items-center space-x-2 cursor-pointer">
-                  <input type="checkbox" checked={formData.enable_service_fee === 1} onChange={e => handleChange({ target: { name: 'enable_service_fee', value: e.target.checked ? 1 : 2 } })} className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                  <input type="checkbox" checked={formData.enable_service_fee === 1} onChange={e => handleChange({ target: { name: 'enable_service_fee', value: e.target.checked ? 1 : 2 } })} className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-[#0081C9]" />
                   <span className="text-sm font-semibold text-slate-700">Enable Service Fee</span>
                 </label>
               </div>
@@ -788,7 +788,7 @@ export default function AdminActivityForm() {
                                 : prev.attribute_terms.filter(t => t !== val)
                             }));
                           }} 
-                          className="w-4 h-4 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500" 
+                          className="w-4 h-4 text-indigo-600 rounded border-gray-300 focus:ring-[#0081C9]" 
                         />
                         <span className="text-sm font-medium text-slate-700">{term.name}</span>
                       </label>
@@ -946,7 +946,7 @@ export default function AdminActivityForm() {
                         Cancel
                       </button>
                     )}
-                    <button type="submit" disabled={attributeSaving} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50">
+                    <button type="submit" disabled={attributeSaving} className="px-4 py-2 bg-[#0081C9] hover:bg-[#0069a6] text-white rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50">
                       {attributeSaving ? 'Saving...' : attributeModalData.id ? 'Update' : 'Add'}
                     </button>
                   </div>
@@ -1012,7 +1012,7 @@ const DynamicListSection = ({ title, commonTitleField, commonTitleValue, onCommo
       <div className="flex items-center justify-between mb-4">
         <h4 className="font-bold text-slate-800 text-[15px]">{title}</h4>
         {showTitleInput && (
-          <input type="text" name={commonTitleField} value={commonTitleValue} onChange={onCommonTitleChange} placeholder={`Enter ${title} Title`} className="w-1/2 px-4 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none bg-white" />
+          <input type="text" name={commonTitleField} value={commonTitleValue} onChange={onCommonTitleChange} placeholder={`Enter ${title} Title`} className="w-1/2 px-4 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none bg-white" />
         )}
       </div>
       <div className="space-y-3 mb-4">

@@ -264,7 +264,7 @@ export default function PageForm() {
           <button 
             onClick={handleSave}
             disabled={saving}
-            className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition shadow-sm font-medium text-sm flex items-center gap-2 disabled:opacity-50"
+            className="px-6 py-2 bg-[#0081C9] hover:bg-[#0069a6] text-white rounded-lg transition shadow-sm font-medium text-sm flex items-center gap-2 disabled:opacity-50"
           >
             <Save size={16} /> {saving ? 'Saving...' : 'Save Page'}
           </button>
@@ -326,14 +326,14 @@ export default function PageForm() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="md:col-span-2">
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Menu Name <span className="text-red-500">*</span></label>
-                  <input type="text" name="page_name" value={formData.page_name} onChange={handleChange} placeholder="e.g. Home" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none transition" required />
+                  <input type="text" name="page_name" value={formData.page_name} onChange={handleChange} placeholder="e.g. Home" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition" required />
                 </div>
                 
                 {isEdit && (
                   <>
                     <div className="md:col-span-2">
                       <label className="block text-xs font-semibold text-slate-700 mb-1">Slug Name <span className="text-red-500">*</span></label>
-                      <input type="text" name="page_slug" value={formData.page_slug} onChange={handleChange} placeholder="e.g. home" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none transition" required />
+                      <input type="text" name="page_slug" value={formData.page_slug} onChange={handleChange} placeholder="e.g. home" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition" required />
                     </div>
                   </>
                 )}
@@ -358,11 +358,11 @@ export default function PageForm() {
                 <div className="space-y-5 bg-slate-50 p-5 rounded-xl border border-slate-100">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Meta Title <span className="text-red-500">*</span></label>
-                    <input type="text" name="meta_title" value={formData.meta_title} onChange={handleChange} placeholder="Discover Your Dream Journey..." className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none transition" />
+                    <input type="text" name="meta_title" value={formData.meta_title} onChange={handleChange} placeholder="Discover Your Dream Journey..." className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition" />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Meta Keyword</label>
-                    <textarea name="meta_keyward" value={formData.meta_keyward} onChange={handleChange} placeholder="keyword1, keyword2, keyword3" rows="2" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none transition"></textarea>
+                    <textarea name="meta_keyward" value={formData.meta_keyward} onChange={handleChange} placeholder="keyword1, keyword2, keyword3" rows="2" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none transition"></textarea>
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Meta Description</label>

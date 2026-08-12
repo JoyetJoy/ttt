@@ -472,7 +472,7 @@ export default function AdminHotelForm() {
         <button 
           onClick={handleSave} 
           disabled={saving}
-          className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50"
+          className="flex items-center gap-2 bg-[#0081C9] hover:bg-[#0069a6] text-white px-5 py-2 rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50"
         >
           <Save size={16} /> {saving ? 'Saving...' : 'Save Hotel'}
         </button>
@@ -483,7 +483,7 @@ export default function AdminHotelForm() {
         <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-4 md:p-5 max-w-3xl space-y-4 animate-in fade-in duration-300">
           <div>
             <label className="block text-xs font-semibold text-slate-700 mb-1">Name of the hotel <span className="text-red-500">*</span></label>
-            <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Enter Title" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" required />
+            <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Enter Title" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" required />
           </div>
           <div>
             <label className="block text-xs font-semibold text-slate-700 mb-1">Content</label>
@@ -495,23 +495,23 @@ export default function AdminHotelForm() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">Hotel Price <span className="text-red-500">*</span></label>
-              <input type="number" name="price" value={formData.price} onChange={handleChange} placeholder="e.g. 1500" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" required />
+              <input type="number" name="price" value={formData.price} onChange={handleChange} placeholder="e.g. 1500" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" required />
             </div>
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">Room Type <span className="text-red-500">*</span></label>
-              <input type="text" name="room_type" value={formData.room_type} onChange={handleChange} placeholder="e.g. Deluxe" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" required />
+              <input type="text" name="room_type" value={formData.room_type} onChange={handleChange} placeholder="e.g. Deluxe" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" required />
             </div>
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">Bed Type <span className="text-red-500">*</span></label>
-              <input type="text" name="bed_type" value={formData.bed_type} onChange={handleChange} placeholder="e.g. Double" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" required />
+              <input type="text" name="bed_type" value={formData.bed_type} onChange={handleChange} placeholder="e.g. Double" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" required />
             </div>
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">Guest Capability <span className="text-red-500">*</span></label>
-              <input type="number" name="guest_capability" value={formData.guest_capability} onChange={handleChange} placeholder="e.g. 2" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" required />
+              <input type="number" name="guest_capability" value={formData.guest_capability} onChange={handleChange} placeholder="e.g. 2" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" required />
             </div>
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">Cancellation Policy (hours) <span className="text-red-500">*</span></label>
-              <input type="text" name="cancellation" value={formData.cancellation} onChange={handleChange} placeholder="e.g. 24" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" required />
+              <input type="text" name="cancellation" value={formData.cancellation} onChange={handleChange} placeholder="e.g. 24" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" required />
             </div>
           </div>
           <p className="text-xs text-indigo-600 mt-4 italic">* Once created, you will be able to add pricing policies, location details, attributes, and media.</p>
@@ -559,7 +559,7 @@ export default function AdminHotelForm() {
 
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">Name of the hotel <span className="text-red-500">*</span></label>
-                <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Enter Title" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" required />
+                <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Enter Title" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" required />
               </div>
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">Content <span className="text-red-500">*</span></label>
@@ -570,23 +570,23 @@ export default function AdminHotelForm() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Time for check in</label>
-                  <input type="text" name="check_in" value={formData.check_in} onChange={handleTimeChange} maxLength="5" placeholder="Ex: 12:00" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                  <input type="text" name="check_in" value={formData.check_in} onChange={handleTimeChange} maxLength="5" placeholder="Ex: 12:00" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Time for check out</label>
-                  <input type="text" name="check_out" value={formData.check_out} onChange={handleTimeChange} maxLength="5" placeholder="Ex: 11:00" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                  <input type="text" name="check_out" value={formData.check_out} onChange={handleTimeChange} maxLength="5" placeholder="Ex: 11:00" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Room Type</label>
-                  <input type="text" name="room_type" value={formData.room_type} onChange={handleChange} placeholder="Room Type" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                  <input type="text" name="room_type" value={formData.room_type} onChange={handleChange} placeholder="Room Type" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Bed Type</label>
-                  <input type="text" name="bed_type" value={formData.bed_type} onChange={handleChange} placeholder="Bed Type" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                  <input type="text" name="bed_type" value={formData.bed_type} onChange={handleChange} placeholder="Bed Type" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Guest Capability</label>
-                  <input type="number" name="guest_capability" value={formData.guest_capability} onChange={handleChange} placeholder="1" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                  <input type="number" name="guest_capability" value={formData.guest_capability} onChange={handleChange} placeholder="1" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                 </div>
               </div>
             </div>
@@ -598,27 +598,27 @@ export default function AdminHotelForm() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Hotel Price *</label>
-                  <input type="number" name="price" value={formData.price} onChange={handleChange} className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" required />
+                  <input type="number" name="price" value={formData.price} onChange={handleChange} className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" required />
                 </div>
                 
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Breakfast</label>
-                  <select name="breakfast" value={formData.breakfast} onChange={handleChange} className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none bg-white">
+                  <select name="breakfast" value={formData.breakfast} onChange={handleChange} className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none bg-white">
                     <option value={1}>Breakfast included</option>
                     <option value={2}>No Breakfast</option>
                   </select>
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Minimum advance reservations</label>
-                  <input type="number" name="min_advance_reservations" value={formData.min_advance_reservations} onChange={handleChange} placeholder="Ex: 3" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                  <input type="number" name="min_advance_reservations" value={formData.min_advance_reservations} onChange={handleChange} placeholder="Ex: 3" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Minimum day stay requirements</label>
-                  <input type="number" name="min_stay" value={formData.min_stay} onChange={handleChange} placeholder="Ex: 2" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                  <input type="number" name="min_stay" value={formData.min_stay} onChange={handleChange} placeholder="Ex: 2" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Cancellation (hours)</label>
-                  <input type="text" name="cancellation" value={formData.cancellation} onChange={handleChange} placeholder="Cancellation hours" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                  <input type="text" name="cancellation" value={formData.cancellation} onChange={handleChange} placeholder="Cancellation hours" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                 </div>
               </div>
 
@@ -642,12 +642,12 @@ export default function AdminHotelForm() {
                           const newPolicies = [...formData.policies];
                           newPolicies[idx].title = e.target.value;
                           setFormData({...formData, policies: newPolicies});
-                        }} className="w-full px-3 py-1.5 text-sm rounded border border-gray-200 focus:ring-1 focus:ring-indigo-500 outline-none mb-2" />
+                        }} className="w-full px-3 py-1.5 text-sm rounded border border-gray-200 focus:ring-1 focus:ring-[#0081C9] outline-none mb-2" />
                         <textarea placeholder="Enter Content" value={policy.content} onChange={(e) => {
                           const newPolicies = [...formData.policies];
                           newPolicies[idx].content = e.target.value;
                           setFormData({...formData, policies: newPolicies});
-                        }} className="w-full px-3 py-1.5 text-sm rounded border border-gray-200 focus:ring-1 focus:ring-indigo-500 outline-none rows-2" />
+                        }} className="w-full px-3 py-1.5 text-sm rounded border border-gray-200 focus:ring-1 focus:ring-[#0081C9] outline-none rows-2" />
                       </div>
                       <button type="button" onClick={() => {
                         const newPolicies = formData.policies.filter((_, i) => i !== idx);
@@ -717,7 +717,7 @@ export default function AdminHotelForm() {
             <div className="space-y-4 animate-in fade-in duration-300">
               <div>
                 <label className="block text-xs font-semibold text-slate-700 mb-1">Address</label>
-                <input type="text" name="address" value={formData.address} onChange={handleChange} placeholder="Enter Hotel Address" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                <input type="text" name="address" value={formData.address} onChange={handleChange} placeholder="Enter Hotel Address" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
@@ -727,7 +727,7 @@ export default function AdminHotelForm() {
                       <Plus size={14} />
                     </button>
                   </label>
-                  <select name="country_id" value={formData.country_id} onChange={handleChange} className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none bg-white">
+                  <select name="country_id" value={formData.country_id} onChange={handleChange} className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none bg-white">
                     <option value="">Select Country</option>
                     {countries.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                   </select>
@@ -741,7 +741,7 @@ export default function AdminHotelForm() {
                       </button>
                     )}
                   </label>
-                  <select name="state_id" value={formData.state_id} onChange={handleChange} className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none bg-white" disabled={!formData.country_id}>
+                  <select name="state_id" value={formData.state_id} onChange={handleChange} className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none bg-white" disabled={!formData.country_id}>
                     <option value="">Select State</option>
                     {states.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
                   </select>
@@ -755,14 +755,14 @@ export default function AdminHotelForm() {
                       </button>
                     )}
                   </label>
-                  <select name="city_id" value={formData.city_id} onChange={handleChange} className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none bg-white" disabled={!formData.state_id}>
+                  <select name="city_id" value={formData.city_id} onChange={handleChange} className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none bg-white" disabled={!formData.state_id}>
                     <option value="">Select City</option>
                     {cities.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                   </select>
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Zip/Postal</label>
-                  <input type="text" name="zip_code" value={formData.zip_code} onChange={handleChange} placeholder="Zip/Postal" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                  <input type="text" name="zip_code" value={formData.zip_code} onChange={handleChange} placeholder="Zip/Postal" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                 </div>
               </div>
               
@@ -787,11 +787,11 @@ export default function AdminHotelForm() {
                 <div className="grid grid-cols-2 gap-4 mt-3">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Latitude</label>
-                    <input type="text" name="map_lat" value={formData.map_lat} onChange={handleChange} placeholder="Latitude" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none bg-slate-50" readOnly />
+                    <input type="text" name="map_lat" value={formData.map_lat} onChange={handleChange} placeholder="Latitude" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none bg-slate-50" readOnly />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Longitude</label>
-                    <input type="text" name="map_lng" value={formData.map_lng} onChange={handleChange} placeholder="Longitude" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none bg-slate-50" readOnly />
+                    <input type="text" name="map_lng" value={formData.map_lng} onChange={handleChange} placeholder="Longitude" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none bg-slate-50" readOnly />
                   </div>
                 </div>
               </div>
@@ -826,7 +826,7 @@ export default function AdminHotelForm() {
                                 : prev.attribute_terms.filter(t => t !== val)
                             }));
                           }}
-                          className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" 
+                          className="rounded border-gray-300 text-indigo-600 focus:ring-[#0081C9]" 
                         />
                         {term.name}
                       </label>
@@ -880,7 +880,7 @@ export default function AdminHotelForm() {
               
               <div className="pt-3 border-t border-slate-100">
                 <label className="block text-xs font-semibold text-slate-700 mb-1">YouTube Video URL</label>
-                <input type="text" name="youtube_video" value={formData.youtube_video} onChange={handleChange} placeholder="Paste YouTube URL" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                <input type="text" name="youtube_video" value={formData.youtube_video} onChange={handleChange} placeholder="Paste YouTube URL" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                 
                 <label className="block text-xs font-semibold text-slate-700 mt-3 mb-1">YouTube Video Thumbnail</label>
                 <input type="file" accept="image/*" onChange={handleYoutubeImageChange} className="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
@@ -896,11 +896,11 @@ export default function AdminHotelForm() {
                 <div className="space-y-3">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Meta Title</label>
-                    <input type="text" name="meta_title" value={formData.meta_title} onChange={handleChange} placeholder="Meta Title" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                    <input type="text" name="meta_title" value={formData.meta_title} onChange={handleChange} placeholder="Meta Title" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Meta Description</label>
-                    <textarea name="meta_desc" value={formData.meta_desc} onChange={handleChange} rows="2" placeholder="Meta Description" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+                    <textarea name="meta_desc" value={formData.meta_desc} onChange={handleChange} rows="2" placeholder="Meta Description" className="w-full px-3 py-1.5 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none"></textarea>
                   </div>
                 </div>
               </div>
@@ -943,7 +943,7 @@ export default function AdminHotelForm() {
                     value={modalInput} 
                     onChange={e => setModalInput(e.target.value)} 
                     placeholder={`Enter ${modalType} name`} 
-                    className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" 
+                    className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" 
                     autoFocus
                   />
                 </div>
@@ -1031,7 +1031,7 @@ export default function AdminHotelForm() {
                         Cancel
                       </button>
                     )}
-                    <button type="submit" disabled={attributeSaving} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50">
+                    <button type="submit" disabled={attributeSaving} className="px-4 py-2 bg-[#0081C9] hover:bg-[#0069a6] text-white rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50">
                       {attributeSaving ? 'Saving...' : attributeModalData.id ? 'Update' : 'Add'}
                     </button>
                   </div>

@@ -481,7 +481,7 @@ export default function AdminTransportForm() {
           <Link to="/admin/transports" className="px-5 py-2.5 text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 rounded-lg text-sm font-medium transition">
             Cancel
           </Link>
-          <button onClick={handleSubmit} disabled={saving} className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50">
+          <button onClick={handleSubmit} disabled={saving} className="flex items-center gap-2 bg-[#0081C9] hover:bg-[#0069a6] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50">
             <Save size={16} /> {saving ? 'Saving...' : 'Save Transport'}
           </button>
         </div>
@@ -524,11 +524,11 @@ export default function AdminTransportForm() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1">Title *</label>
-                      <input type="text" name="title" value={formData.title} onChange={handleChange} required placeholder="Name of the Transport" className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+                      <input type="text" name="title" value={formData.title} onChange={handleChange} required placeholder="Name of the Transport" className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#0081C9] outline-none" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1">URL Slug</label>
-                      <input type="text" name="slug" value={formData.slug} onChange={handleChange} placeholder="e.g. airport-taxi-transfer" className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none bg-slate-50" />
+                      <input type="text" name="slug" value={formData.slug} onChange={handleChange} placeholder="e.g. airport-taxi-transfer" className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#0081C9] outline-none bg-slate-50" />
                     </div>
                   </div>
 
@@ -541,7 +541,7 @@ export default function AdminTransportForm() {
 
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1">YouTube Video Link</label>
-                    <input type="text" name="youtube_video" value={formData.youtube_video} onChange={handleChange} placeholder="https://www.youtube.com/watch?v=..." className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
+                    <input type="text" name="youtube_video" value={formData.youtube_video} onChange={handleChange} placeholder="https://www.youtube.com/watch?v=..." className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#0081C9] outline-none" />
                   </div>
 
                   {/* FAQs */}
@@ -556,8 +556,8 @@ export default function AdminTransportForm() {
                       {formData.faqs.map((faq, idx) => (
                         <div key={idx} className="flex gap-4 p-4 border border-slate-200 rounded bg-white">
                           <div className="flex-1 flex flex-col gap-4">
-                            <input type="text" placeholder="Enter Question" value={faq.title} onChange={(e) => handleArrayChange('faqs', idx, 'title', e.target.value)} className="w-full px-3 py-2 border rounded text-sm focus:ring-1 focus:ring-indigo-500 outline-none" />
-                            <textarea placeholder="Enter Answer" value={faq.desc} onChange={(e) => handleArrayChange('faqs', idx, 'desc', e.target.value)} className="w-full px-3 py-2 border rounded text-sm focus:ring-1 focus:ring-indigo-500 outline-none" rows="2" />
+                            <input type="text" placeholder="Enter Question" value={faq.title} onChange={(e) => handleArrayChange('faqs', idx, 'title', e.target.value)} className="w-full px-3 py-2 border rounded text-sm focus:ring-1 focus:ring-[#0081C9] outline-none" />
+                            <textarea placeholder="Enter Answer" value={faq.desc} onChange={(e) => handleArrayChange('faqs', idx, 'desc', e.target.value)} className="w-full px-3 py-2 border rounded text-sm focus:ring-1 focus:ring-[#0081C9] outline-none" rows="2" />
                           </div>
                           <button type="button" onClick={() => removeArrayItem('faqs', idx)} className="text-red-500 hover:text-red-700 h-fit p-1 bg-red-50 rounded">
                             <X size={18} />
@@ -815,7 +815,7 @@ export default function AdminTransportForm() {
                         <label className="block text-sm font-medium text-slate-700">Transport From</label>
                         <button type="button" onClick={() => setShowTransportLocModal(true)} className="bg-indigo-100 text-indigo-600 hover:bg-indigo-600 hover:text-white w-6 h-6 flex items-center justify-center rounded-full transition"><Plus size={14} /></button>
                       </div>
-                      <select name="transport_from" value={formData.transport_from || ''} onChange={handleChange} className="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                      <select name="transport_from" value={formData.transport_from || ''} onChange={handleChange} className="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-[#0081C9] bg-white">
                         <option value="">Select Location</option>
                         {transportLocations.map(l => <option key={l.id} value={l.name}>{l.name}</option>)}
                       </select>
@@ -825,14 +825,14 @@ export default function AdminTransportForm() {
                         <label className="block text-sm font-medium text-slate-700">Transport To</label>
                         <button type="button" onClick={() => setShowTransportLocModal(true)} className="bg-indigo-100 text-indigo-600 hover:bg-indigo-600 hover:text-white w-6 h-6 flex items-center justify-center rounded-full transition"><Plus size={14} /></button>
                       </div>
-                      <select name="transport_to" value={formData.transport_to || ''} onChange={handleChange} className="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+                      <select name="transport_to" value={formData.transport_to || ''} onChange={handleChange} className="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-[#0081C9] bg-white">
                         <option value="">Select Location</option>
                         {transportLocations.map(l => <option key={l.id} value={l.name}>{l.name}</option>)}
                       </select>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1">Distance (km)</label>
-                      <input type="text" name="distance_km" value={formData.distance_km || ''} onChange={handleChange} className="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-indigo-500" placeholder="e.g. 500" />
+                      <input type="text" name="distance_km" value={formData.distance_km || ''} onChange={handleChange} className="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-[#0081C9]" placeholder="e.g. 500" />
                     </div>
                   </div>
                 </div>
@@ -948,7 +948,7 @@ export default function AdminTransportForm() {
               <div className="mb-6 flex-shrink-0">
                 <label className="block text-sm font-semibold text-slate-700 mb-2">Type Name</label>
                 <input type="text" value={newTypeName} onChange={(e) => setNewTypeName(e.target.value)} placeholder="E.g., Luxury SUV, Sedan" className="w-full border border-slate-300 rounded-lg px-4 py-2 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 mb-4 transition" />
-                <button onClick={handleAddType} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition shadow-md hover:shadow-lg">Save Type</button>
+                <button onClick={handleAddType} className="w-full bg-[#0081C9] hover:bg-[#0069a6] text-white font-medium py-2.5 rounded-lg transition shadow-md hover:shadow-lg">Save Type</button>
               </div>
 
               <div className="flex-1 overflow-y-auto border-t pt-4">
@@ -1000,7 +1000,7 @@ export default function AdminTransportForm() {
               <label className="block text-sm font-semibold text-slate-700 mb-2">Vehicle Name</label>
               <input type="text" value={newVehicleName} onChange={(e) => setNewVehicleName(e.target.value)} placeholder="E.g., Range Rover, Mercedes" className="w-full border border-slate-300 rounded-lg px-4 py-2 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 mb-6 transition" />
               
-              <button onClick={handleAddVehicle} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition shadow-md hover:shadow-lg">Save Vehicle</button>
+              <button onClick={handleAddVehicle} className="w-full bg-[#0081C9] hover:bg-[#0069a6] text-white font-medium py-2.5 rounded-lg transition shadow-md hover:shadow-lg">Save Vehicle</button>
             </div>
           </div>
         </div>
@@ -1017,7 +1017,7 @@ export default function AdminTransportForm() {
               <div className="mb-6 flex-shrink-0">
                 <label className="block text-sm font-semibold text-slate-700 mb-2">Location Name</label>
                 <input type="text" value={newLocationName} onChange={(e) => setNewLocationName(e.target.value)} placeholder="E.g., Kannur, Sajek" className="w-full border border-slate-300 rounded-lg px-4 py-2 outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 mb-4 transition" />
-                <button onClick={handleAddLocation} className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition shadow-md hover:shadow-lg">Save Location</button>
+                <button onClick={handleAddLocation} className="w-full bg-[#0081C9] hover:bg-[#0069a6] text-white font-medium py-2.5 rounded-lg transition shadow-md hover:shadow-lg">Save Location</button>
               </div>
 
               <div className="flex-1 overflow-y-auto border-t pt-4">

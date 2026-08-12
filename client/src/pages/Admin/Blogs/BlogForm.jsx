@@ -162,7 +162,7 @@ export default function BlogForm() {
           <button 
             onClick={handleSave} 
             disabled={saving}
-            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50"
+            className="flex items-center gap-2 bg-[#0081C9] hover:bg-[#0069a6] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition shadow-sm disabled:opacity-50"
           >
             <Save size={16} />
             {saving ? 'Saving...' : 'Save Changes'}
@@ -206,7 +206,7 @@ export default function BlogForm() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Title <span className="text-red-500">*</span></label>
-                    <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Enter Title" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" required />
+                    <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Enter Title" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" required />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">Category <span className="text-red-500">*</span></label>
@@ -215,7 +215,7 @@ export default function BlogForm() {
                         name="category_id"
                         value={formData.category_id}
                         onChange={handleChange}
-                        className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none"
+                        className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none"
                         required
                       >
                         <option value="">Select Option</option>
@@ -237,7 +237,7 @@ export default function BlogForm() {
 
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Tags</label>
-                  <input type="text" name="tags" value={formData.tags} onChange={handleChange} placeholder="Enter Tags (comma separated)" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                  <input type="text" name="tags" value={formData.tags} onChange={handleChange} placeholder="Enter Tags (comma separated)" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                 </div>
 
                 <div>
@@ -289,15 +289,15 @@ export default function BlogForm() {
                     <div className="space-y-4">
                       <div>
                         <label className="block text-xs font-semibold text-slate-700 mb-1">Meta Title <span className="text-red-500">*</span></label>
-                        <input type="text" name="meta_title" value={formData.meta_title} onChange={handleChange} placeholder="Meta Title" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                        <input type="text" name="meta_title" value={formData.meta_title} onChange={handleChange} placeholder="Meta Title" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                       </div>
                       <div>
                         <label className="block text-xs font-semibold text-slate-700 mb-1">Meta Keyward</label>
-                        <input type="text" name="meta_keyward" value={formData.meta_keyward} onChange={handleChange} placeholder="Meta Keyward" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none" />
+                        <input type="text" name="meta_keyward" value={formData.meta_keyward} onChange={handleChange} placeholder="Meta Keyward" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none" />
                       </div>
                       <div>
                         <label className="block text-xs font-semibold text-slate-700 mb-1">Meta Description</label>
-                        <textarea name="meta_description" value={formData.meta_description} onChange={handleChange} rows="3" placeholder="Meta Description" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+                        <textarea name="meta_description" value={formData.meta_description} onChange={handleChange} rows="3" placeholder="Meta Description" className="w-full px-3 py-2 text-sm rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#0081C9] outline-none"></textarea>
                       </div>
                     </div>
                   )}
