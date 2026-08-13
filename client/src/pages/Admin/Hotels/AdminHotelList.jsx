@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Pagination from '../../../components/Pagination';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import { Search, Plus, SlidersHorizontal, Edit, Eye, Trash2 } from 'lucide-react';
@@ -17,6 +18,8 @@ export default function AdminHotelList() {
   const { token } = useAuth();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
@@ -55,6 +58,8 @@ export default function AdminHotelList() {
     h.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     h.location.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const paginatedData = filteredHotels.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
     <div className="p-4 md:p-4 lg:p-4 bg-[#F4F6F9] min-h-full font-['Inter',sans-serif]">
@@ -141,10 +146,10 @@ export default function AdminHotelList() {
             </thead>
             <tbody className="divide-y divide-gray-100 text-gray-700">
               {filteredHotels.length > 0 ? (
-                filteredHotels.map((hotel) => (
+                paginatedData.map((hotel) => (
                   <tr key={hotel.id} className="hover:bg-gray-50/50 transition">
                     <td className="px-6 py-4">{hotel.sn}</td>
-                    <td className="px-6 py-4 font-medium text-gray-900">{hotel.name}</td>
+                    <td className="px-6 py-4 font-medium text-gray-900" title={hotel.name}>{hotel.name?.length > 20 ? hotel.name.substring(0, 20) + '...' : hotel.name}</td>
                     <td className="px-6 py-4 text-gray-500">{hotel.location}</td>
                     <td className="px-6 py-4 font-medium">₹{hotel.price?.toLocaleString()}</td>
                     <td className="px-6 py-4">
@@ -183,6 +188,7 @@ export default function AdminHotelList() {
               )}
             </tbody>
           </table>
+        <div className="p-4 border-t border-gray-100 bg-white"><Pagination align="right" currentPage={currentPage} totalPages={Math.ceil(filteredHotels.length / ITEMS_PER_PAGE)} onPageChange={setCurrentPage} /></div>
         </div>
       </div>
 

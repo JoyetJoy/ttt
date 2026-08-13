@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 export default function VisaList() {
   const [visas, setVisas] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 9;
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/visas`)
@@ -19,6 +21,8 @@ export default function VisaList() {
   }, []);
 
   if (loading) return <div className="pt-32 pb-32 text-center flex justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0081C9]"></div></div>;
+
+  const paginatedData = visas.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
     <>

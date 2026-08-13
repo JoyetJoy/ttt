@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Pagination from '../../../components/Pagination';
 import { useAuth } from '../../../context/AuthContext';
 import { Search, Eye, Edit, Trash2 } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -7,6 +8,8 @@ export default function AdminCustomerList() {
   const { token } = useAuth();
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
   const [search, setSearch] = useState('');
 
   useEffect(() => {
@@ -34,6 +37,8 @@ export default function AdminCustomerList() {
     (c.email && c.email.toLowerCase().includes(search.toLowerCase())) ||
     (c.phone && c.phone.includes(search))
   ) : [];
+
+  const paginatedData = filteredCustomers.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
     <div className="p-4 md:p-6 lg:p-8 bg-[#F4F6F9] min-h-full font-['Inter',sans-serif]">
@@ -75,7 +80,7 @@ export default function AdminCustomerList() {
                   </td>
                 </tr>
               ) : filteredCustomers.length > 0 ? (
-                filteredCustomers.map((customer) => (
+                paginatedData.map((customer) => (
                   <tr key={customer.id} className="hover:bg-slate-50/50 transition-colors">
                     <td className="py-4 px-6 text-sm font-medium text-slate-800">
                       {customer.fname || ''} {customer.lname || ''}
@@ -112,6 +117,7 @@ export default function AdminCustomerList() {
               )}
             </tbody>
           </table>
+        <div className="p-4 border-t border-gray-100 bg-white"><Pagination align="right" currentPage={currentPage} totalPages={Math.ceil(filteredCustomers.length / ITEMS_PER_PAGE)} onPageChange={setCurrentPage} /></div>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Pagination from '../../components/Pagination';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function TourList() {
@@ -57,6 +58,8 @@ export default function TourList() {
   )].sort();
 
   if (loading) return <div className="pt-32 text-center text-gray-500 font-medium">Loading tours...</div>;
+
+  const paginatedData = sortedTours.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
     <>
@@ -154,7 +157,7 @@ export default function TourList() {
                   <h4 className="text-[22px] font-extrabold text-gray-900 inline-block border-b border-black pb-0.5">Most Popular</h4>
                 </div>
                 <div className="flex flex-col gap-5">
-                  {tours.slice(0, 4).map((tour, i) => (
+                  {(Array.isArray(tours) ? tours : []).slice(0, 4).map((tour, i) => (
                     <div key={`pop-${tour.id}`} className="flex gap-4 items-center group cursor-pointer">
                       <img src={tour.features_image || 'https://via.placeholder.com/80'} className="w-20 h-16 rounded-lg object-cover shadow-sm group-hover:opacity-90 transition-opacity" alt={tour.title} />
                       <div className="flex-1">
@@ -175,7 +178,7 @@ export default function TourList() {
 
               {/* Top Bar */}
               <div className="flex justify-between items-center mb-8 bg-white p-4 rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-gray-100/50">
-                <div className="text-gray-500 font-medium text-sm">Showing <span className="font-extrabold text-gray-900">{sortedTours.length}</span> Result</div>
+                <div className="text-gray-500 font-medium text-sm">Showing <span className="font-extrabold text-gray-900">{totalItems}</span> Result</div>
                 <div className="relative w-[220px]">
                   {/* Button */}
                   <button
@@ -290,6 +293,10 @@ export default function TourList() {
                   );
                 })}
               </div>
+
+              <div className="w-full mt-10 flex justify-center">
+                  <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
+                </div>
 
             </div>
           </div>

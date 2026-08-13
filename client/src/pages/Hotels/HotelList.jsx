@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 export default function HotelList() {
   const [hotels, setHotels] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 9;
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/hotels`)
@@ -19,6 +21,8 @@ export default function HotelList() {
   }, []);
 
   if (loading) return <div className="pt-32 text-center">Loading hotels...</div>;
+
+  const paginatedData = hotels.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
     <div className="pt-24 pb-32 bg-gray-50 min-h-screen">

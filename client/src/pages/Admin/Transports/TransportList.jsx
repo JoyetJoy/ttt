@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Pagination from '../../../components/Pagination';
 import { useAuth } from '../../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import { Search, Plus, Edit, Trash2, Eye } from 'lucide-react';
@@ -18,6 +19,8 @@ export default function AdminTransportList() {
   const [stats, setStats] = useState({});
   const [transports, setTransports] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
@@ -72,6 +75,8 @@ export default function AdminTransportList() {
     t.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     t.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const paginatedData = filteredTransports.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
     <div className="bg-[#F4F6F9] min-h-full font-['Inter',sans-serif] ">
@@ -148,7 +153,7 @@ export default function AdminTransportList() {
             </thead>
             <tbody className="divide-y divide-gray-100 text-gray-700">
               {filteredTransports.length > 0 ? (
-                filteredTransports.map((t, index) => (
+                paginatedData.map((t, index) => (
                   <tr key={t.id} className="hover:bg-gray-50/50 transition">
                     <td className="px-6 py-3">{index + 1}</td>
                     <td className="px-6 py-3 font-medium text-gray-900">{t.title || t.name}</td>
@@ -196,6 +201,7 @@ export default function AdminTransportList() {
               )}
             </tbody>
           </table>
+        <div className="p-4 border-t border-gray-100 bg-white"><Pagination align="right" currentPage={currentPage} totalPages={Math.ceil(filteredTransports.length / ITEMS_PER_PAGE)} onPageChange={setCurrentPage} /></div>
         </div>
       </div>
     </div>

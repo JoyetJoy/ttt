@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Pagination from '../../../components/Pagination';
 import { useAuth } from '../../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import { Search, Plus, Edit, Trash2, Eye } from 'lucide-react';
@@ -7,6 +8,8 @@ export default function AdminActivityList() {
   const { token } = useAuth();
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
@@ -30,7 +33,7 @@ export default function AdminActivityList() {
     if (!window.confirm('Are you sure you want to delete this activity?')) return;
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/activities/${id}`, {
+      const res = await fetch(`/api/activities/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -73,6 +76,8 @@ export default function AdminActivityList() {
     </g>
   </svg>
 );
+
+  const paginatedData = filteredActivities.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
     <div className="bg-[#F4F6F9] min-h-full font-['Inter',sans-serif]">
@@ -147,10 +152,10 @@ export default function AdminActivityList() {
             </thead>
             <tbody className="divide-y divide-gray-100 text-gray-700">
               {filteredActivities.length > 0 ? (
-                filteredActivities.map((activity, index) => (
+                paginatedData.map((activity, index) => (
                   <tr key={activity.id} className="hover:bg-gray-50/50 transition">
                     <td className="px-6 py-2">{index + 1}</td>
-                    <td className="px-6 py-2 font-medium text-gray-900">{activity.title}</td>
+                    <td className="px-6 py-2 font-medium text-gray-900" title={activity.title}>{activity.title?.length > 20 ? activity.title.substring(0, 20) + '...' : activity.title}</td>
                     <td className="px-6 py-2 text-gray-500">₹{activity.sale_price > 0 ? activity.sale_price : activity.price}</td>
                     <td className="px-6 py-2">
                       {activity.status === 1 ? (
@@ -183,6 +188,7 @@ export default function AdminActivityList() {
               )}
             </tbody>
           </table>
+        <div className="p-4 border-t border-gray-100 bg-white"><Pagination align="right" currentPage={currentPage} totalPages={Math.ceil(filteredActivities.length / ITEMS_PER_PAGE)} onPageChange={setCurrentPage} /></div>
         </div>
       </div>
     </div>

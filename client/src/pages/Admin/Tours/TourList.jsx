@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Pagination from '../../../components/Pagination';
 import { useAuth } from '../../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import { Search, Plus, Edit, Trash2, Eye } from 'lucide-react';
@@ -18,15 +19,31 @@ export default function AdminTourList() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const ITEMS_PER_PAGE = 10;
 
   const fetchTours = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/tours`, {
+      setLoading(true);
+      const params = new URLSearchParams({
+        page: currentPage,
+        limit: ITEMS_PER_PAGE,
+        search: searchTerm
+      });
+
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/admin/tours?${params.toString()}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (!res.ok) throw new Error('Failed to fetch data');
       const json = await res.json();
-      setData(json);
+      
+      if (json.data) {
+        setData({ stats: json.stats, tours: json.data });
+        if (json.pagination) setTotalPages(json.pagination.totalPages);
+      } else {
+        setData(json);
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -35,8 +52,10 @@ export default function AdminTourList() {
   };
 
   useEffect(() => {
-    fetchTours();
-  }, [token]);
+    if (token) {
+      fetchTours();
+    }
+  }, [token, currentPage, searchTerm]);
 
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this tour?')) return;
@@ -74,6 +93,7 @@ export default function AdminTourList() {
     t.location.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  
   return (
     <div className="bg-[#F4F6F9] min-h-full font-['Inter',sans-serif]">
 
@@ -148,11 +168,11 @@ export default function AdminTourList() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 text-gray-700">
-              {filteredTours.length > 0 ? (
-                filteredTours.map((tour) => (
+              {tours.length > 0 ? (
+                tours.map((tour) => (
                   <tr key={tour.id} className="hover:bg-gray-50/50 transition">
                     <td className="px-6 py-2">{tour.sn}</td>
-                    <td className="px-6 py-2 font-medium text-gray-900">{tour.name}</td>
+                    <td className="px-6 py-2 font-medium text-gray-900" title={tour.name}>{tour.name?.length > 20 ? tour.name.substring(0, 20) + '...' : tour.name}</td>
                     <td className="px-6 py-2 text-gray-500">{tour.category}</td>
                     <td className="px-6 py-2 text-gray-500">{tour.location}</td>
                     <td className="px-6 py-2 font-medium">₹{tour.price?.toLocaleString()}</td>
@@ -187,6 +207,7 @@ export default function AdminTourList() {
               )}
             </tbody>
           </table>
+        <div className="p-4 border-t border-gray-100 bg-white"><Pagination align="right" currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} /></div>
         </div>
       </div>
     </div>

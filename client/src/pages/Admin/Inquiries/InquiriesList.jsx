@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Pagination from '../../../components/Pagination';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Eye } from 'lucide-react';
@@ -27,6 +28,8 @@ export default function InquiriesList() {
   const [inquiries, setInquiries] = useState([]);
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
   const [filterType, setFilterType] = useState('All');
   const navigate = useNavigate();
   const { token } = useAuth();
@@ -70,6 +73,8 @@ export default function InquiriesList() {
   const filteredInquiries = filterType === 'All' 
     ? safeInquiries 
     : safeInquiries.filter(i => i.type === filterType);
+
+  const paginatedData = filteredInquiries.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
     <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
@@ -167,7 +172,7 @@ export default function InquiriesList() {
                     </td>
                   </tr>
                 ) : (
-                  filteredInquiries.map((inquiry) => (
+                  paginatedData.map((inquiry) => (
                     <tr key={inquiry.id} className="hover:bg-gray-50 transition-colors">
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium">
                         {new Date(inquiry.created_at || Date.now()).toLocaleDateString()}
@@ -216,7 +221,8 @@ export default function InquiriesList() {
                 )}
               </tbody>
             </table>
-          </div>
+          <div className="p-4 border-t border-gray-100 bg-white"><Pagination align="right" currentPage={currentPage} totalPages={Math.ceil(filteredInquiries.length / ITEMS_PER_PAGE)} onPageChange={setCurrentPage} /></div>
+        </div>
         )}
       </div>
     </div>

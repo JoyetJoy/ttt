@@ -5,6 +5,8 @@ import axios from 'axios';
 export default function BlogList() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 9;
   const [searchQuery, setSearchQuery] = useState('');
 
   // Dummy categories based on screenshot
@@ -49,6 +51,8 @@ export default function BlogList() {
   const filteredBlogs = blogs.filter(blog =>
     blog.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const paginatedData = filteredBlogs.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
     <>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Pagination from '../../../components/Pagination';
 import { useAuth } from '../../../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search, Plus, Edit, Trash2, X } from 'lucide-react';
@@ -7,6 +8,8 @@ export default function AdminPageList() {
   const { token } = useAuth();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
   const [searchTerm, setSearchTerm] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [newPageName, setNewPageName] = useState('');
@@ -137,6 +140,8 @@ export default function AdminPageList() {
   </svg>
 );
 
+  const paginatedData = filteredPages.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+
   return (
     <div className=" bg-[#F4F6F9] min-h-full font-['Inter',sans-serif]">
       {/* Stat Cards */}
@@ -192,7 +197,7 @@ export default function AdminPageList() {
             </thead>
             <tbody className="divide-y divide-gray-100 text-gray-700">
               {filteredPages.length > 0 ? (
-                filteredPages.map((page) => (
+                paginatedData.map((page) => (
                   <tr key={page.id} className="hover:bg-gray-50/50 transition">
                     <td className="px-6 py-2">{page.sn}</td>
                     <td className="px-6 py-2 font-medium text-gray-900">{page.page_name}</td>
@@ -228,6 +233,7 @@ export default function AdminPageList() {
               )}
             </tbody>
           </table>
+        <div className="p-4 border-t border-gray-100 bg-white"><Pagination align="right" currentPage={currentPage} totalPages={Math.ceil(filteredPages.length / ITEMS_PER_PAGE)} onPageChange={setCurrentPage} /></div>
         </div>
       </div>
 

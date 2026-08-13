@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Pagination from '../../../components/Pagination';
 import { useAuth } from '../../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import { Search, Plus, Edit, Trash2 } from 'lucide-react';
@@ -7,6 +8,8 @@ export default function AdminDestinationList() {
   const { token } = useAuth();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
   const [searchTerm, setSearchTerm] = useState('');
 
   const fetchDestinations = async () => {
@@ -108,6 +111,8 @@ export default function AdminDestinationList() {
   </svg>
 );
 
+  const paginatedData = filteredDestinations.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+
   return (
     <div className=" bg-[#F4F6F9] min-h-full font-['Inter',sans-serif]">
 
@@ -181,10 +186,10 @@ export default function AdminDestinationList() {
             </thead>
             <tbody className="divide-y divide-gray-100 text-gray-700">
               {filteredDestinations.length > 0 ? (
-                filteredDestinations.map((dest) => (
+                paginatedData.map((dest) => (
                   <tr key={dest.id} className="hover:bg-gray-50/50 transition">
                     <td className="px-6 py-2">{dest.sn}</td>
-                    <td className="px-6 py-2 font-medium text-gray-900">{dest.name}</td>
+                    <td className="px-6 py-2 font-medium text-gray-900" title={dest.name}>{dest.name?.length > 20 ? dest.name.substring(0, 20) + '...' : dest.name}</td>
                     <td className="px-6 py-2 text-gray-500">{dest.city}</td>
                     <td className="px-6 py-2">
                       <label className="relative inline-flex items-center cursor-pointer">
@@ -218,6 +223,7 @@ export default function AdminDestinationList() {
               )}
             </tbody>
           </table>
+        <div className="p-4 border-t border-gray-100 bg-white"><Pagination align="right" currentPage={currentPage} totalPages={Math.ceil(filteredDestinations.length / ITEMS_PER_PAGE)} onPageChange={setCurrentPage} /></div>
         </div>
       </div>
     </div>

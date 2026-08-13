@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 export default function DestinationList() {
   const [destinations, setDestinations] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 9;
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/destinations`)
@@ -28,6 +30,8 @@ export default function DestinationList() {
   }, []);
 
   if (loading) return <div className="pt-32 text-center text-gray-500 font-medium">Loading destinations...</div>;
+
+  const paginatedData = destinations.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
     <>

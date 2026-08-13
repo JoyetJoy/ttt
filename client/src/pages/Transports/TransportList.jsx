@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 export default function TransportList() {
   const [transports, setTransports] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 9;
   const [sortOpen, setSortOpen] = useState(false);
   const [sortOption, setSortOption] = useState('Default Sorting');
   const [searchQuery, setSearchQuery] = useState('');
@@ -38,6 +40,8 @@ export default function TransportList() {
   });
 
   if (loading) return <div className="pt-32 text-center text-gray-500 font-medium">Loading transports...</div>;
+
+  const paginatedData = sortedTransports.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
     <>

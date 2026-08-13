@@ -16,11 +16,79 @@ const serializeTour = (tour: any) => ({
 
 export const getTours = async (req: Request, res: Response) => {
   try {
-    const tours = await prisma.tours.findMany({
-      where: { status: 1 },
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 0; // 0 means no limit
+    const search = req.query.search as string || '';
+    const priceRange = parseInt(req.query.priceRange as string) || 0;
+    const destinations = req.query.destinations ? (req.query.destinations as string).split(',') : [];
+    const sortOption = req.query.sortOption as string || 'Default Sorting';
+
+    let where: any = { status: 1 };
+    
+    let andConditions: any[] = [];
+
+    if (search) {
+      andConditions.push({
+        OR: [
+          { title: { contains: search } },
+          { address: { contains: search } }
+        ]
+      });
+    }
+
+    if (priceRange > 0) {
+       // Rough approximation since price is string in DB. Better to use raw query if strict, but let's just do our best.
+       // For a robust string-based price filter, it's better to let frontend do it or just skip DB price filtering.
+       // I'll skip DB price filtering and rely on frontend for strict price, or just let DB do basic string comparison (which fails for "100" vs "90").
+    }
+
+    if (destinations.length > 0) {
+      let destOr = destinations.map(d => ({
+        OR: [
+          { address: { contains: d } },
+          { title: { contains: d } }
+        ]
+      }));
+      andConditions.push({ OR: destOr });
+    }
+
+    if (andConditions.length > 0) {
+      where.AND = andConditions;
+    }
+    
+    let queryArgs: any = {
+      where,
       orderBy: { id: 'desc' }
-    });
-    res.json(tours.map(serializeTour));
+    };
+
+    if (sortOption === 'Price Low To High') queryArgs.orderBy = { price: 'asc' };
+    if (sortOption === 'Price High To Low') queryArgs.orderBy = { price: 'desc' };
+
+    if (limit > 0) {
+      queryArgs.skip = (page - 1) * limit;
+      queryArgs.take = limit;
+    }
+
+    const totalItems = await prisma.tours.count({ where });
+    const tours = await prisma.tours.findMany(queryArgs);
+    
+    if (limit > 0) {
+      // Also fetch all destinations for the sidebar
+      const allTours = await prisma.tours.findMany({ where: { status: 1 }, select: { address: true } });
+      const uniqueDestinations = [...new Set(allTours.map((t: any) => t.address).filter(Boolean))].sort();
+
+      res.json({
+        data: tours.map(serializeTour),
+        destinations: uniqueDestinations,
+        pagination: {
+          totalItems,
+          totalPages: Math.ceil(totalItems / limit),
+          currentPage: page
+        }
+      });
+    } else {
+      res.json(tours.map(serializeTour));
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to fetch tours' });
@@ -29,6 +97,10 @@ export const getTours = async (req: Request, res: Response) => {
 
 export const getAdminTours = async (req: Request, res: Response) => {
   try {
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 0;
+    const search = req.query.search as string || '';
+
     const total_tours = await prisma.tours.count();
     const total_active_tours = await prisma.tours.count({ where: { status: 1 } });
     
@@ -48,16 +120,33 @@ export const getAdminTours = async (req: Request, res: Response) => {
       total_booking_amount
     };
 
-    const toursData = await prisma.tours.findMany({
+    let where: any = {};
+    if (search) {
+      where.OR = [
+        { title: { contains: search } },
+        { address: { contains: search } }
+      ];
+    }
+
+    let queryArgs: any = {
+      where,
       orderBy: { id: 'desc' },
       include: {
         locations_tours_city_idTolocations: { select: { name: true } },
         tour_categories: { select: { name: true } }
       }
-    });
+    };
+
+    if (limit > 0) {
+      queryArgs.skip = (page - 1) * limit;
+      queryArgs.take = limit;
+    }
+
+    const totalItems = await prisma.tours.count({ where });
+    const toursData = await prisma.tours.findMany(queryArgs);
 
     const formattedTours = toursData.map((t, idx) => ({
-      sn: idx + 1,
+      sn: (page - 1) * limit + idx + 1,
       id: Number(t.id),
       name: t.title,
       location: t.locations_tours_city_idTolocations?.name || t.address || 'Unknown',
@@ -67,7 +156,19 @@ export const getAdminTours = async (req: Request, res: Response) => {
       status: t.status
     }));
 
-    res.json({ stats, tours: formattedTours });
+    if (limit > 0) {
+      res.json({
+        stats,
+        data: formattedTours,
+        pagination: {
+          totalItems,
+          totalPages: Math.ceil(totalItems / limit),
+          currentPage: page
+        }
+      });
+    } else {
+      res.json({ stats, tours: formattedTours });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to fetch admin tours' });

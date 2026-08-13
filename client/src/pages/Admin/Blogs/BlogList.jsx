@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Pagination from '../../../components/Pagination';
 import { useAuth } from '../../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import { Search, Plus, Edit, Trash2 } from 'lucide-react';
@@ -18,6 +19,8 @@ export default function BlogList() {
   const { token } = useAuth();
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
   const [searchTerm, setSearchTerm] = useState('');
 
   const fetchBlogs = async () => {
@@ -92,6 +95,8 @@ export default function BlogList() {
   const activeCount = safeBlogs.filter(b => b.status === 1).length;
   const pendingCount = safeBlogs.filter(b => b.status === 0).length;
   const categoriesCount = new Set(safeBlogs.map(b => b.category_id)).size;
+
+  const paginatedData = filteredBlogs.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
     <div className="min-h-full font-['Inter',sans-serif]">
@@ -172,7 +177,7 @@ export default function BlogList() {
             </thead>
             <tbody className="divide-y divide-gray-100 text-gray-700">
               {filteredBlogs.length > 0 ? (
-                filteredBlogs.map((blog, index) => (
+                paginatedData.map((blog, index) => (
                   <tr key={blog.id} className="hover:bg-gray-50/50 transition bg-white">
                     <td className="px-6 py-4">{index + 1}</td>
                     <td className="px-6 py-4">
@@ -180,7 +185,7 @@ export default function BlogList() {
                         {blog.image && <img src={blog.image} alt={blog.title} className="h-full w-full object-cover" />}
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-gray-900">{blog.title}</td>
+                    <td className="px-6 py-4 text-gray-900" title={blog.title}>{blog.title?.length > 20 ? blog.title.substring(0, 20) + '...' : blog.title}</td>
                     <td className="px-6 py-4 text-gray-500">{blog.blog_categories?.name || 'Uncategorized'}</td>
                     <td className="px-6 py-4">
                       <label className="relative inline-flex items-center cursor-pointer">
@@ -214,6 +219,7 @@ export default function BlogList() {
               )}
             </tbody>
           </table>
+        <div className="p-4 border-t border-gray-100 bg-white"><Pagination align="right" currentPage={currentPage} totalPages={Math.ceil(filteredBlogs.length / ITEMS_PER_PAGE)} onPageChange={setCurrentPage} /></div>
         </div>
       </div>
     </div>

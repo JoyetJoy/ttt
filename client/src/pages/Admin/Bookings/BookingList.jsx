@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Pagination from '../../../components/Pagination';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../../context/AuthContext';
@@ -17,6 +18,8 @@ const CardBgSvg = () => (
 export default function BookingList() {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
   const [searchTerm, setSearchTerm] = useState('');
   const { user } = useAuth();
 
@@ -48,6 +51,8 @@ export default function BookingList() {
   const activeBookings = bookings.filter(b => b.status === 3).length;
   const pendingBookings = bookings.filter(b => b.status === 1).length;
   const totalAmount = bookings.reduce((sum, b) => sum + (Number(b.total_amount) || 0), 0);
+
+  const paginatedData = filteredBookings.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
     <div className="bg-[#F4F6F9] min-h-full font-['Inter',sans-serif]">
@@ -138,7 +143,7 @@ export default function BookingList() {
                   </td>
                 </tr>
               ) : (
-                filteredBookings.map((b, index) => (
+                paginatedData.map((b, index) => (
                   <tr key={b.id} className="hover:bg-gray-50/50 transition-colors">
                     <td className="px-6 py-4">{index + 1}</td>
                     <td className="px-6 py-4 font-medium">{b.order_number}</td>
@@ -147,7 +152,7 @@ export default function BookingList() {
                       <div className="text-xs text-gray-400">{b.customer_email || b.customer_phone}</div>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="line-clamp-1">{b.product_name}</div>
+                      <div title={b.product_name}>{b.product_name?.length > 20 ? b.product_name.substring(0, 20) + '...' : b.product_name}</div>
                       <div className="text-xs text-gray-400 uppercase">{b.product_type}</div>
                     </td>
                     <td className="px-6 py-4">{b.start_date || 'N/A'}</td>
@@ -172,6 +177,7 @@ export default function BookingList() {
               )}
             </tbody>
           </table>
+        <div className="p-4 border-t border-gray-100 bg-white"><Pagination align="right" currentPage={currentPage} totalPages={Math.ceil(filteredBookings.length / ITEMS_PER_PAGE)} onPageChange={setCurrentPage} /></div>
         </div>
       </div>
     </div>
