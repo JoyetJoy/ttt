@@ -114,14 +114,14 @@ export default function Header() {
                   Services <i className="bi bi-chevron-down" style={{ fontSize: '12px', marginLeft: '2px' }} />
                 </a>
                 {servicesOpen && (
-                  <ul style={{ 
-                    display: 'block', 
+                  <ul style={{
+                    display: 'block',
                     position: 'absolute',
                     top: '100%',
                     left: 0,
                     marginTop: '10px',
-                    backgroundColor: '#000', 
-                    border: '1px solid #333', 
+                    backgroundColor: '#000',
+                    border: '1px solid #333',
                     borderRadius: '8px',
                     padding: '8px 0',
                     boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
@@ -134,10 +134,10 @@ export default function Header() {
                         <Link
                           to={page.path}
                           className={`!text-white ${isActive(page.path) ? 'active !text-[#0081C9]' : ''} hover:!text-[#0081C9] transition-colors`}
-                          style={{ 
-                            padding: '10px 20px', 
-                            display: 'block', 
-                            textDecoration: 'none', 
+                          style={{
+                            padding: '10px 20px',
+                            display: 'block',
+                            textDecoration: 'none',
                             fontWeight: 600,
                             fontSize: '14px',
                             borderBottom: idx < SERVICES_NAV.length - 1 ? '1px solid #222' : 'none',
