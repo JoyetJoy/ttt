@@ -1,100 +1,77 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import TourCard from './TourCard';
 import TransportCard from './TransportCard';
-import { Route, Hotel, Activity, CarFront } from 'lucide-react';
+
 export default function UltimateTravelExperience({ config = {} }) {
-  const [activeTab, setActiveTab] = useState('transports');
+  const [allItems, setAllItems] = useState([]);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [vehicleTypes, setVehicleTypes] = useState([]);
+  const [activeType, setActiveType] = useState('All');
 
+  // Fetch vehicle types for the filter chips
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        let endpoint = '';
-        if (activeTab === 'tour-package') endpoint = `${import.meta.env.VITE_API_URL}/tours`;
-        else if (activeTab === 'hotel') endpoint = `${import.meta.env.VITE_API_URL}/hotels`; // assuming this exists
-        else if (activeTab === 'activities') endpoint = `${import.meta.env.VITE_API_URL}/activities`;
-        else if (activeTab === 'transports') endpoint = `${import.meta.env.VITE_API_URL}/transports`; // assuming this exists
+    axios.get(`${import.meta.env.VITE_API_URL}/transports/vehicle-types`)
+      .then(res => {
+        const types = Array.isArray(res.data) ? res.data : [];
+        setVehicleTypes(types);
+      })
+      .catch(() => {});
+  }, []);
 
-        const response = await axios.get(endpoint);
+  // Fetch all transports once
+  useEffect(() => {
+    setLoading(true);
+    axios.get(`${import.meta.env.VITE_API_URL}/transports`)
+      .then(response => {
+        const rawData = response.data.transports || response.data;
+        const fetchedData = rawData.map(transport => {
+          let imgUrl = transport.feature_img || transport.features_image || transport.image;
+          if (imgUrl && !imgUrl.startsWith('http')) {
+            imgUrl = `${import.meta.env.VITE_API_BASE_URL}/uploads/transports/${imgUrl}`;
+          }
+          return {
+            id: transport.id,
+            feature_img: imgUrl || null,
+            title: transport.title || transport.name,
+            vehicle_type: transport.car_type || 'CAR',
+            vehicle_name: transport.vehicle_name || '',
+            location: transport.locations_transports_city_idTolocations?.name || transport.transport_from || transport.locations_transports_country_idTolocations?.name || 'MIRPUR DOHS',
+            passengers: transport.car_person || 5,
+            distance: transport.distance_km || 500,
+            hr_km: transport.hr_km,
+            extra_price: transport.extra_price_per_km,
+            price: transport.car_price || transport.price || 0,
+            sale_price: transport.car_sale_price || transport.sale_price || 0,
+            currency: '₹',
+            basePath: '/transports'
+          };
+        });
+        setAllItems(fetchedData);
+        setItems(fetchedData.slice(0, 6));
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
 
-        let fetchedData = [];
-        if (activeTab === 'tour-package') {
-          // Mapping backend tours to what TourCard expects
-          const rawData = response.data.tours || response.data;
-          fetchedData = [...rawData].slice(0, 6).map(tour => ({
-            id: tour.id,
-            feature_img: tour.features_image ? tour.features_image : null,
-            days: tour.duration || 0,
-            location: tour.country_id || 'Global', // Would need real join for country name, fallback to id for now
-            title: tour.title,
-            subDestinations: tour.short_desc?.substring(0, 40) + '...', // Mapping desc to subDestinations
-            price: tour.regular_price || tour.price || 0,
-            sale_price: tour.sale_price || 0,
-            currency: '₹' // or any currency your app uses
-          }));
-        } else if (activeTab === 'activities') {
-          const rawData = response.data.activities || response.data;
-          fetchedData = [...rawData].slice(0, 6).map(act => {
-            let imgUrl = act.feature_img || act.features_image;
-            if (imgUrl && !imgUrl.startsWith('http')) {
-              imgUrl = `${import.meta.env.VITE_API_BASE_URL}/uploads/activities/${imgUrl}`;
-            }
-            return {
-              id: act.id,
-              feature_img: imgUrl || null,
-              days: act.days || 0,
-              location: act.address || 'Global',
-              title: act.title,
-              subDestinations: act.shoulder || '',
-              price: act.regular_price || act.price || 0,
-              sale_price: act.sale_price || 0,
-              currency: '₹',
-              basePath: '/activities'
-            };
-          });
-        } else if (activeTab === 'transports') {
-          const rawData = response.data.transports || response.data;
-          fetchedData = [...rawData].slice(0, 6).map(transport => {
-            let imgUrl = transport.feature_img || transport.features_image || transport.image;
-            if (imgUrl && !imgUrl.startsWith('http')) {
-              imgUrl = `${import.meta.env.VITE_API_BASE_URL}/uploads/transports/${imgUrl}`;
-            }
-            return {
-              id: transport.id,
-              feature_img: imgUrl || null,
-              title: transport.title || transport.name,
-              vehicle_type: transport.car_type || 'PREMIUM CAR',
-              location: transport.transport_from || transport.locations_transports_country_idTolocations?.name || 'MIRPUR DOHS',
-              passengers: transport.car_person || 5,
-              distance: transport.distance_km || 500,
-              price: transport.car_price || transport.price || 0,
-              sale_price: transport.car_sale_price || transport.sale_price || 0,
-              currency: '₹',
-              basePath: '/transports'
-            };
-          });
-        }
-
-        setItems(fetchedData);
-      } catch (error) {
-        console.error(`Failed to fetch ${activeTab}:`, error);
-        setItems([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [activeTab]);
+  const handleTypeFilter = (typeName) => {
+    setActiveType(typeName);
+    if (typeName === 'All') {
+      setItems(allItems.slice(0, 6));
+    } else {
+      const filtered = allItems.filter(item =>
+        item.vehicle_type?.toLowerCase() === typeName.toLowerCase()
+      );
+      setItems(filtered.slice(0, 6));
+    }
+  };
 
   return (
     <div className="ultimate-travel-section mt-8 lg:mt-28 px-3 lg:px-26">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
+            {/* Section Header */}
             <div className="section-title text-center mb-3">
               <span className="!text-[#0081C9] [&_svg]:!fill-[#0081C9]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 0 15 16">
@@ -105,47 +82,37 @@ export default function UltimateTravelExperience({ config = {} }) {
                   <path fillRule="evenodd" clipRule="evenodd" d="M13.0744 8.30954C12.6426 8.36702 12.2109 8.42437 11.7807 8.48923C10.8507 8.62935 9.91412 8.70862 8.98237 8.78751L8.98112 8.78757C8.84112 8.79945 8.70125 8.81126 8.56156 8.82332C7.49337 9.032 6.41268 9.10917 5.33356 9.05372C4.22669 8.93163 3.14081 8.58578 2.11432 8.02837V7.76345C3.14081 7.20603 4.22669 6.86018 5.33356 6.73809C6.41268 6.68265 7.49337 6.75982 8.56156 6.96849C9.63169 7.06068 10.7019 7.17588 11.7807 7.30259C12.8597 7.42935 13.9299 7.57908 15 7.76345V8.02837C14.3601 8.13865 13.7169 8.22412 13.0744 8.30954ZM4.23673 0.14976C4.06677 0.540388 3.88 0.914468 3.69388 1.28726C3.61104 1.45317 3.52831 1.61887 3.44728 1.78561C3.18413 2.32705 2.88589 2.84546 2.57011 3.35234C2.45519 3.5368 2.36002 3.73958 2.26642 3.939C2.10282 4.28757 1.94402 4.62593 1.69294 4.83843C1.21844 5.2232 0.671682 5.42665 0.114031 5.42597L0 5.26468C0.00551875 4.53235 0.176481 3.81866 0.491219 3.2141C0.6689 2.81982 0.966407 2.59414 1.26418 2.36828C1.39271 2.27078 1.52129 2.17324 1.64031 2.06209C2.03504 1.69345 2.43853 1.33633 2.8508 0.990726C3.26307 0.645126 3.68411 0.31104 4.13147 0L4.23673 0.14976ZM3.24568 15.3345C3.51184 15.5631 3.77735 15.7912 4.06123 16L4.18404 15.8502C3.9472 15.2742 3.69281 14.7212 3.42966 14.1798C3.16651 13.6384 2.88581 13.1084 2.60511 12.59C2.52048 12.4337 2.44621 12.2649 2.37198 12.0961C2.19999 11.705 2.02816 11.3143 1.72794 11.0809C1.26879 10.6644 0.7246 10.4395 0.166563 10.4358L0.0437562 10.5856C0.0348937 11.3194 0.190456 12.0405 0.491113 12.6592C0.652919 12.9889 0.910556 13.1975 1.17597 13.4124C1.32782 13.5353 1.48222 13.6602 1.62268 13.8112C2.00863 14.2259 2.38582 14.6176 2.80686 14.9632C2.95538 15.0851 3.10063 15.2098 3.24568 15.3345Z" />
                 </svg>
               </span>
-              <h2 >{config.title || 'Ultimate Travel Experience'}</h2>
+              <h2>{config.title || 'Ultimate Travel Experience'}</h2>
             </div>
 
-            {/* Tabs */}
-            <div className="mb-4">
-              <div className="row g-3 justify-content-center">
-                <div className="col-6 col-md-auto d-flex justify-content-center">
-                  <button
-                    className={`nav-link d-flex align-items-center justify-content-center gap-2 fw-bold bg-transparent px-0 w-100 ${activeTab === 'transports' ? '!text-[#0081C9]' : 'text-dark'}`}
-                    style={{ border: 'none', borderRadius: 0, paddingBottom: '10px' }}
-                    onClick={() => setActiveTab('transports')}
-                  >
-                    <CarFront size={24} /> <span style={{ fontSize: '15px' }}>Transports</span>
-                  </button>
-                </div>
-
-                <div className="col-6 col-md-auto d-flex justify-content-center">
-                  <button
-                    className={`nav-link d-flex align-items-center justify-content-center gap-2 fw-bold bg-transparent px-0 w-100 ${activeTab === 'tour-package' ? '!text-[#0081C9]' : 'text-dark'}`}
-                    style={{ border: 'none', borderRadius: 0, paddingBottom: '10px' }}
-                    onClick={() => setActiveTab('tour-package')}
-                  >
-                    <Route size={24} /> <span style={{ fontSize: '15px' }}>Tour Package</span>
-                  </button>
-                </div>
-
-                <div className="col-6 col-md-auto d-flex justify-content-center">
-                  <button
-                    className={`nav-link d-flex align-items-center justify-content-center gap-2 fw-bold bg-transparent px-0 w-100 ${activeTab === 'activities' ? '!text-[#0081C9]' : 'text-dark'}`}
-                    style={{ border: 'none', borderRadius: 0, paddingBottom: '10px' }}
-                    onClick={() => setActiveTab('activities')}
-                  >
-                    <Activity size={24} /> <span style={{ fontSize: '15px' }}>Activities</span>
-                  </button>
-                </div>
-              </div>
+            {/* Vehicle Type Filter Chips */}
+            <div className="mb-4 d-flex flex-wrap justify-content-center gap-2">
+              {['All', ...vehicleTypes.map(v => v.name)].map(type => (
+                <button
+                  key={type}
+                  onClick={() => handleTypeFilter(type)}
+                  className="fw-semibold"
+                  style={{
+                    border: activeType === type ? '2px solid #0081C9' : '2px solid #e5e7eb',
+                    background: activeType === type ? '#0081C9' : '#fff',
+                    color: activeType === type ? '#fff' : '#374151',
+                    borderRadius: '999px',
+                    padding: '6px 22px',
+                    fontSize: '14px',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    outline: 'none',
+                  }}
+                >
+                  {type}
+                </button>
+              ))}
             </div>
 
           </div>
         </div>
 
+        {/* Cards */}
         <div className="row g-4">
           {loading ? (
             <div className="col-12 text-center py-5">
@@ -156,16 +123,12 @@ export default function UltimateTravelExperience({ config = {} }) {
           ) : items.length > 0 ? (
             items.map(item => (
               <div key={item.id} className="col-lg-4 col-md-6 mb-4">
-                {activeTab === 'transports' ? (
-                  <TransportCard item={item} />
-                ) : (
-                  <TourCard item={item} />
-                )}
+                <TransportCard item={item} />
               </div>
             ))
           ) : (
             <div className="col-12 text-center py-5">
-              <h4 className="text-muted">No content available for {activeTab.replace('-', ' ')}.</h4>
+              <h4 className="text-muted">No transports available for this type.</h4>
             </div>
           )}
         </div>

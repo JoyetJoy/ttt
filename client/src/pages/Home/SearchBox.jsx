@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 /* ─── Mobile-card dropdown ─── */
 function MobileDropdown({ icon, label, placeholder, options, value, onChange, name }) {
@@ -107,15 +107,15 @@ function DesktopDropdown({ name, placeholder, options, value, onChange }) {
                   {opt.subtitle && <div style={{ fontSize: '13px', color: '#888' }}>{opt.subtitle}</div>}
                 </div>
                 {opt.badgeText ? (
-                  <div className="d-flex align-items-center justify-content-center text-white rounded-circle fw-bold"
-                    style={{ background: '#0081C9', width: '40px', height: '40px', fontSize: '14px' }}>
+                  <div className="d-flex align-items-center justify-content-center text-white fw-bold flex-shrink-0"
+                    style={{ background: '#0081C9', borderRadius: '50%', width: '36px', height: '36px', fontSize: '13px' }}>
                     {opt.badgeText}
                   </div>
                 ) : (
-                  <div className="d-flex flex-column align-items-center justify-content-center text-white rounded-circle"
-                    style={{ background: '#0081C9', width: '40px', height: '40px', fontSize: '11px', lineHeight: 1.1 }}>
-                    <span className="fw-bold" style={{ fontSize: '14px' }}>{opt.tours || 1}</span>
-                    <span>Tour</span>
+                  <div className="d-flex flex-column align-items-center justify-content-center text-white flex-shrink-0"
+                    style={{ background: '#0081C9', borderRadius: '50%', width: '36px', height: '36px', lineHeight: '1.1' }}>
+                    <span style={{ fontSize: '13px', fontWeight: '700' }}>{opt.tours || opt.count || 1}</span>
+                    <span style={{ fontSize: '8px', fontWeight: '500', opacity: 0.9 }}>{opt.countLabel ? opt.countLabel.slice(0,3).toUpperCase() : 'TUR'}</span>
                   </div>
                 )}
               </div>
@@ -164,8 +164,19 @@ function TabButton({ label, icon, active, onClick, borderRadius }) {
 
 export default function SearchBox({ config, initialTab }) {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState(initialTab || 'transport');
-  const [searchValues, setSearchValues] = useState({});
+  const [searchParams] = useSearchParams();
+  const [activeTab, setActiveTab] = useState(initialTab || searchParams.get('type') || 'transport');
+  const [searchValues, setSearchValues] = useState(() => {
+    // Pre-fill from URL params on mount
+    const init = {};
+    if (searchParams.get('location_from')) init.location_from = searchParams.get('location_from');
+    if (searchParams.get('transport_type')) init.transport_type = searchParams.get('transport_type');
+    if (searchParams.get('destination')) init.destination = searchParams.get('destination');
+    if (searchParams.get('tour_type')) init.tour_type = searchParams.get('tour_type');
+    if (searchParams.get('month')) init.month = searchParams.get('month');
+    if (searchParams.get('duration')) init.duration = searchParams.get('duration');
+    return init;
+  });
 
   const setField = (field, val) => setSearchValues(prev => ({ ...prev, [field]: val }));
 
@@ -217,7 +228,7 @@ export default function SearchBox({ config, initialTab }) {
     fetch(`${import.meta.env.VITE_API_URL}/transports/locations`)
       .then(r => r.json()).then(data => {
         if (Array.isArray(data) && data.length > 0)
-          setTransportLocationOptions(data.map(l => ({ name: l.name, subtitle: 'Transport Location' })));
+          setTransportLocationOptions(data.map(l => ({ name: l.name, subtitle: 'Pickup Location', count: l.count || 1, countLabel: 'Vehicle' })));
       }).catch(() => {});
   }, []);
 
@@ -435,15 +446,8 @@ export default function SearchBox({ config, initialTab }) {
                       <div className="search-input flex-grow-1 d-flex align-items-center gap-3 w-100" style={{ borderRight: '1px solid rgba(0,0,0,0.08)', paddingRight: '15px' }}>
                         <i className="bi bi-geo-alt" style={{ fontSize: '24px', color: TAB_GREEN }} />
                         <div className="form-group mb-0 flex-grow-1">
-                          <label style={{ fontSize: '11px', color: '#888', fontWeight: '500', marginBottom: '2px', display: 'block' }}>Location From</label>
+                          <label style={{ fontSize: '11px', color: '#888', fontWeight: '500', marginBottom: '2px', display: 'block' }}>Pickup Location</label>
                           <DesktopDropdown name="location_from" placeholder="Select Location" options={transportLocationOptions} value={searchValues.location_from} onChange={v => setField('location_from', v)} />
-                        </div>
-                      </div>
-                      <div className="search-input flex-grow-1 d-flex align-items-center gap-3 w-100" style={{ borderRight: '1px solid rgba(0,0,0,0.08)', paddingRight: '15px' }}>
-                        <i className="bi bi-geo-alt" style={{ fontSize: '24px', color: TAB_GREEN }} />
-                        <div className="form-group mb-0 flex-grow-1">
-                          <label style={{ fontSize: '11px', color: '#888', fontWeight: '500', marginBottom: '2px', display: 'block' }}>Location To</label>
-                          <DesktopDropdown name="location_to" placeholder="Select Location" options={transportLocationOptions} value={searchValues.location_to} onChange={v => setField('location_to', v)} />
                         </div>
                       </div>
                       <div className="search-input flex-grow-1 d-flex align-items-center gap-3 w-100" style={{ borderRight: '1px solid rgba(0,0,0,0.08)', paddingRight: '15px' }}>
@@ -496,8 +500,7 @@ export default function SearchBox({ config, initialTab }) {
                 )}
                 {activeTab === 'transport' && (
                   <>
-                    <MobileDropdown icon={<i className="bi bi-geo-alt" />} label="Location From" placeholder="Select Location" options={transportLocationOptions} value={searchValues.location_from} onChange={v => setField('location_from', v)} name="location_from" />
-                    <MobileDropdown icon={<i className="bi bi-geo-alt" />} label="Location To" placeholder="Select Location" options={transportLocationOptions} value={searchValues.location_to} onChange={v => setField('location_to', v)} name="location_to" />
+                    <MobileDropdown icon={<i className="bi bi-geo-alt" />} label="Pickup Location" placeholder="Select Location" options={transportLocationOptions} value={searchValues.location_from} onChange={v => setField('location_from', v)} name="location_from" />
                     <MobileDropdown icon={<i className="bx bx-car" />} label="Transport Type" placeholder="Which Type?" options={transportTypeOptions} value={searchValues.transport_type} onChange={v => setField('transport_type', v)} name="transport_type" />
                   </>
                 )}

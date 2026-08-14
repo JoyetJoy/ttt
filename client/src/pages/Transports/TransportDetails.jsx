@@ -41,7 +41,7 @@ export default function TransportDetails() {
   if (!transport) return <div className="pt-32 pb-32 text-center text-gray-500">Transport not found</div>;
 
   const displayTitle = transport.title || "Transport Title";
-  const displayShoulder = transport.car_type || "Vehicle";
+  const displayShoulder = transport.vehicle_name || transport.car_type || "Vehicle";
   const displayPrice = transport.car_sale_price > 0 ? transport.car_sale_price : (transport.car_price || 0);
   const originalPrice = transport.car_price || displayPrice;
   const totalAmount = vehicleCount * displayPrice;
@@ -177,14 +177,23 @@ export default function TransportDetails() {
                 <div className="flex items-end gap-2 mb-4">
                   <span className="text-3xl font-extrabold text-[#0081C9]">₹{displayPrice}</span>
                   {displayPrice < originalPrice && <span className="text-gray-400 line-through text-lg mb-1">₹{originalPrice}</span>}
-                  <span className="text-gray-500 font-medium mb-1 ml-1">/ per hr</span>
                 </div>
                 <div className="flex flex-wrap gap-6 text-sm font-bold text-gray-700 mb-8 border-b border-gray-100 pb-8">
                   <div className="flex items-center gap-2"><i className="bi bi-person-fill text-[#0081C9] text-lg"></i> Capacity : {transport.car_person || 1} Persons</div>
-                  {transport.transport_from && <div className="flex items-center gap-2"><i className="bi bi-geo-fill text-[#0081C9] text-lg"></i> From: {transport.transport_from}</div>}
-                  {transport.transport_to && <div className="flex items-center gap-2"><i className="bi bi-pin-map-fill text-[#0081C9] text-lg"></i> To: {transport.transport_to}</div>}
-                  {transport.distance_km && <div className="flex items-center gap-2"><i className="bi bi-signpost-split-fill text-[#0081C9] text-lg"></i> Distance : {transport.distance_km} KM</div>}
-                  {transport.car_type && <div className="flex items-center gap-2"><i className="bi bi-car-front-fill text-[#0081C9] text-lg"></i> {transport.car_type}</div>}
+                  {transport.transport_from && <div className="flex items-center gap-2"><i className="bi bi-geo-alt-fill text-[#0081C9] text-lg"></i> Pickup Location: {transport.transport_from}</div>}
+                  {(transport.hr_km || transport.distance_km) && (
+                    <div className="flex items-center gap-2">
+                      <i className="bi bi-signpost-split-fill text-[#0081C9] text-lg"></i> 
+                      <span>
+                        {transport.hr_km || `${transport.distance_km} KM`}
+                        {transport.extra_price_per_km && (
+                          <span className="ml-1 text-[11px] text-gray-500 font-medium">
+                            (Extra: ₹{transport.extra_price_per_km}/km)
+                          </span>
+                        )}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Description */}
@@ -217,13 +226,13 @@ export default function TransportDetails() {
                     {excludes.length > 0 ? (
                       excludes.map((item, i) => (
                         <li key={i} className="flex gap-3 text-[15px] text-gray-500 leading-relaxed">
-                          <i className="bi bi-x-lg text-red-500 mt-1 flex-shrink-0"></i>
+                          <i className="bi bi-circle-fill text-[8px] text-red-500 mt-2 flex-shrink-0"></i>
                           <span>{item}</span>
                         </li>
                       ))
                     ) : (
                       <li className="flex gap-3 text-[15px] text-gray-500 leading-relaxed">
-                        <i className="bi bi-x-lg text-red-500 mt-1 flex-shrink-0"></i>
+                        <i className="bi bi-circle-fill text-[8px] text-red-500 mt-2 flex-shrink-0"></i>
                         <span>Excludes not specified.</span>
                       </li>
                     )}
@@ -299,7 +308,7 @@ export default function TransportDetails() {
                   {/* Quantity Controls */}
                   <div className="space-y-8 mb-8">
                     <div className="flex justify-between items-center">
-                      <div className="font-bold text-gray-900 text-sm flex items-center gap-2">Vehicles: <span className="text-lg">₹{displayPrice}</span> </div>
+                      <div className="font-bold text-gray-900 text-sm flex items-center gap-2">No of Days: <span className="text-lg">₹{displayPrice}</span> </div>
                       <div className="flex items-center gap-3">
                         <button onClick={() => setVehicleCount(Math.max(1, vehicleCount - 1))} className="w-8 h-8 rounded-full border border-[#0081C9] flex items-center justify-center text-[#0081C9] hover:bg-[#0081C9] hover:text-white transition-colors">-</button>
                         <span className="font-bold text-gray-900 w-6 text-center">{vehicleCount.toString().padStart(2, '0')}</span>
@@ -321,7 +330,7 @@ export default function TransportDetails() {
                       <span className="text-lg font-light pb-4 text-gray-400">×</span>
                       <div className="flex flex-col items-center">
                         <span className="text-xl font-medium text-gray-700">{vehicleCount.toString().padStart(2, '0')}</span>
-                        <span className="text-[10px] uppercase tracking-wider text-gray-400 mt-1">QTY</span>
+                        <span className="text-[10px] uppercase tracking-wider text-gray-400 mt-1">NO. OF DAYS</span>
                       </div>
                       <div className="pb-4 ml-2">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-gray-300"><path d="M5 12h14M12 5l7 7-7 7" /></svg>

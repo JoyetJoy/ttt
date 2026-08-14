@@ -6,6 +6,8 @@ const serializeTransport = (transport: any) => {
   let car_price = transport.car_price || 0;
   let car_sale_price = transport.car_sale_price || 0;
   let car_person = transport.car_person ? Number(transport.car_person) : null;
+  let hr_km = null;
+  let extra_price_per_km = null;
   
   if (transport.pricing_vehicles) {
     try {
@@ -15,6 +17,8 @@ const serializeTransport = (transport: any) => {
         if (first.price) car_price = Number(first.price);
         if (first.sale_price) car_sale_price = Number(first.sale_price);
         if (first.capacity) car_person = Number(first.capacity);
+        if (first.hr_km_value) hr_km = first.hr_km_value;
+        if (first.extra_price_per_km) extra_price_per_km = first.extra_price_per_km;
       }
     } catch (e) {
       console.error("Failed to parse pricing_vehicles", e);
@@ -31,6 +35,8 @@ const serializeTransport = (transport: any) => {
     car_person,
     car_price,
     car_sale_price,
+    hr_km,
+    extra_price_per_km,
     view: Number(transport.view),
   };
 };
@@ -45,7 +51,30 @@ export const getTransports = async (req: Request, res: Response) => {
         locations_transports_country_idTolocations: { select: { name: true } }
       }
     });
-    res.json(transports.map(serializeTransport));
+    const vehicleTypes = await prisma.vehicle_types.findMany({ select: { id: true, name: true } });
+    const vehicles = await prisma.vehicles.findMany({ select: { id: true, name: true } });
+
+    res.json(transports.map(t => {
+      const serialized = serializeTransport(t);
+      if (t.pricing_vehicles) {
+        try {
+          const pricing = JSON.parse(t.pricing_vehicles);
+          if (Array.isArray(pricing) && pricing.length > 0) {
+            if (pricing[0].type_id) {
+              const vt = vehicleTypes.find((x: any) => String(x.id) === String(pricing[0].type_id));
+              if (vt) serialized.car_type = vt.name;
+            }
+            if (pricing[0].vehicle_id) {
+              const v = vehicles.find((x: any) => String(x.id) === String(pricing[0].vehicle_id));
+              if (v) serialized.vehicle_name = v.name;
+            }
+          }
+        } catch (e) {
+          // ignore parsing error
+        }
+      }
+      return serialized;
+    }));
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to fetch transports' });
@@ -61,6 +90,7 @@ export const getTransportById = async (req: Request, res: Response) => {
         users: {
           select: { fname: true, lname: true, email: true },
         },
+        locations_transports_city_idTolocations: { select: { name: true } },
         transport_galleries: true
       },
     });
@@ -69,7 +99,32 @@ export const getTransportById = async (req: Request, res: Response) => {
       return res.status(404).json({ error: 'Transport not found' });
     }
 
+    const vehicleTypes = await prisma.vehicle_types.findMany({ select: { id: true, name: true } });
+    const vehicles = await prisma.vehicles.findMany({ select: { id: true, name: true } });
+
     const serialized = serializeTransport(transport);
+    
+    // Use city name for transport_from if available (prioritize city dropdown over text field)
+    if (transport.locations_transports_city_idTolocations?.name) {
+        serialized.transport_from = transport.locations_transports_city_idTolocations.name;
+    }
+
+    if (transport.pricing_vehicles) {
+      try {
+        const pricing = JSON.parse(transport.pricing_vehicles);
+        if (Array.isArray(pricing) && pricing.length > 0) {
+          if (pricing[0].type_id) {
+            const vt = vehicleTypes.find((x: any) => String(x.id) === String(pricing[0].type_id));
+            if (vt) serialized.car_type = vt.name;
+          }
+          if (pricing[0].vehicle_id) {
+            const v = vehicles.find((x: any) => String(x.id) === String(pricing[0].vehicle_id));
+            if (v) serialized.vehicle_name = v.name;
+          }
+        }
+      } catch (e) {}
+    }
+
     serialized.transport_galleries = transport.transport_galleries?.map((g: any) => ({
       ...g,
       id: Number(g.id),
@@ -158,6 +213,8 @@ export const createTransport = async (req: Request, res: Response) => {
     delete data.transport_galleries;
     delete data.created_at;
     delete data.updated_at;
+    delete data.hr_km;
+    delete data.extra_price_per_km;
     if (data.view) data.view = BigInt(data.view);
 
     const newTransport = await prisma.transports.create({ data });
@@ -239,7 +296,7 @@ export const updateTransport = async (req: Request, res: Response) => {
     if (data.view) data.view = BigInt(data.view);
 
     // Delete legacy pricing fields so we don't try to save them as strings
-    const legacyFields = ['car_price', 'car_sale_price', 'train_price', 'train_sale_price', 'train_child_price', 'bus_price', 'bus_sale_price', 'bus_child_price', 'boat_price', 'boat_sale_price', 'boat_child_price', 'min_advance_reservations', 'min_stay', 'car_type', 'car_person'];
+    const legacyFields = ['car_price', 'car_sale_price', 'train_price', 'train_sale_price', 'train_child_price', 'bus_price', 'bus_sale_price', 'bus_child_price', 'boat_price', 'boat_sale_price', 'boat_child_price', 'min_advance_reservations', 'min_stay', 'car_type', 'car_person', 'hr_km', 'extra_price_per_km'];
     legacyFields.forEach(f => delete data[f]);
 
     const files = req.files as { [fieldname: string]: Express.Multer.File[] };
@@ -318,16 +375,29 @@ export const getVehicleTypes = async (req: Request, res: Response) => {
 
 export const getTransportLocations = async (req: Request, res: Response) => {
   try {
-    const locations = await prisma.transport_locations.findMany({
-      orderBy: { id: 'desc' }
+    // Get all active transports that have a city assigned
+    const transports = await prisma.transports.findMany({
+      where: { status: 1, city_id: { not: null } },
+      select: {
+        city_id: true,
+        locations_transports_city_idTolocations: { select: { name: true } }
+      }
     });
-    
-    const serializedLocations = locations.map(t => ({
-      ...t,
-      id: Number(t.id)
-    }));
-    
-    res.json(serializedLocations);
+
+    // Group by city and count vehicles
+    const cityMap: Record<string, { name: string; count: number }> = {};
+    for (const t of transports) {
+      const cityId = String(t.city_id);
+      const cityName = t.locations_transports_city_idTolocations?.name;
+      if (!cityName) continue;
+      if (!cityMap[cityId]) {
+        cityMap[cityId] = { name: cityName, count: 0 };
+      }
+      cityMap[cityId].count++;
+    }
+
+    const result = Object.values(cityMap).sort((a, b) => b.count - a.count);
+    res.json(result);
   } catch (error) {
     console.error('Error fetching transport locations:', error);
     res.status(500).json({ error: 'Failed to fetch transport locations' });

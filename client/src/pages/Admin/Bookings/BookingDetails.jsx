@@ -128,8 +128,12 @@ export default function BookingDetails() {
           <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-6">
             <h3 className="text-lg font-bold text-gray-900 mb-4 border-b border-gray-100 pb-3">Product Details</h3>
             <div className="flex gap-4 items-start">
-               <div className="w-16 h-16 rounded-lg bg-blue-50 flex items-center justify-center text-blue-500 text-2xl flex-shrink-0">
-                  <i className={`bi ${booking.product_type === 'hotel' ? 'bi-building' : booking.product_type === 'transport' ? 'bi-car-front' : 'bi-compass'}`}></i>
+               <div className="w-16 h-16 rounded-lg bg-blue-50 overflow-hidden flex items-center justify-center text-blue-500 text-2xl flex-shrink-0">
+                  {booking.product_image ? (
+                     <img src={booking.product_image} alt={booking.product_name} className="w-full h-full object-cover" />
+                  ) : (
+                     <i className={`bi ${booking.product_type === 'hotel' ? 'bi-building' : booking.product_type === 'transport' ? 'bi-car-front' : 'bi-compass'}`}></i>
+                  )}
                </div>
                <div>
                   <h4 className="text-xl font-bold text-gray-900 mb-1">{booking.product_name}</h4>
@@ -143,10 +147,12 @@ export default function BookingDetails() {
                        <span className="font-semibold text-gray-900">{booking.end_date || 'N/A'}</span>
                      </div>
                      {booking.days > 0 && (
-                       <div>
-                         <span className="text-gray-400 block mb-1">Duration</span>
-                         <span className="font-semibold text-gray-900">{booking.days} Days</span>
-                       </div>
+                         <div>
+                           <span className="text-gray-400 block mb-1">{booking.product_type === 'transport' ? 'No of Days' : 'Duration'}</span>
+                           <span className="font-semibold text-gray-900">
+                             {booking.product_type === 'transport' ? booking.adult_qty : `${booking.days} Days`}
+                           </span>
+                         </div>
                      )}
                   </div>
                </div>

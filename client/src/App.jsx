@@ -176,6 +176,7 @@ function App() {
               <Route path="transports" element={<AdminTransportList />} />
               <Route path="transports/create" element={<AdminTransportForm />} />
               <Route path="transports/edit/:id" element={<AdminTransportForm />} />
+              <Route path="transports/view/:id" element={<AdminTransportForm />} />
               
               <Route path="customers" element={<AdminCustomerList />} />
               

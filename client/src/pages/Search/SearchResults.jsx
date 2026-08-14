@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import TourCard from '../Home/TourCard';
+import HomeTransportCard from '../Home/TransportCard';
 import SearchBox from '../Home/SearchBox';
 
 /* ─── Activity Card ─── */
@@ -99,72 +100,6 @@ function VisaCard({ item }) {
   );
 }
 
-/* ─── Transport Card ─── */
-function TransportCard({ item }) {
-  const lowestPrice = Math.min(
-    ...[item.car_sale_price > 0 ? item.car_sale_price : item.car_price,
-        item.train_sale_price > 0 ? item.train_sale_price : item.train_price,
-        item.bus_sale_price > 0 ? item.bus_sale_price : item.bus_price,
-    ].filter(p => p > 0)
-  );
-  const imgSrc = item.feature_img
-    ? (item.feature_img.startsWith('http')
-        ? item.feature_img
-        : `/uploads/transports/features/${item.feature_img}`)
-    : 'https://via.placeholder.com/400x250?text=Transport';
-  return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
-      <div className="relative overflow-hidden h-52">
-        <Link to={`/transports/${item.id}`}>
-          <img
-            src={imgSrc}
-            alt={item.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            onError={e => { e.target.src = 'https://via.placeholder.com/400x250?text=Transport'; }}
-          />
-        </Link>
-        {item.address && (
-          <span className="absolute top-3 left-3 bg-[#0081C9] text-white text-xs font-bold px-3 py-1 rounded-full">
-            {item.address}
-          </span>
-        )}
-      </div>
-      <div className="p-5">
-        <div className="text-xs font-semibold text-[#0081C9] uppercase tracking-wider mb-1">{item.car_type || 'Transport'}</div>
-        <h5 className="font-extrabold text-base leading-snug mb-2" style={{ color: '#111' }}>
-          <Link to={`/transports/${item.id}`} style={{ color: '#111' }} className="hover:text-[#0081C9] transition-colors">{item.title}</Link>
-        </h5>
-        <div className="flex flex-wrap items-center gap-3 text-xs text-gray-500 mb-3">
-          {(item.transport_from || item.transport_to) && (
-            <div className="flex items-center gap-1 font-medium">
-              <i className="bi bi-geo-alt-fill text-[#0081C9]"></i>
-              <span>{item.transport_from} {item.transport_to ? `→ ${item.transport_to}` : ''}</span>
-            </div>
-          )}
-          {item.distance_km && (
-            <div className="flex items-center gap-1">
-              <i className="bi bi-signpost-split text-[#0081C9]"></i>
-              <span>{item.distance_km} km</span>
-            </div>
-          )}
-        </div>
-        <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-          <div>
-            <div className="text-xs text-gray-400 font-medium mb-1">Starting From:</div>
-            {isFinite(lowestPrice) ? (
-              <span className="text-[#0081C9] font-extrabold text-lg">₹{lowestPrice}</span>
-            ) : (
-              <span className="text-gray-400 text-sm">Contact for price</span>
-            )}
-          </div>
-          <Link to={`/transports/${item.id}`} className="bg-[#0081C9] text-white text-sm font-bold px-4 py-2 rounded-lg hover:bg-[#006096] transition-colors">
-            View Details
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 /* ─── API Config ─── */
 const API_MAP = {
@@ -184,9 +119,11 @@ export default function SearchResults() {
   const type = searchParams.get('type') || 'tour';
   const destination = searchParams.get('destination') || '';
   const location = searchParams.get('location') || '';
+  const locationFrom = searchParams.get('location_from') || '';
   const duration = searchParams.get('duration') || '';
   const month = searchParams.get('month') || '';
   const tourType = searchParams.get('tour_type') || '';
+  const transportType = searchParams.get('transport_type') || '';
   const country = searchParams.get('country') || '';
 
   const api = API_MAP[type] || API_MAP['tour'];
@@ -207,13 +144,15 @@ export default function SearchResults() {
   /* ── Filtering ── */
   const filtered = results.filter(item => {
     const searchableText = [
-      item.address, item.location, item.title, item.shoulder,
-      item.locations?.name, item.locations_transports_country_idTolocations?.name
+      item.address, item.location, item.title, item.shoulder, item.car_type, item.vehicle_name,
+      item.locations?.name, item.locations_transports_country_idTolocations?.name,
+      item.locations_transports_city_idTolocations?.name, item.transport_from
     ].join(' ').toLowerCase();
 
-    const destQuery = destination || location || country;
+    const destQuery = destination || location || country || locationFrom;
     const destMatch = !destQuery || searchableText.includes(destQuery.toLowerCase());
-    const typeMatch = !tourType || searchableText.includes(tourType.toLowerCase());
+    const typeQuery = tourType || transportType;
+    const typeMatch = !typeQuery || searchableText.includes(typeQuery.toLowerCase());
     const durMatch = !duration || String(item.duration || item.days || '').includes(duration.replace(' Days', '').replace(' Day', ''));
     const monthMatch = !month || (() => {
       if (!item.created_at) return true;
@@ -238,8 +177,8 @@ export default function SearchResults() {
 
   /* ── Active Filter Chips ── */
   const activeFilters = [
-    (destination || location) && { label: 'Location', value: destination || location, key: destination ? 'destination' : 'location' },
-    tourType && { label: 'Type', value: tourType, key: 'tour_type' },
+    (destination || location || locationFrom) && { label: 'Location', value: destination || location || locationFrom, key: destination ? 'destination' : (locationFrom ? 'location_from' : 'location') },
+    (tourType || transportType) && { label: 'Type', value: tourType || transportType, key: tourType ? 'tour_type' : 'transport_type' },
     month && { label: 'Month', value: month, key: 'month' },
     duration && { label: 'Duration', value: duration, key: 'duration' },
     country && { label: 'Country', value: country, key: 'country' },
@@ -256,7 +195,23 @@ export default function SearchResults() {
     switch (type) {
       case 'activities': return <ActivityCard key={item.id} item={item} />;
       case 'visa':       return <VisaCard key={item.id} item={item} />;
-      case 'transport':  return <TransportCard key={item.id} item={item} />;
+      case 'transport': {
+        // Map raw transport data to HomeTransportCard shape
+        const mappedItem = {
+          ...item,
+          vehicle_name: item.vehicle_name || '',
+          vehicle_type: item.car_type || 'CAR',
+          location: item.locations_transports_city_idTolocations?.name || item.transport_from || '',
+          passengers: item.car_person || 5,
+          distance: item.distance_km || 500,
+          hr_km: item.hr_km,
+          extra_price: item.extra_price_per_km,
+          price: item.car_price || 0,
+          sale_price: item.car_sale_price || 0,
+          currency: '₹',
+        };
+        return <HomeTransportCard key={item.id} item={mappedItem} />;
+      }
       default:           return (
         <div key={item.id} className="col-lg-4 col-md-6">
           <TourCard item={{ ...item, feature_img: item.feature_img || item.features_image }} />

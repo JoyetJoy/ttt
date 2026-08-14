@@ -71,12 +71,11 @@ export default function AdminTransportForm() {
   const [deletedGalleries, setDeletedGalleries] = useState([]);
 
   const [formData, setFormData] = useState({
-    title: '', slug: '', content: '', youtube_video: '',
+    title: '', slug: '', content: '', youtube_video: '', car_type: '', meta_title: '', meta_desc: '', meta_keyward: '', meta_img: '', include_title: '', exclude_title: '',
     enable_service_fee: 2, distance_km: '',
     address: '', transport_from: '', transport_to: '', country_id: '', state_id: '', city_id: '', zip_code: '',
     map_lat: '', map_lng: '',
-    enable_seo: '2', meta_title: '', meta_desc: '', meta_keyward: '',
-    status: 1, view: 0,
+    enable_seo: '2', status: 1, view: 0,
     faqs: [], includes: [], excludes: [], service_fees: [], attribute_terms: [],
     pricing_vehicles: [{ type_id: '', vehicle_id: '', capacity: '', price: '', sale_price: '' }]
   });
@@ -114,6 +113,8 @@ export default function AdminTransportForm() {
           setFormData({
             ...data,
             slug: data.slug || '',
+            include_title: data.include_title || '',
+            exclude_title: data.exclude_title || '',
             faqs: parseArray(data.faqs),
             includes: parseArray(data.includes),
             excludes: parseArray(data.excludes),
@@ -159,6 +160,25 @@ export default function AdminTransportForm() {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? (checked ? 1 : 0) : value }));
+
+    if (name === 'city_id' && value && isLoaded && window.google) {
+      const city = cities.find(c => String(c.id) === String(value));
+      const state = states.find(s => String(s.id) === String(formData.state_id));
+      const country = countries.find(c => String(c.id) === String(formData.country_id));
+      
+      if (city) {
+        const searchAddress = `${city.name}${state ? `, ${state.name}` : ''}${country ? `, ${country.name}` : ''}`;
+        const geocoder = new window.google.maps.Geocoder();
+        geocoder.geocode({ address: searchAddress }, (results, status) => {
+          if (status === 'OK' && results[0]) {
+            const lat = results[0].geometry.location.lat();
+            const lng = results[0].geometry.location.lng();
+            setFormData(prev => ({ ...prev, map_lat: lat, map_lng: lng }));
+            setMapCenter({ lat, lng });
+          }
+        });
+      }
+    }
   };
 
   const handleQuillChange = (value) => {
@@ -620,48 +640,19 @@ export default function AdminTransportForm() {
                           <label className="block text-xs font-semibold text-slate-600 mb-1">Sale Price/Hr</label>
                           <input type="number" placeholder="Sale Price" value={pv.sale_price || ''} onChange={(e) => handleArrayChange('pricing_vehicles', 0, 'sale_price', e.target.value)} className="w-full px-3 py-2 text-sm rounded border border-gray-300 outline-none" />
                         </div>
+                        <div>
+                          <label className="block text-xs font-semibold text-slate-600 mb-1">Hr/Km</label>
+                          <input type="text" placeholder="e.g. 5 Hr / 50 Km" value={pv.hr_km_value || ''} onChange={(e) => handleArrayChange('pricing_vehicles', 0, 'hr_km_value', e.target.value)} className="w-full px-3 py-2 text-sm rounded border border-gray-300 outline-none" />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-semibold text-slate-600 mb-1">Extra Price/Km</label>
+                          <input type="number" placeholder="Extra Price" value={pv.extra_price_per_km || ''} onChange={(e) => handleArrayChange('pricing_vehicles', 0, 'extra_price_per_km', e.target.value)} className="w-full px-3 py-2 text-sm rounded border border-gray-300 outline-none" />
+                        </div>
                       </div>
                     );
                   })()}
 
-                  {/* Extra Services */}
-                  <div className="mt-8 pt-6 border-t border-slate-100">
-                    <div className="mb-4">
-                      <label className="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" name="enable_service_fee" checked={formData.enable_service_fee === 1} onChange={handleChange} className="sr-only peer" />
-                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500"></div>
-                        <span className="ml-3 text-sm font-semibold text-slate-800">Enable Extra Service</span>
-                      </label>
-                    </div>
-                    
-                    {formData.enable_service_fee === 1 && (
-                      <div className="space-y-4">
-                        {formData.service_fees.map((fee, idx) => (
-                          <div key={idx} className="flex flex-col sm:flex-row gap-4 items-start sm:items-center bg-gray-50 p-4 rounded-lg border border-gray-200 relative">
-                            <input type="text" placeholder="Service Name" value={fee.name || ''} onChange={(e) => handleArrayChange('service_fees', idx, 'name', e.target.value)} className="flex-1 px-3 py-2 text-sm rounded border border-gray-300 w-full" />
-                            <input type="number" placeholder="Price" value={fee.price || ''} onChange={(e) => handleArrayChange('service_fees', idx, 'price', e.target.value)} className="w-full sm:w-28 px-3 py-2 text-sm rounded border border-gray-300" />
-                            
-                            <select value={fee.type || 'Fixed'} onChange={(e) => handleArrayChange('service_fees', idx, 'type', e.target.value)} className="w-full sm:w-32 px-3 py-2 text-sm rounded border border-gray-300 bg-white">
-                              <option value="Fixed">Fixed</option>
-                              <option value="Percent">Percent</option>
-                            </select>
-
-                            <select value={fee.charge_type || 'One Time'} onChange={(e) => handleArrayChange('service_fees', idx, 'charge_type', e.target.value)} className="w-full sm:w-40 px-3 py-2 text-sm rounded border border-gray-300 bg-white">
-                              <option value="One Time">Price One Time</option>
-                              <option value="Per Person">Price Per Person</option>
-                            </select>
-
-                            <button type="button" onClick={() => removeArrayItem('service_fees', idx)} className="absolute -top-2 -right-2 bg-red-100 text-red-600 p-1 rounded-full hover:bg-red-200 transition shadow-sm">
-                              <X size={14} />
-                            </button>
-                          </div>
-                        ))}
-                        <button type="button" onClick={() => addArrayItem('service_fees', { name: '', price: '', type: 'Fixed', charge_type: 'One Time' })} className="flex items-center gap-1 text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition">
-                          <Plus size={16} /> Add Extra Service
-                        </button>
-                      </div>
-                    )}
-                  </div>
+                  {/* Extra Services Removed */}
 
                 </div>
               )}
@@ -673,60 +664,60 @@ export default function AdminTransportForm() {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <div className="flex items-center justify-between mb-1">
-                        <label className="block text-sm font-medium text-slate-700">Country *</label>
-                        <button type="button" onClick={() => handleOpenLocationModal('country')} className="w-5 h-5 flex items-center justify-center rounded-md bg-indigo-50 text-indigo-600 hover:bg-indigo-100 hover:text-indigo-700 transition">
-                          <Plus size={14} />
+                      <label className="block text-sm font-medium text-slate-700 mb-1">Country *</label>
+                      <div className="flex gap-2">
+                        <select name="country_id" value={formData.country_id} onChange={handleChange} required className="flex-1 px-3 py-2 border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-[#0081C9] bg-white text-sm">
+                          <option value="">Select Country</option>
+                          {countries.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+                        </select>
+                        <button type="button" onClick={() => handleOpenLocationModal('country')} className="w-10 flex-shrink-0 flex items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition border border-indigo-100">
+                          <Plus size={16} />
                         </button>
                       </div>
-                      <select name="country_id" value={formData.country_id} onChange={handleChange} required className="w-full px-4 py-2 border rounded-lg outline-none bg-white">
-                        <option value="">Select Country</option>
-                        {countries.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
-                      </select>
                     </div>
                     <div>
-                      <div className="flex items-center justify-between mb-1">
-                        <label className="block text-sm font-medium text-slate-700">State *</label>
-                        <button type="button" onClick={() => handleOpenLocationModal('state')} className="w-5 h-5 flex items-center justify-center rounded-md bg-indigo-50 text-indigo-600 hover:bg-indigo-100 hover:text-indigo-700 transition">
-                          <Plus size={14} />
+                      <label className="block text-sm font-medium text-slate-700 mb-1">State *</label>
+                      <div className="flex gap-2">
+                        <select name="state_id" value={formData.state_id} onChange={handleChange} required className="flex-1 px-3 py-2 border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-[#0081C9] bg-white text-sm">
+                          <option value="">Select State</option>
+                          {states.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
+                        </select>
+                        <button type="button" onClick={() => handleOpenLocationModal('state')} className="w-10 flex-shrink-0 flex items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition border border-indigo-100">
+                          <Plus size={16} />
                         </button>
                       </div>
-                      <select name="state_id" value={formData.state_id} onChange={handleChange} required className="w-full px-4 py-2 border rounded-lg outline-none bg-white">
-                        <option value="">Select State</option>
-                        {states.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
-                      </select>
                     </div>
                     <div>
-                      <div className="flex items-center justify-between mb-1">
-                        <label className="block text-sm font-medium text-slate-700">City *</label>
-                        <button type="button" onClick={() => handleOpenLocationModal('city')} className="w-5 h-5 flex items-center justify-center rounded-md bg-indigo-50 text-indigo-600 hover:bg-indigo-100 hover:text-indigo-700 transition">
-                          <Plus size={14} />
+                      <label className="block text-sm font-medium text-slate-700 mb-1">City *</label>
+                      <div className="flex gap-2">
+                        <select name="city_id" value={formData.city_id} onChange={handleChange} required className="flex-1 px-3 py-2 border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-[#0081C9] bg-white text-sm">
+                          <option value="">Select City</option>
+                          {cities.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+                        </select>
+                        <button type="button" onClick={() => handleOpenLocationModal('city')} className="w-10 flex-shrink-0 flex items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition border border-indigo-100">
+                          <Plus size={16} />
                         </button>
                       </div>
-                      <select name="city_id" value={formData.city_id} onChange={handleChange} required className="w-full px-4 py-2 border rounded-lg outline-none bg-white">
-                        <option value="">Select City</option>
-                        {cities.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
-                      </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1 mt-1">Zip / Postal Code</label>
-                      <input type="text" name="zip_code" value={formData.zip_code} onChange={handleChange} className="w-full px-4 py-2 border rounded-lg outline-none" />
+                      <label className="block text-sm font-medium text-slate-700 mb-1">Zip / Postal Code</label>
+                      <input type="text" name="zip_code" value={formData.zip_code} onChange={handleChange} className="w-full px-3 py-2 border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-[#0081C9] text-sm" />
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-slate-700 mb-1">Full Address</label>
-                    <textarea name="address" value={formData.address} onChange={handleChange} rows="2" className="w-full px-4 py-2 border rounded-lg outline-none"></textarea>
+                    <textarea name="address" value={formData.address} onChange={handleChange} rows="2" className="w-full px-3 py-2 border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-[#0081C9] text-sm"></textarea>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 border border-slate-200 rounded-lg bg-slate-50">
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1">Latitude *</label>
-                      <input type="text" name="map_lat" value={formData.map_lat} onChange={handleChange} className="w-full px-4 py-2 border rounded-lg outline-none" />
+                      <input type="text" name="map_lat" value={formData.map_lat} onChange={handleChange} className="w-full px-3 py-2 border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-[#0081C9] text-sm bg-white" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1">Longitude *</label>
-                      <input type="text" name="map_lng" value={formData.map_lng} onChange={handleChange} className="w-full px-4 py-2 border rounded-lg outline-none" />
+                      <input type="text" name="map_lng" value={formData.map_lng} onChange={handleChange} className="w-full px-3 py-2 border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-[#0081C9] text-sm bg-white" />
                     </div>
                   </div>
 
@@ -758,29 +749,39 @@ export default function AdminTransportForm() {
                     <div className="border border-green-200 rounded-lg overflow-hidden">
                       <div className="bg-green-50 px-4 py-3 flex justify-between items-center border-b border-green-200">
                         <h4 className="font-semibold text-green-800">Includes</h4>
-                        <button type="button" onClick={() => addArrayItem('includes', { title: '' })} className="text-green-700 bg-green-200 hover:bg-green-300 px-2 py-1 rounded text-xs font-medium">Add</button>
                       </div>
-                      <div className="p-4 space-y-2">
+                      <div className="p-4 space-y-3">
+                        <input type="text" name="include_title" value={formData.include_title} onChange={handleChange} placeholder="Custom Header Title (optional)" className="w-full px-3 py-2 text-sm rounded border border-green-300 outline-none focus:ring-1 focus:ring-green-500 mb-2" />
+                        
                         {formData.includes.map((inc, idx) => (
                           <div key={idx} className="flex gap-2 items-center">
                             <input type="text" placeholder="Enter include item" value={inc.title} onChange={(e) => handleArrayChange('includes', idx, 'title', e.target.value)} className="flex-1 px-3 py-1.5 border border-green-300 rounded text-sm outline-none focus:ring-1 focus:ring-green-500" />
-                            <button type="button" onClick={() => removeArrayItem('includes', idx)} className="text-red-500"><X size={16} /></button>
+                            <button type="button" onClick={() => removeArrayItem('includes', idx)} className="w-8 h-8 flex items-center justify-center bg-red-50 hover:bg-red-100 text-red-500 rounded transition flex-shrink-0"><X size={16} /></button>
                           </div>
                         ))}
+                        
+                        <button type="button" onClick={() => addArrayItem('includes', { title: '' })} className="w-full mt-2 text-green-700 bg-green-100 hover:bg-green-200 px-3 py-2 rounded-lg text-sm font-medium transition">
+                          + Add Include Item
+                        </button>
                       </div>
                     </div>
                     <div className="border border-red-200 rounded-lg overflow-hidden">
                       <div className="bg-red-50 px-4 py-3 flex justify-between items-center border-b border-red-200">
-                        <h4 className="font-semibold text-red-800">Excludes</h4>
-                        <button type="button" onClick={() => addArrayItem('excludes', { title: '' })} className="text-red-700 bg-red-200 hover:bg-red-300 px-2 py-1 rounded text-xs font-medium">Add</button>
+                        <h4 className="font-semibold text-red-800">Extra charges</h4>
                       </div>
-                      <div className="p-4 space-y-2">
+                      <div className="p-4 space-y-3">
+                        <input type="text" name="exclude_title" value={formData.exclude_title} onChange={handleChange} placeholder="Custom Header Title (optional)" className="w-full px-3 py-2 text-sm rounded border border-red-300 outline-none focus:ring-1 focus:ring-red-500 mb-2" />
+                        
                         {formData.excludes.map((exc, idx) => (
                           <div key={idx} className="flex gap-2 items-center">
-                            <input type="text" placeholder="Enter exclude item" value={exc.title} onChange={(e) => handleArrayChange('excludes', idx, 'title', e.target.value)} className="flex-1 px-3 py-1.5 border border-red-300 rounded text-sm outline-none focus:ring-1 focus:ring-red-500" />
-                            <button type="button" onClick={() => removeArrayItem('excludes', idx)} className="text-red-500"><X size={16} /></button>
+                            <input type="text" placeholder="Enter extra charge item" value={exc.title} onChange={(e) => handleArrayChange('excludes', idx, 'title', e.target.value)} className="flex-1 px-3 py-1.5 border border-red-300 rounded text-sm outline-none focus:ring-1 focus:ring-red-500" />
+                            <button type="button" onClick={() => removeArrayItem('excludes', idx)} className="w-8 h-8 flex items-center justify-center bg-red-50 hover:bg-red-100 text-red-500 rounded transition flex-shrink-0"><X size={16} /></button>
                           </div>
                         ))}
+                        
+                        <button type="button" onClick={() => addArrayItem('excludes', { title: '' })} className="w-full mt-2 text-red-700 bg-red-100 hover:bg-red-200 px-3 py-2 rounded-lg text-sm font-medium transition">
+                          + Add Extra Charge
+                        </button>
                       </div>
                     </div>
                   </div>

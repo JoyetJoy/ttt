@@ -415,9 +415,15 @@ export default function Checkout() {
                 </div>
 
                 <div className="p-6 space-y-4 text-sm">
+                  {bookingState?.chosenDate?.start_date && (
+                    <div className="flex justify-between items-center text-gray-600">
+                      <span className="font-medium">Selected Date</span>
+                      <span className="font-bold text-gray-900">{bookingState.chosenDate.start_date}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between items-center text-gray-600">
-                    <span className="font-medium">{bookingState?.productType === 'transport' ? 'Vehicle' : 'Adult'} (×{adultCount})</span>
-                    <span className="font-bold text-gray-900">₹{displayPrice * adultCount}</span>
+                    <span className="font-medium">{bookingState?.productType === 'transport' ? 'No of Days' : 'Adult'}</span>
+                    <span className="font-bold text-gray-900">₹{displayPrice} × {adultCount} = ₹{displayPrice * adultCount}</span>
                   </div>
                   {childCount > 0 && (
                     <div className="flex justify-between items-center text-gray-600">

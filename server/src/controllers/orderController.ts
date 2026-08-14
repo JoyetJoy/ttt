@@ -79,13 +79,17 @@ export const getAdminOrders = async (req: Request, res: Response) => {
       orderBy: { id: 'desc' }
     });
 
-    // We also want to fetch the product name (Tour name). 
-    // Since product_id is a string, we might need to fetch the tours separately or map them.
-    // For simplicity, we'll fetch all tours and map them in memory.
-    const tours = await prisma.tours.findMany({
-      select: { id: true, title: true }
-    });
-    const tourMap = new Map(tours.map(t => [String(t.id), t.title]));
+    // Fetch all product types to map their names
+    const tours = await prisma.tours.findMany({ select: { id: true, title: true } });
+    const hotels = await prisma.hotels.findMany({ select: { id: true, title: true } });
+    const transports = await prisma.transports.findMany({ select: { id: true, title: true } });
+    const activities = await prisma.activities.findMany({ select: { id: true, title: true } });
+
+    const productMap = new Map();
+    tours.forEach(t => productMap.set(`tour_${t.id}`, t.title));
+    hotels.forEach(h => productMap.set(`hotel_${h.id}`, h.title));
+    transports.forEach(t => productMap.set(`transport_${t.id}`, t.title));
+    activities.forEach(a => productMap.set(`activity_${a.id}`, a.title));
 
     const formattedOrders = ordersData.map((o, idx) => ({
       sn: idx + 1,
@@ -94,7 +98,7 @@ export const getAdminOrders = async (req: Request, res: Response) => {
       customer_name: `${o.first_name} ${o.last_name}`.trim(),
       customer_email: o.email,
       customer_phone: o.phone,
-      product_name: tourMap.get(o.product_id) || `Product #${o.product_id}`,
+      product_name: productMap.get(`${o.product_type}_${o.product_id}`) || `Product #${o.product_id}`,
       product_type: o.product_type,
       start_date: o.start_date,
       total_amount: o.total_amount,
@@ -120,12 +124,31 @@ export const getAdminOrderById = async (req: Request, res: Response) => {
     }
 
     let productName = `Product #${order.product_id}`;
+    let productImage = '';
     if (order.product_type === 'tour') {
-      const tour = await prisma.tours.findUnique({ where: { id: BigInt(order.product_id) }, select: { title: true } });
-      if (tour) productName = tour.title;
+      const tour = await prisma.tours.findUnique({ where: { id: BigInt(order.product_id) }, select: { title: true, features_image: true } });
+      if (tour) {
+        productName = tour.title;
+        productImage = tour.features_image || '';
+      }
     } else if (order.product_type === 'hotel') {
-      const hotel = await prisma.hotels.findUnique({ where: { id: BigInt(order.product_id) }, select: { title: true } });
-      if (hotel) productName = hotel.title;
+      const hotel = await prisma.hotels.findUnique({ where: { id: BigInt(order.product_id) }, select: { title: true, feature_img: true } });
+      if (hotel) {
+        productName = hotel.title;
+        productImage = hotel.feature_img || '';
+      }
+    } else if (order.product_type === 'transport') {
+      const transport = await prisma.transports.findUnique({ where: { id: BigInt(order.product_id) }, select: { title: true, feature_img: true } });
+      if (transport) {
+        productName = transport.title;
+        productImage = transport.feature_img || '';
+      }
+    } else if (order.product_type === 'activity') {
+      const activity = await prisma.activities.findUnique({ where: { id: BigInt(order.product_id) }, select: { title: true, feature_img: true } });
+      if (activity) {
+        productName = activity.title;
+        productImage = activity.feature_img || '';
+      }
     }
 
     const formattedOrder = {
@@ -134,7 +157,8 @@ export const getAdminOrderById = async (req: Request, res: Response) => {
       user_id: Number(order.user_id),
       merchant_id: Number(order.merchant_id),
       view: Number(order.view),
-      product_name: productName
+      product_name: productName,
+      product_image: productImage
     };
 
     res.json(formattedOrder);

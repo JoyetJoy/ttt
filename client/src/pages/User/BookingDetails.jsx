@@ -127,8 +127,8 @@ export default function BookingDetails() {
                   )}
                   {booking.days && (
                     <div>
-                      <div className="text-sm text-gray-500">Duration</div>
-                      <div className="font-medium">{booking.days} Day(s)</div>
+                      <div className="text-sm text-gray-500">{booking.product_type === 'transport' ? 'No of Days' : 'Duration'}</div>
+                      <div className="font-medium">{booking.product_type === 'transport' ? booking.adult_qty : `${booking.days} Day(s)`}</div>
                     </div>
                   )}
                 </div>
@@ -141,8 +141,8 @@ export default function BookingDetails() {
                   <table className="w-full text-left">
                     <thead>
                       <tr className="border-b text-gray-500 text-sm">
-                        <th className="pb-2 font-medium">Passenger Type</th>
-                        <th className="pb-2 font-medium">Quantity</th>
+                        <th className="pb-2 font-medium">{booking.product_type === 'transport' ? 'Type' : 'Passenger Type'}</th>
+                        <th className="pb-2 font-medium">{booking.product_type === 'transport' ? 'No of Days' : 'Quantity'}</th>
                         <th className="pb-2 font-medium">Unit Price</th>
                         <th className="pb-2 font-medium text-right">Total</th>
                       </tr>
@@ -150,7 +150,7 @@ export default function BookingDetails() {
                     <tbody className="text-sm">
                       {booking.adult_qty > 0 && (
                         <tr className="border-b border-gray-50 last:border-0">
-                          <td className="py-3">Adult</td>
+                          <td className="py-3">{booking.product_type === 'transport' ? 'Vehicle' : 'Adult'}</td>
                           <td className="py-3">{booking.adult_qty}</td>
                           <td className="py-3">₹{booking.adult_unit_price}</td>
                           <td className="py-3 text-right font-medium">₹{booking.adult_total_price}</td>
