@@ -60,7 +60,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="header-area style-1 !bg-black !text-white">
+      <header className="header-area style-1 !text-white" style={{ backgroundColor: '#011132' }}>
         {/* ── Logo ── */}
         <div className="company-logo d-lg-flex d-none">
           <Link to="/">
@@ -120,8 +120,8 @@ export default function Header() {
                     top: '100%',
                     left: 0,
                     marginTop: '10px',
-                    backgroundColor: '#000',
-                    border: '1px solid #333',
+                    backgroundColor: '#011132',
+                    border: '1px solid #1a2942',
                     borderRadius: '8px',
                     padding: '8px 0',
                     boxShadow: '0 4px 12px rgba(0,0,0,0.5)',

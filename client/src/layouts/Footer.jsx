@@ -50,7 +50,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <footer className="footer-section m-0 px-4 lg:px-24" style={{ backgroundColor: '#1a231f', color: '#c4c8c5', paddingTop: '180px', borderRadius: '0' }}>
+      <footer className="footer-section m-0 px-4 lg:px-24" style={{ backgroundColor: '#011132', backgroundImage: 'none', color: '#c4c8c5', paddingTop: '180px', borderRadius: '0' }}>
         <div className="container">
 
           <div className="footer-top pb-5">
