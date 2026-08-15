@@ -882,13 +882,13 @@ export default function AdminTransportForm() {
                       {existingGalleries.map(gallery => (
                         <div key={gallery.id} className="relative group rounded-lg overflow-hidden border shadow-sm h-24">
                           <img src={gallery.image} alt="Gallery" className="w-full h-full object-cover" />
-                          <button type="button" onClick={() => removeExistingGallery(gallery.id)} className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition shadow-sm z-10"><X size={14}/></button>
+                          <button type="button" onClick={() => removeExistingGallery(gallery.id)} className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600 transition shadow-sm z-10"><X size={14}/></button>
                         </div>
                       ))}
                       {galleryPreviews.map((url, index) => (
                         <div key={index} className="relative group rounded-lg overflow-hidden border border-indigo-200 shadow-sm h-24">
                           <img src={url} alt="New Gallery" className="w-full h-full object-cover" />
-                          <button type="button" onClick={() => removeNewGallery(index)} className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition shadow-sm z-10"><X size={14}/></button>
+                          <button type="button" onClick={() => removeNewGallery(index)} className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600 transition shadow-sm z-10"><X size={14}/></button>
                         </div>
                       ))}
                     </div>

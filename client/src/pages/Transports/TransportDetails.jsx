@@ -73,11 +73,7 @@ export default function TransportDetails() {
 
   const allImages = [
     transport.feature_img || "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&h=600&fit=crop",
-    ...(gallery.length > 0 ? gallery : [
-      "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=400&h=300&fit=crop",
-      "https://images.unsplash.com/photo-1542362567-b07e54358753?w=400&h=600&fit=crop"
-    ])
+    ...gallery
   ];
 
   const openModal = (index) => {
@@ -136,23 +132,7 @@ export default function TransportDetails() {
               {/* Large Image Left */}
               <div className="md:col-span-2 h-full rounded-xl overflow-hidden shadow-sm relative group cursor-pointer" onClick={() => openModal(0)}>
                 <img src={allImages[0]} alt="Gallery 1" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
-              </div>
-              {/* Two Stacked Middle */}
-              <div className="md:col-span-1 flex flex-col gap-4 h-full">
-                <div className="flex-1 rounded-xl overflow-hidden shadow-sm relative group cursor-pointer" onClick={() => openModal(1)}>
-                  <img src={allImages[1 % allImages.length]} alt="Gallery 2" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
-                </div>
-                <div className="flex-1 rounded-xl overflow-hidden shadow-sm relative group cursor-pointer" onClick={() => openModal(2)}>
-                  <img src={allImages[2 % allImages.length]} alt="Gallery 3" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
-                </div>
-              </div>
-              {/* Large Image Right */}
-              <div className="md:col-span-1 h-full rounded-xl overflow-hidden shadow-sm relative group cursor-pointer" onClick={() => openModal(3)}>
-                <img src={allImages[3 % allImages.length]} alt="Gallery 4" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                {transport.youtube_video ? (
+                {allImages.length === 1 && transport.youtube_video ? (
                   <a href={transport.youtube_video} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="absolute inset-0 bg-black/30 flex items-center justify-center hover:bg-black/40 transition-colors">
                     <span className="text-white font-bold tracking-wide">Watch Video</span>
                   </a>
@@ -160,6 +140,38 @@ export default function TransportDetails() {
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
                 )}
               </div>
+
+              {/* Two Stacked Middle */}
+              {(allImages[1] || allImages[2]) && (
+                <div className="md:col-span-1 flex flex-col gap-4 h-full">
+                  {allImages[1] && (
+                    <div className="flex-1 rounded-xl overflow-hidden shadow-sm relative group cursor-pointer" onClick={() => openModal(1)}>
+                      <img src={allImages[1]} alt="Gallery 2" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+                    </div>
+                  )}
+                  {allImages[2] && (
+                    <div className="flex-1 rounded-xl overflow-hidden shadow-sm relative group cursor-pointer" onClick={() => openModal(2)}>
+                      <img src={allImages[2]} alt="Gallery 3" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Large Image Right */}
+              {allImages[3] && (
+                <div className="md:col-span-1 h-full rounded-xl overflow-hidden shadow-sm relative group cursor-pointer" onClick={() => openModal(3)}>
+                  <img src={allImages[3]} alt="Gallery 4" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  {transport.youtube_video ? (
+                    <a href={transport.youtube_video} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="absolute inset-0 bg-black/30 flex items-center justify-center hover:bg-black/40 transition-colors">
+                      <span className="text-white font-bold tracking-wide">Watch Video</span>
+                    </a>
+                  ) : (
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 
