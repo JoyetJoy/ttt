@@ -139,6 +139,7 @@ export default function AdminTransportList() {
         </div>
       </div>
 
+
       <div className="bg-white rounded-xl shadow-[0_2px_12px_rgb(0,0,0,0.04)] border border-slate-100 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm whitespace-nowrap">
@@ -147,6 +148,7 @@ export default function AdminTransportList() {
                 <th className="px-6 py-3 font-semibold">S.N</th>
                 <th className="px-6 py-3 font-semibold">Title</th>
                 <th className="px-6 py-3 font-semibold">Price</th>
+                <th className="px-6 py-3 font-semibold">Sale Price</th>
                 <th className="px-6 py-3 font-semibold">Status</th>
                 <th className="px-6 py-3 font-semibold text-center">Option</th>
               </tr>
@@ -157,7 +159,8 @@ export default function AdminTransportList() {
                   <tr key={t.id} className="hover:bg-gray-50/50 transition">
                     <td className="px-6 py-3">{index + 1}</td>
                     <td className="px-6 py-3 font-medium text-gray-900">{t.title || t.name}</td>
-                    <td className="px-6 py-3 text-gray-500">₹{t.sale_price > 0 ? t.sale_price : (t.price || t.car_price || 0)}</td>
+                    <td className="px-6 py-3 text-gray-500">₹{t.price || t.car_price || 0}</td>
+                    <td className="px-6 py-3 text-gray-500">₹{t.sale_price || 0}</td>
                     <td className="px-6 py-3">
                       {t.status === 1 ? (
                         <span className="text-emerald-600 bg-emerald-50 rounded px-2 py-1 text-xs font-semibold">Publish</span>
@@ -194,7 +197,7 @@ export default function AdminTransportList() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="5" className="px-6 py-12 text-center text-gray-500">
+                  <td colSpan="6" className="px-6 py-12 text-center text-gray-500">
                     No transports found matching your search.
                   </td>
                 </tr>

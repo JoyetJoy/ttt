@@ -164,15 +164,29 @@ export const getAdminTransports = async (req: Request, res: Response) => {
       }
     });
 
-    const formattedTransports = transportsData.map((t, idx) => ({
-      sn: idx + 1,
-      id: Number(t.id),
-      name: t.title,
-      location: t.locations_transports_city_idTolocations?.name || t.address || 'Unknown',
-      agent: t.users ? `${t.users.fname || ''} ${t.users.lname || ''}`.trim() : 'Unknown',
-      price: t.pricing_vehicles ? (JSON.parse(t.pricing_vehicles)[0]?.price || 0) : 0, // generic fallback for list
-      status: t.status
-    }));
+    const formattedTransports = transportsData.map((t, idx) => {
+      let price = 0;
+      let sale_price = 0;
+      if (t.pricing_vehicles) {
+        try {
+          const pv = JSON.parse(t.pricing_vehicles);
+          if (pv && pv.length > 0) {
+            price = pv[0].price || 0;
+            sale_price = pv[0].sale_price || 0;
+          }
+        } catch (e) {}
+      }
+      return {
+        sn: idx + 1,
+        id: Number(t.id),
+        name: t.title,
+        location: t.locations_transports_city_idTolocations?.name || t.address || 'Unknown',
+        agent: t.users ? `${t.users.fname || ''} ${t.users.lname || ''}`.trim() : 'Unknown',
+        price,
+        sale_price,
+        status: t.status
+      };
+    });
 
     res.json({ stats, transports: formattedTransports });
   } catch (error) {
@@ -292,8 +306,12 @@ export const updateTransport = async (req: Request, res: Response) => {
     delete data.transport_galleries;
     delete data.created_at;
     delete data.updated_at;
-    if (data.author_id) data.author_id = BigInt(data.author_id);
-    if (data.view) data.view = BigInt(data.view);
+    delete data.author_id;
+    delete data.view;
+    delete data.locations_transports_city_idTolocations;
+    delete data.locations_transports_country_idTolocations;
+    delete data.locations_transports_state_idTolocations;
+    delete data.vehicle_name;
 
     // Delete legacy pricing fields so we don't try to save them as strings
     const legacyFields = ['car_price', 'car_sale_price', 'train_price', 'train_sale_price', 'train_child_price', 'bus_price', 'bus_sale_price', 'bus_child_price', 'boat_price', 'boat_sale_price', 'boat_child_price', 'min_advance_reservations', 'min_stay', 'car_type', 'car_person', 'hr_km', 'extra_price_per_km'];
