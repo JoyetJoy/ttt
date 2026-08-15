@@ -150,11 +150,13 @@ export default function TransportDetails() {
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
                     </div>
                   )}
-                  {allImages[2] && (
+                  {allImages[2] ? (
                     <div className="flex-1 rounded-xl overflow-hidden shadow-sm relative group cursor-pointer" onClick={() => openModal(2)}>
                       <img src={allImages[2]} alt="Gallery 3" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
                     </div>
+                  ) : (
+                    <div className="flex-1"></div>
                   )}
                 </div>
               )}
