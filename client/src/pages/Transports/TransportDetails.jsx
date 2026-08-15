@@ -26,7 +26,7 @@ export default function TransportDetails() {
   useEffect(() => {
     const fetchTransport = async () => {
       try {
-        const response = await axios.get(`/api/transports/${id}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/transports/${id}`);
         setTransport(response.data);
       } catch (error) {
         console.error('Failed to fetch transport details:', error);

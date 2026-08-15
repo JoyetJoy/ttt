@@ -8,7 +8,7 @@ export default function HotelDetails() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`/api/hotels/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/hotels/${id}`)
       .then(res => res.json())
       .then(data => {
         setHotel(data);
