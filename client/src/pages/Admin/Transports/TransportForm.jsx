@@ -511,10 +511,9 @@ export default function AdminTransportForm() {
       </div>
 
       <div className="flex flex-col lg:flex-row gap-6">
-        {isEdit && (
-          <div className="w-full lg:w-64 flex-shrink-0">
-            <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-2 flex lg:flex-col gap-1 overflow-x-auto sticky top-4">
-              {tabs.map(tab => {
+        <div className="w-full lg:w-64 flex-shrink-0">
+          <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-2 flex lg:flex-col gap-1 overflow-x-auto sticky top-4">
+            {tabs.map(tab => {
                 const Icon = tab.icon;
                 const isActive = activeTab === tab.id;
                 return (
@@ -531,9 +530,8 @@ export default function AdminTransportForm() {
                   </button>
                 );
               })}
-            </div>
           </div>
-        )}
+        </div>
 
         {/* Main Content Area */}
         <div className="flex-1 bg-white rounded-xl shadow-sm border border-slate-100 p-6 md:p-8 min-h-[600px]">
@@ -590,15 +588,6 @@ export default function AdminTransportForm() {
                       {formData.faqs.length === 0 && <p className="text-sm text-slate-500 text-center py-4">No FAQs added yet.</p>}
                     </div>
                   </div>
-                  
-                  {!isEdit && (
-                    <div className="mt-8 bg-indigo-50 rounded-xl p-4 border border-indigo-100 flex items-center justify-between">
-                      <div>
-                        <h4 className="text-sm font-semibold text-indigo-900">Need to add more details?</h4>
-                        <p className="text-xs text-indigo-700 mt-1">After saving, you can click the "Eye" or "Edit" icon in the list to manage Pricing, Location, Media, and Details.</p>
-                      </div>
-                    </div>
-                  )}
                 </div>
               )}
 
