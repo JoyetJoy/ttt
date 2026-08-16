@@ -27,8 +27,8 @@ export default function ContactSection({ type }) {
                 </div>
                 <div>
                   <p style={{ margin: 0, fontSize: '11px', color: '#888', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '4px' }}>Phone</p>
-                  <p style={{ margin: 0, fontSize: '14px', fontWeight: '600', color: '#111' }}>+4401304 793060</p>
-                  <p style={{ margin: 0, fontSize: '14px', fontWeight: '600', color: '#111' }}>+447832 227324</p>
+                  <p style={{ margin: 0, fontSize: '14px', fontWeight: '600', color: '#111' }}>+91 8078000781</p>
+                  <p style={{ margin: 0, fontSize: '14px', fontWeight: '600', color: '#111' }}>+91 8078000783</p>
                 </div>
               </div>
 

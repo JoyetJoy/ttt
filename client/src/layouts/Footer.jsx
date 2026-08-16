@@ -100,7 +100,8 @@ export default function Footer() {
                       <i className="bx bxs-phone text-warning fs-5"></i>
                       <h5 className="text-white fw-bold mb-0" style={{ fontSize: '16px' }}>More Inquiry</h5>
                     </div>
-                    <a href="tel:+4401304793060" className="text-decoration-none d-block ms-4 ps-1" style={{ color: '#c4c8c5' }}>+44 01304 793060</a>
+                    <a href="tel:+918078000781" className="text-decoration-none d-block ms-4 ps-1" style={{ color: '#c4c8c5' }}>+91 8078000781</a>
+                    <a href="tel:+918078000783" className="text-decoration-none d-block ms-4 ps-1" style={{ color: '#c4c8c5' }}>+91 8078000783</a>
                   </div>
 
                   <div className="mb-4">
