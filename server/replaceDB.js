@@ -9,9 +9,10 @@ async function replaceInTable(model, fields) {
       let updated = false;
       const data = {};
       for(const field of fields) {
-        if (record[field] && typeof record[field] === 'string' && record[field].includes('Q Tours')) {
+        if (record[field] && typeof record[field] === 'string' && (record[field].includes('Q Tours') || record[field].includes('GATEWAY Tours'))) {
           data[field] = record[field]
-            .replace(/Q Tours & Travels/g, 'GATEWAY Tours & Travels')
+            .replace(/Q Tours & Travels/g, 'Trivandrum Top Taxi')
+            .replace(/GATEWAY Tours & Travels/g, 'Trivandrum Top Taxi')
             .replace(/Q Tours and Travels/gi, 'GATEWAY Tours and Travels')
             .replace(/Q Tours/g, 'GATEWAY Tours');
           updated = true;

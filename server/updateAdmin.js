@@ -17,7 +17,7 @@ async function main() {
       fname: { contains: 'Q Tours' }
     },
     data: {
-      fname: 'GATEWAY Tours And Travels',
+      fname: 'Trivandrum Top Taxi',
       lname: ''
     }
   });

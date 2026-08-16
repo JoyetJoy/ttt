@@ -9,7 +9,7 @@ async function main() {
       const original = record.widget_content;
       // Replace variations of Q Tours in the JSON string
       const updatedStr = original
-        .replace(/Q Tours & Travels/gi, 'GATEWAY Tours & Travels')
+        .replace(/Q Tours & Travels/gi, 'Trivandrum Top Taxi')
         .replace(/Q Tours and Travels/gi, 'GATEWAY Tours and Travels')
         .replace(/Q Tours/gi, 'GATEWAY Tours');
 

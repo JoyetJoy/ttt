@@ -24,7 +24,8 @@ async function main() {
             const original = record[field];
             // Case-insensitive replacement
             const replaced = original
-              .replace(/Q Tours & Travels/gi, 'GATEWAY Tours & Travels')
+              .replace(/Q Tours & Travels/gi, 'Trivandrum Top Taxi')
+              .replace(/GATEWAY Tours & Travels/gi, 'Trivandrum Top Taxi')
               .replace(/Q Tours and Travels/gi, 'GATEWAY Tours and Travels')
               .replace(/Q Tours/gi, 'GATEWAY Tours');
             
