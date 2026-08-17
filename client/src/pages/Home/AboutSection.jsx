@@ -97,18 +97,18 @@ export default function AboutSection({ config = {} }) {
                 )}
               </div>
 
-              <div className="about-content-bottom">
+              <div className="about-content-bottom flex flex-wrap items-center gap-6 mt-8">
                 <Link to={buttonUrl.startsWith('/') ? buttonUrl : `/${buttonUrl}`} className="primary-btn1 !bg-[#0081C9] !text-white hover:!bg-[#006096] transition-colors border-none">{buttonText}</Link>
-                <div className="counter-area">
+                <div className="counter-area flex items-center gap-4">
                   <div className="customer-img-grp">
                     <img src={customerImage} alt="customer image" />
                   </div>
                   <div className="content">
-                    <div className="number">
-                      <h6 className="counter">{customerCount}</h6>
-                      <span>+</span>
+                    <div className="number flex items-center">
+                      <h6 className="counter font-bold text-lg mb-0">{customerCount}</h6>
+                      <span className="font-bold text-lg">+</span>
                     </div>
-                    <p>Customer</p>
+                    <p className="mb-0 text-sm text-gray-500">Customer</p>
                   </div>
                 </div>
               </div>

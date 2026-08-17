@@ -6,11 +6,14 @@ export default function TourList() {
   const navigate = useNavigate();
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 6;
   const [sortOpen, setSortOpen] = useState(false);
   const [sortOption, setSortOption] = useState('Default Sorting');
   const [searchQuery, setSearchQuery] = useState('');
   const [priceRange, setPriceRange] = useState(900);
   const [selectedDestinations, setSelectedDestinations] = useState([]);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleDestinationChange = (dest) => {
     setSelectedDestinations(prev => 
@@ -59,6 +62,8 @@ export default function TourList() {
 
   if (loading) return <div className="pt-32 text-center text-gray-500 font-medium">Loading tours...</div>;
 
+  const totalItems = sortedTours.length;
+  const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
   const paginatedData = sortedTours.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   return (
@@ -83,7 +88,12 @@ export default function TourList() {
           <div className="flex flex-col lg:flex-row gap-8">
 
             {/* ── Sidebar (Left) ── */}
-            <div className="w-full lg:w-[320px] flex-shrink-0 flex flex-col gap-8">
+            {isSidebarOpen && <div className="fixed inset-0 bg-black/60 z-[9990] lg:hidden" onClick={() => setIsSidebarOpen(false)}></div>}
+            <div className={`w-[300px] lg:w-[320px] flex-shrink-0 flex flex-col gap-6 fixed lg:relative top-0 left-0 h-full lg:h-auto bg-white lg:bg-transparent z-[9999] lg:z-auto p-6 lg:p-0 overflow-y-auto lg:overflow-visible transition-transform duration-300 shadow-2xl lg:shadow-none ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
+              <div className="lg:hidden flex justify-between items-center mb-2 pb-4 border-b border-gray-100">
+                <h3 className="text-xl font-extrabold text-gray-900">Filters</h3>
+                <button onClick={() => setIsSidebarOpen(false)} className="text-gray-500 hover:text-red-500 text-3xl leading-none bg-gray-50 hover:bg-red-50 w-10 h-10 rounded-full flex items-center justify-center transition-colors">&times;</button>
+              </div>
 
               {/* Search Widget */}
               <div className="bg-white rounded-xl p-7 shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-gray-100/50">
@@ -177,9 +187,14 @@ export default function TourList() {
             <div className="flex-1">
 
               {/* Top Bar */}
-              <div className="flex justify-between items-center mb-8 bg-white p-4 rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-gray-100/50">
-                <div className="text-gray-500 font-medium text-sm">Showing <span className="font-extrabold text-gray-900">{totalItems}</span> Result</div>
-                <div className="relative w-[220px]">
+              <div className="flex flex-wrap gap-4 justify-between items-center mb-8 bg-white p-4 rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-gray-100/50">
+                <div className="text-gray-500 font-medium text-sm flex items-center gap-3">
+                  <button onClick={() => setIsSidebarOpen(true)} className="lg:hidden border border-gray-200 text-sm font-medium text-gray-500 rounded-full px-4 py-2 bg-white hover:bg-gray-50 flex items-center gap-2">
+                    <i className="bi bi-funnel"></i> Filters
+                  </button>
+                  <span>Showing <span className="font-extrabold text-gray-900">{totalItems}</span> Result</span>
+                </div>
+                <div className="relative w-full sm:w-[220px]">
                   {/* Button */}
                   <button
                     onClick={() => setSortOpen(!sortOpen)}
@@ -214,7 +229,7 @@ export default function TourList() {
 
               {/* Tour Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
-                {sortedTours.map(tour => {
+                {paginatedData.map(tour => {
                   let subDests = [];
                   if (tour.sub_destination) {
                     try {

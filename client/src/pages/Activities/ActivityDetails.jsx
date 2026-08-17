@@ -126,16 +126,24 @@ export default function ActivityDetails() {
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
               </div>
               {/* Two Stacked Middle */}
-              <div className="md:col-span-1 flex flex-col gap-4 h-full">
-                <div className="flex-1 rounded-xl overflow-hidden shadow-sm relative group cursor-pointer" onClick={() => openModal(1)}>
-                  <img src={allImages[1]} alt="Gallery 2" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+              {(allImages[1] || allImages[2]) && (
+                <div className="md:col-span-1 flex flex-col gap-4 h-full">
+                  {allImages[1] && (
+                    <div className="flex-1 rounded-xl overflow-hidden shadow-sm relative group cursor-pointer" onClick={() => openModal(1)}>
+                      <img src={allImages[1]} alt="Gallery 2" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+                    </div>
+                  )}
+                  {allImages[2] ? (
+                    <div className="flex-1 rounded-xl overflow-hidden shadow-sm relative group cursor-pointer" onClick={() => openModal(2)}>
+                      <img src={allImages[2]} alt="Gallery 3" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+                    </div>
+                  ) : (
+                    <div className="flex-1"></div>
+                  )}
                 </div>
-                <div className="flex-1 rounded-xl overflow-hidden shadow-sm relative group cursor-pointer" onClick={() => openModal(2)}>
-                  <img src={allImages[2]} alt="Gallery 3" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
-                </div>
-              </div>
+              )}
               {/* Large Image Right */}
               <div className="md:col-span-1 h-full rounded-xl overflow-hidden shadow-sm relative group cursor-pointer" onClick={() => openModal(3)}>
                 <img src={allImages[3]} alt="Gallery 4" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -245,9 +253,9 @@ export default function ActivityDetails() {
               </div>
 
               {/* Itinerary */}
-              {/* FAQ */}
+              {/* FAQ (Desktop Only) */}
               {faqs && faqs.length > 0 && (
-                <div className="mb-16 mt-16">
+                <div className="mb-16 mt-16 hidden lg:block">
                   <h3 className="text-3xl font-extrabold text-gray-900 mb-10">{activity.faq_title || "Frequently Asked Questions"}</h3>
                   <div className="space-y-2">
                     {faqs.map((item, i) => (
@@ -282,20 +290,20 @@ export default function ActivityDetails() {
                   <p className="text-gray-500 text-xs text-center mb-8">Secure your spot for an unforgettable nature adventure now!</p>
                   
                   {/* Tabs */}
-                  <div className="flex mb-8">
+                  <div className="flex mb-3">
                     <button onClick={() => setActiveTab('online')} className={`flex-1 py-3 font-bold text-sm transition-colors ${activeTab === 'online' ? 'bg-[#0081C9] text-white' : 'bg-transparent text-[#0081C9] border border-gray-200'}`}>Online Booking</button>
                     <button onClick={() => setActiveTab('inquiry')} className={`flex-1 py-3 font-bold text-sm transition-colors ${activeTab === 'inquiry' ? 'bg-[#0081C9] text-white' : 'bg-transparent text-[#0081C9] border border-gray-200'}`}>Inquiry Form</button>
                   </div>
 
                   {activeTab === 'inquiry' ? (
-                    <div className="mt-4">
-                      <InquiryFormWidget itemType="Activity" itemId={activity.id} title="" subtitle="" />
+                    <div className="mt-2">
+                      <InquiryFormWidget itemType="Activity" itemId={activity.id} title="" subtitle="" standalone={false} />
                     </div>
                   ) : (
-                    <>
+                    <div className="flex flex-col gap-3 mt-1">
                       {/* Booking Date */}
-                      <div className="mb-6">
-                         <h4 className="font-bold text-gray-900 text-sm mb-4">Select Your Booking Date:</h4>
+                      <div>
+                         <h4 className="font-bold text-gray-900 text-sm mb-1">Select Your Booking Date:</h4>
                          <div className="space-y-4">
                            <input 
                              type="date" 
@@ -329,12 +337,13 @@ export default function ActivityDetails() {
                         </div>
                       </div>
 
-                      {/* Calculation Breakdown */}
-                      <div className="border border-gray-200 px-4 py-5 mb-8 relative mt-6 bg-white/50">
-                        <div className="absolute -top-[14px] left-4 bg-[#f5f8f2] px-2 text-sm font-bold text-gray-900">Adult</div>
+                    {/* Calculation Breakdown */}
+                    <div className="border border-gray-200 px-4 pt-1.5 pb-2 mb-4 relative mt-3 bg-white/50">
+                      <div className="absolute -top-[14px] left-4 bg-[#f5f8f2] px-2 text-sm font-bold text-gray-900">Adult</div>
+                      <div className="flex flex-col gap-2 mt-2">
                         <div className="flex items-center justify-between w-full">
                           <div className="flex flex-col items-center">
-                            <span className="text-xl font-medium text-gray-700">₹{displayPrice}</span>
+                            <span className="text-[17px] font-medium text-gray-700">₹{displayPrice}</span>
                             <span className="text-[10px] uppercase tracking-wider text-gray-400 mt-1">Price</span>
                           </div>
                           <span className="text-lg font-light pb-4 text-gray-400">×</span>
@@ -354,16 +363,15 @@ export default function ActivityDetails() {
                         </div>
                       </div>
 
-                      <hr className="border-gray-200 my-8" />
-
-                      <div className="flex justify-center items-center font-bold text-gray-900 text-sm mb-6">
-                        Total Amount: <span className="ml-2 text-[22px]">₹{totalAmount}</span>
+                      <div className="flex justify-center items-center font-bold text-gray-900 text-sm mt-1">
+                        Total Amount: <span className="ml-2 text-xl">₹{totalAmount}</span>
                       </div>
 
-                      <button onClick={handleBookNow} className="w-full bg-[#0081C9] text-white font-bold py-4 hover:bg-[#006096] transition-colors shadow-[0_4px_15px_rgba(0, 129, 201,0.3)]">
+                      <button onClick={handleBookNow} className="w-full bg-[#0081C9] text-white font-bold text-[15px] py-2.5 rounded shadow-[0_10px_20px_rgba(0,129,201,0.3)] hover:bg-[#006096] transition-colors mt-2">
                         Book Now
                       </button>
-                    </>
+                    </div>
+                    </div>
                   )}
                 </div>
 
@@ -381,6 +389,31 @@ export default function ActivityDetails() {
                     </div>
                   </div>
                 </div>
+
+                {/* FAQ (Mobile Only) */}
+                {faqs && faqs.length > 0 && (
+                  <div className="mt-8 mb-12 block lg:hidden">
+                    <h3 className="text-3xl font-extrabold text-gray-900 mb-10">{activity.faq_title || "Frequently Asked Questions"}</h3>
+                    <div className="space-y-2">
+                      {faqs.map((item, i) => (
+                        <div key={i} className="flex flex-col">
+                          <div 
+                            className="flex justify-between items-center cursor-pointer py-4 border-b border-gray-300 group"
+                            onClick={() => setOpenFaqIndex(openFaqIndex === i ? null : i)}
+                          >
+                            <h5 className="font-extrabold text-gray-900 text-lg group-hover:text-[#0081C9] transition-colors">{item.question}</h5>
+                            <i className={`bi ${openFaqIndex === i ? 'bi-dash-lg' : 'bi-plus-lg'} text-xl font-bold ${openFaqIndex === i ? 'text-[#0081C9]' : 'text-gray-900'}`}></i>
+                          </div>
+                          {openFaqIndex === i && (
+                            <div className="py-4 text-[15px] text-gray-500 leading-relaxed">
+                              {item.answer}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
               </div>
             </div>

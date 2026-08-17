@@ -85,9 +85,9 @@ export default function DestinationDetails() {
 
               {/* Image Gallery */}
               <div className="mb-10">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 h-[300px]">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {allImages.slice(1, 4).map((img, i) => (
-                    <div key={i} className="rounded-xl overflow-hidden shadow-sm relative group cursor-pointer h-full" onClick={() => openModal(i + 1)}>
+                    <div key={i} className="rounded-xl overflow-hidden shadow-sm relative group cursor-pointer h-[200px] sm:h-[300px]" onClick={() => openModal(i + 1)}>
                       <img src={img} alt={`Gallery ${i}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
                     </div>

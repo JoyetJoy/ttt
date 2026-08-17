@@ -3,7 +3,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
 
-export default function InquiryFormWidget({ itemType, itemId, title = "Reserve Your Spot", subtitle = "Secure your spot for an unforgettable experience now!" }) {
+export default function InquiryFormWidget({ itemType, itemId, title = "Reserve Your Spot", subtitle = "Secure your spot for an unforgettable experience now!", standalone = true }) {
   const { user, token } = useAuth() || {};
   
   const [inquiryForm, setInquiryForm] = useState({
@@ -51,29 +51,33 @@ export default function InquiryFormWidget({ itemType, itemId, title = "Reserve Y
     }
   };
 
+  const wrapperClass = standalone 
+    ? "bg-[#f5f8f2] rounded p-8 mb-8 border border-gray-100 shadow-sm" 
+    : "w-full";
+
   return (
-    <div className="bg-[#f5f8f2] rounded p-8 mb-8 border border-gray-100 shadow-sm">
-      <h3 className="text-[22px] font-extrabold text-gray-900 text-center mb-2">{title}</h3>
-      <p className="text-gray-500 text-xs text-center mb-8">{subtitle}</p>
+    <div className={wrapperClass}>
+      {title && <h3 className={`text-[22px] font-extrabold text-gray-900 text-center ${subtitle ? 'mb-2' : 'mb-6'}`}>{title}</h3>}
+      {subtitle && <p className="text-gray-500 text-xs text-center mb-6">{subtitle}</p>}
       
-      <form onSubmit={handleInquirySubmit} className="space-y-4">
+      <form onSubmit={handleInquirySubmit} className="space-y-3">
         <div>
           <label className="block text-sm font-bold text-gray-700 mb-1">Full Name <span className="text-red-500">*</span></label>
-          <input type="text" required value={inquiryForm.name} onChange={e => setInquiryForm({...inquiryForm, name: e.target.value})} className="w-full px-4 py-3 border border-gray-200 rounded outline-none focus:border-[#0081C9]" placeholder="Enter your full name" />
+          <input type="text" required value={inquiryForm.name} onChange={e => setInquiryForm({...inquiryForm, name: e.target.value})} className="w-full px-4 py-2 border border-gray-200 rounded outline-none focus:border-[#0081C9] text-sm" placeholder="Enter your full name" />
         </div>
         <div>
           <label className="block text-sm font-bold text-gray-700 mb-1">Email Address <span className="text-red-500">*</span></label>
-          <input type="email" required value={inquiryForm.email} onChange={e => setInquiryForm({...inquiryForm, email: e.target.value})} className="w-full px-4 py-3 border border-gray-200 rounded outline-none focus:border-[#0081C9]" placeholder="Enter your email address" />
+          <input type="email" required value={inquiryForm.email} onChange={e => setInquiryForm({...inquiryForm, email: e.target.value})} className="w-full px-4 py-2 border border-gray-200 rounded outline-none focus:border-[#0081C9] text-sm" placeholder="Enter your email address" />
         </div>
         <div>
           <label className="block text-sm font-bold text-gray-700 mb-1">Phone Number</label>
-          <input type="tel" value={inquiryForm.phone} onChange={e => setInquiryForm({...inquiryForm, phone: e.target.value})} className="w-full px-4 py-3 border border-gray-200 rounded outline-none focus:border-[#0081C9]" placeholder="Enter your phone number" />
+          <input type="tel" value={inquiryForm.phone} onChange={e => setInquiryForm({...inquiryForm, phone: e.target.value})} className="w-full px-4 py-2 border border-gray-200 rounded outline-none focus:border-[#0081C9] text-sm" placeholder="Enter your phone number" />
         </div>
         <div>
           <label className="block text-sm font-bold text-gray-700 mb-1">Write Your Message <span className="text-red-500">*</span></label>
-          <textarea required value={inquiryForm.message} onChange={e => setInquiryForm({...inquiryForm, message: e.target.value})} className="w-full px-4 py-3 border border-gray-200 rounded outline-none focus:border-[#0081C9] min-h-[120px]" placeholder="Write your inquiry"></textarea>
+          <textarea required value={inquiryForm.message} onChange={e => setInquiryForm({...inquiryForm, message: e.target.value})} className="w-full px-4 py-2 border border-gray-200 rounded outline-none focus:border-[#0081C9] min-h-[100px] text-sm" placeholder="Write your inquiry"></textarea>
         </div>
-        <button type="submit" disabled={inquiryStatus === 'submitting'} className="w-full bg-[#0081C9] hover:bg-[#006096] text-white font-bold py-2.5 rounded transition-colors shadow-lg shadow-[#0081C9]/30 disabled:opacity-50">
+        <button type="submit" disabled={inquiryStatus === 'submitting'} className="w-full bg-[#0081C9] hover:bg-[#006096] text-white font-bold py-2.5 rounded transition-colors shadow-lg shadow-[#0081C9]/30 disabled:opacity-50 mt-2 text-[15px]">
           {inquiryStatus === 'submitting' ? 'Submitting...' : 'Submit Inquiry'}
         </button>
       </form>

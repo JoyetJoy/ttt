@@ -26,37 +26,37 @@ export default function About() {
       {/* ── Stats Bar ── */}
       <div className="border-t border-gray-100 bg-white py-14">
         <div className="container mx-auto px-4 lg:px-8 max-w-[1320px]">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:divide-x divide-gray-200/60">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 lg:divide-x divide-gray-200/60">
             {/* Stat 1 */}
-            <div className="flex items-center justify-center gap-5">
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-2 lg:gap-5 text-center lg:text-left p-2">
               <i className="bi bi-backpack2 text-[40px] text-[#0081C9]"></i>
               <div>
-                <div className="text-[28px] font-extrabold text-gray-900 mb-0.5 tracking-tight">3.5K+</div>
-                <div className="text-gray-500 font-medium text-sm">Happy Traveler</div>
+                <div className="text-[24px] lg:text-[28px] font-extrabold text-gray-900 mb-0.5 tracking-tight">3.5K+</div>
+                <div className="text-gray-500 font-medium text-xs lg:text-sm">Happy Traveler</div>
               </div>
             </div>
             {/* Stat 2 */}
-            <div className="flex items-center justify-center gap-5">
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-2 lg:gap-5 text-center lg:text-left p-2">
               <i className="bi bi-star text-[40px] text-[#0081C9]"></i>
               <div>
-                <div className="text-[28px] font-extrabold text-gray-900 mb-0.5 tracking-tight">2.5k+</div>
-                <div className="text-gray-500 font-medium text-sm">Tours Success</div>
+                <div className="text-[24px] lg:text-[28px] font-extrabold text-gray-900 mb-0.5 tracking-tight">2.5k+</div>
+                <div className="text-gray-500 font-medium text-xs lg:text-sm">Tours Success</div>
               </div>
             </div>
             {/* Stat 3 */}
-            <div className="flex items-center justify-center gap-5">
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-2 lg:gap-5 text-center lg:text-left p-2">
               <i className="bi bi-hand-thumbs-up text-[40px] text-[#0081C9]"></i>
               <div>
-                <div className="text-[28px] font-extrabold text-gray-900 mb-0.5 tracking-tight">99.5%</div>
-                <div className="text-gray-500 font-medium text-sm">Positives Review</div>
+                <div className="text-[24px] lg:text-[28px] font-extrabold text-gray-900 mb-0.5 tracking-tight">99.5%</div>
+                <div className="text-gray-500 font-medium text-xs lg:text-sm">Positives Review</div>
               </div>
             </div>
             {/* Stat 4 */}
-            <div className="flex items-center justify-center gap-5">
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-2 lg:gap-5 text-center lg:text-left p-2">
               <i className="bi bi-person-badge text-[40px] text-[#0081C9]"></i>
               <div>
-                <div className="text-[28px] font-extrabold text-gray-900 mb-0.5 tracking-tight">55+</div>
-                <div className="text-gray-500 font-medium text-sm">Travel Guide</div>
+                <div className="text-[24px] lg:text-[28px] font-extrabold text-gray-900 mb-0.5 tracking-tight">55+</div>
+                <div className="text-gray-500 font-medium text-xs lg:text-sm">Travel Guide</div>
               </div>
             </div>
           </div>

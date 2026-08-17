@@ -118,8 +118,8 @@ export default function BlogList() {
                         </div>
 
                         {/* Title */}
-                        <h2 className="text-3xl font-extrabold text-gray-900 mb-4 hover:text-[#0081C9] transition-colors">
-                          <Link to={`/blog/${blog.slug}`}>{blog.title}</Link>
+                        <h2 className="text-3xl font-extrabold mb-4">
+                          <Link to={`/blog/${blog.slug}`} className="!text-gray-900 hover:!text-[#0081C9] transition-colors">{blog.title}</Link>
                         </h2>
 
                         {/* Excerpt */}
