@@ -66,7 +66,7 @@ export default function AdminDashboard() {
         <div className="relative overflow-hidden rounded-[20px] bg-white p-6 shadow-[0_2px_12px_rgb(0,0,0,0.04)] border border-slate-100 hover:translate-y-[-4px] transition-transform duration-300">
           <div className="relative z-10 flex flex-col h-full justify-between">
             <h5 className="text-[15px] font-medium text-slate-500 tracking-wide">Total Booking</h5>
-            <h2 className="text-[32px] font-bold mt-3 text-slate-800">${Number(stats?.total_amount || 0).toLocaleString()}</h2>
+            <h2 className="text-[32px] font-bold mt-3 text-slate-800">₹{Number(stats?.total_amount || 0).toLocaleString()}</h2>
           </div>
           <CardBgSvg />
         </div>
@@ -84,7 +84,7 @@ export default function AdminDashboard() {
         <div className="relative overflow-hidden rounded-[20px] bg-white p-6 shadow-[0_2px_12px_rgb(0,0,0,0.04)] border border-slate-100 hover:translate-y-[-4px] transition-transform duration-300">
           <div className="relative z-10 flex flex-col h-full justify-between">
             <h5 className="text-[15px] font-medium text-slate-500 tracking-wide">Total Deposit</h5>
-            <h2 className="text-[32px] font-bold mt-3 text-slate-800">${Number(stats?.total_deposit || 0).toLocaleString()}</h2>
+            <h2 className="text-[32px] font-bold mt-3 text-slate-800">₹{Number(stats?.total_deposit || 0).toLocaleString()}</h2>
           </div>
           <CardBgSvg />
         </div>
@@ -93,7 +93,7 @@ export default function AdminDashboard() {
         <div className="relative overflow-hidden rounded-[20px] bg-white p-6 shadow-[0_2px_12px_rgb(0,0,0,0.04)] border border-slate-100 hover:translate-y-[-4px] transition-transform duration-300">
           <div className="relative z-10 flex flex-col h-full justify-between">
             <h5 className="text-[15px] font-medium text-slate-500 tracking-wide">Total Withdraw</h5>
-            <h2 className="text-[32px] font-bold mt-3 text-slate-800">${Number(stats?.total_withdraw || 0).toLocaleString()}</h2>
+            <h2 className="text-[32px] font-bold mt-3 text-slate-800">₹{Number(stats?.total_withdraw || 0).toLocaleString()}</h2>
           </div>
           <CardBgSvg />
         </div>
@@ -193,7 +193,7 @@ export default function AdminDashboard() {
                       <div className="text-slate-500 text-[13px] mt-0.5">{order.phone}</div>
                     </td>
                     <td className="py-4 px-6 text-slate-800 font-medium">{order.qty}</td>
-                    <td className="py-4 px-6 text-slate-800 font-semibold">${Number(order.total_with_tax).toFixed(2)}</td>
+                    <td className="py-4 px-6 text-slate-800 font-semibold">₹{Number(order.total_with_tax).toFixed(2)}</td>
                     <td className="py-4 px-6 text-slate-500">{new Date(order.createdAt).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}</td>
                   </tr>
                 ))

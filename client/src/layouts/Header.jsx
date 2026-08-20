@@ -109,9 +109,9 @@ export default function Header() {
                   href="#"
                   className={`!text-white ${SERVICES_NAV.some(p => isActive(p.path)) ? 'active !text-[#0081C9]' : ''} hover:!text-[#0081C9] transition-colors`}
                   onClick={e => { e.preventDefault(); setServicesOpen(o => !o); }}
-                  style={{ cursor: 'pointer', userSelect: 'none' }}
+                  style={{ cursor: 'pointer', userSelect: 'none', display: 'flex', alignItems: 'center' }}
                 >
-                  Services <i className="bi bi-chevron-down" style={{ fontSize: '12px', marginLeft: '2px' }} />
+                  SERVICES <span style={{ fontSize: '18px', marginLeft: '4px', fontWeight: '400', display: 'inline-flex', alignItems: 'center', position: 'relative', top: '-1px' }}>{servicesOpen ? '-' : '+'}</span>
                 </a>
                 {servicesOpen && (
                   <ul style={{
@@ -342,8 +342,8 @@ export default function Header() {
                     onClick={() => setServicesOpen(!servicesOpen)}
                     className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-bold tracking-wide text-slate-300 hover:bg-slate-800 hover:text-white transition-all bg-transparent border-0"
                   >
-                    <span>Services</span>
-                    <i className={`bi bi-chevron-down transition-transform duration-300 ${servicesOpen ? 'rotate-180' : ''}`} />
+                    <span>SERVICES</span>
+                    <span className="text-xl font-normal leading-none transition-transform duration-300 mt-[2px]">{servicesOpen ? '-' : '+'}</span>
                   </button>
                   <div
                     className={`overflow-hidden transition-all duration-300 ease-in-out ${servicesOpen ? 'max-h-96 opacity-100 mt-2' : 'max-h-0 opacity-0'

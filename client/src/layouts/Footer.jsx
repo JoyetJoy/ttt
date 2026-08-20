@@ -185,7 +185,7 @@ export default function Footer() {
 
               <div className="col-lg-4 col-md-12 mb-3 mb-lg-0 text-center">
                 <p className="mb-0" style={{ fontSize: '14px' }}>
-                  Copyright 2026 Trivandrum Top Taxi | Design By Cybyc
+                  Copyright 2026 Trivandrum Top Taxi | Powered by Eayila consulting
                 </p>
               </div>
 

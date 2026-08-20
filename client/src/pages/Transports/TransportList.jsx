@@ -75,36 +75,32 @@ export default function TransportList() {
 
             {/* ── Sidebar (Left) ── */}
             {isSidebarOpen && <div className="fixed inset-0 bg-black/60 z-[9990] lg:hidden" onClick={() => setIsSidebarOpen(false)}></div>}
-            <div className={`w-[300px] lg:w-[320px] flex-shrink-0 flex flex-col gap-6 fixed lg:relative top-0 left-0 h-full lg:h-auto bg-white lg:bg-transparent z-[9999] lg:z-auto p-6 lg:p-0 overflow-y-auto lg:overflow-visible transition-transform duration-300 shadow-2xl lg:shadow-none ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
+            <div className={`w-[300px] lg:w-[320px] flex-shrink-0 flex flex-col gap-6 fixed lg:relative top-0 left-0 h-full lg:h-auto bg-[#fcfaf7] lg:bg-transparent z-[9999] lg:z-auto p-6 lg:p-0 overflow-y-auto lg:overflow-visible transition-transform duration-300 shadow-2xl lg:shadow-none ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
               <div className="lg:hidden flex justify-between items-center mb-2 pb-4 border-b border-gray-100">
                 <h3 className="text-xl font-extrabold text-gray-900">Filters</h3>
                 <button onClick={() => setIsSidebarOpen(false)} className="text-gray-500 hover:text-red-500 text-3xl leading-none bg-gray-50 hover:bg-red-50 w-10 h-10 rounded-full flex items-center justify-center transition-colors">&times;</button>
               </div>
 
               {/* Search Widget */}
-              <div className="bg-white rounded-xl p-7 shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-gray-100/50">
-                <div className="mb-6">
-                  <h4 className="text-[22px] font-extrabold text-gray-900 inline-block border-b border-black pb-0.5">Search Here</h4>
-                </div>
-                <div className="flex w-full group">
+              <div className="border-b border-gray-200 pb-6 mb-6">
+                <h4 className="text-lg font-bold text-gray-900 mb-4">Search Here</h4>
+                <div className="flex w-full border border-gray-200 rounded-lg overflow-hidden focus-within:border-[#0081C9] transition-colors">
                   <input
                     type="text"
-                    placeholder="Search Here"
+                    placeholder="Search..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full flex-1 border border-r-0 border-[#0081C9]/30 rounded-none px-3 py-1 text-[15px] focus:outline-none focus:border-[#0081C9] transition-all bg-white text-gray-800 placeholder-gray-400"
+                    className="w-full flex-1 px-4 py-2.5 text-[15px] focus:outline-none text-gray-800 placeholder-gray-400"
                   />
-                  <button className="bg-[#0081C9] text-white px-7 py-3.5 rounded-none hover:bg-[#006096] transition-colors flex items-center justify-center border border-[#0081C9] hover:border-[#006096]">
-                    <i className="bi bi-search text-lg font-bold"></i>
+                  <button className="bg-[#0081C9] text-white px-5 hover:bg-[#006096] transition-colors flex items-center justify-center">
+                    <i className="bi bi-search font-bold"></i>
                   </button>
                 </div>
               </div>
 
               {/* Price Filter */}
-              <div className="bg-white rounded-xl p-7 shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-gray-100/50">
-                <div className="mb-6">
-                  <h4 className="text-[22px] font-extrabold text-gray-900 inline-block border-b border-black pb-0.5">Price Filter</h4>
-                </div>
+              <div className="border-b border-gray-200 pb-6 mb-6">
+                <h4 className="text-lg font-bold text-gray-900 mb-4">Price Filter</h4>
                 <div className="mt-8 mb-2 px-2">
                   <input
                     type="range"
@@ -122,11 +118,9 @@ export default function TransportList() {
                 </div>
               </div>
 
-              {/* Destinations */}
-              <div className="bg-white rounded-xl p-7 shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-gray-100/50">
-                <div className="mb-6">
-                  <h4 className="text-[22px] font-extrabold text-gray-900 inline-block border-b border-black pb-0.5">Destinations</h4>
-                </div>
+              {/* Category */}
+              <div className="border-b border-gray-200 pb-6 mb-6">
+                <h4 className="text-lg font-bold text-gray-900 mb-4">Category</h4>
                 <ul className="flex flex-col gap-4 m-0 p-0">
                   {['France', 'Spain', 'Switzerland', 'Canada'].map((d, i) => (
                     <li key={d} className="flex justify-between items-center" style={{ listStyle: 'none' }}>
@@ -141,10 +135,8 @@ export default function TransportList() {
               </div>
 
               {/* Most Popular */}
-              <div className="bg-white rounded-xl p-7 shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-gray-100/50">
-                <div className="mb-6">
-                  <h4 className="text-[22px] font-extrabold text-gray-900 inline-block border-b border-black pb-0.5">Most Popular</h4>
-                </div>
+              <div className="border-b border-gray-200 pb-6 mb-6">
+                <h4 className="text-lg font-bold text-gray-900 mb-4">Most Popular</h4>
                 <div className="flex flex-col gap-5">
                   {transports.slice(0, 4).map((transport, i) => (
                     <div key={`pop-${transport.id}`} className="flex gap-4 items-center group cursor-pointer">

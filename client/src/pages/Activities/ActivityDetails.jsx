@@ -145,16 +145,12 @@ export default function ActivityDetails() {
                 </div>
               )}
               {/* Large Image Right */}
-              <div className="md:col-span-1 h-full rounded-xl overflow-hidden shadow-sm relative group cursor-pointer" onClick={() => openModal(3)}>
-                <img src={allImages[3]} alt="Gallery 4" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                {activity.youtube_video ? (
-                  <a href={activity.youtube_video} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="absolute inset-0 bg-black/30 flex items-center justify-center hover:bg-black/40 transition-colors">
-                    <span className="text-white font-bold tracking-wide">Watch Video</span>
-                  </a>
-                ) : (
+              {allImages[3] && (
+                <div className="md:col-span-1 h-full rounded-xl overflow-hidden shadow-sm relative group cursor-pointer" onClick={() => openModal(3)}>
+                  <img src={allImages[3]} alt="Gallery 4" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
           </div>
 

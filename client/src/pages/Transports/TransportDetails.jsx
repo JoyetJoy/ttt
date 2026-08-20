@@ -302,7 +302,7 @@ export default function TransportDetails() {
                   <div className="flex flex-col gap-3 mt-1">
                     {/* Booking Date */}
                     <div>
-                      <h4 className="font-bold text-gray-900 text-sm mb-1">Select Pick-up Date:</h4>00 text-sm mb-2">Select Pick-up Date:</h4>
+                      <h4 className="font-bold text-gray-900 text-sm mb-1">Select Pick-up Date:</h4>
                       <input 
                         type="date" 
                         value={selectedDate}
